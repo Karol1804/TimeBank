@@ -1,0 +1,29 @@
+<div class="main">
+    <mat-card class="add-service">
+        <mat-card-title>Create service</mat-card-title>
+
+        <!-- User_id Autocomplet Column -->
+        <mat-form-field class="full-width" appearance="fill">
+            <mat-label>User</mat-label>
+            <input type="text" matInput [(ngModel)]="user_id" [matAutocomplete]="auto">
+            <mat-autocomplete #auto="matAutocomplete">
+                <mat-option *ngFor="let user of users" [value]="user.id">
+                    {{user.user_name}}
+                </mat-option>
+            </mat-autocomplete>
+        </mat-form-field>
+        <br />
+
+        <!-- Title Column -->
+        <mat-form-field class="full-width" appearance="fill">
+            <mat-label>Title</mat-label><input matInput [(ngModel)]="title" maxlength="1000" />
+        </mat-form-field>
+        <br />
+
+        <mat-error *ngIf="emptyInputError"> All fields are requried! </mat-error>
+
+        <button mat-raised-button color="primary" (click)="addNewOffer()">
+            Add new service
+        </button>
+    </mat-card>
+</div>

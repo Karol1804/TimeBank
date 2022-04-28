@@ -1,0 +1,15 @@
+<div class="main">
+    <div>
+        <mat-card class="card">
+            <mat-card-title>{{title}}</mat-card-title>
+            <mat-divider inset></mat-divider>
+            <br>
+            <mat-card-content>
+                <p>Provider: {{user_name}}, {{phone}}</p>
+            </mat-card-content>
+            <div class="send-button">
+                <a routerLink="/service-register"><button mat-raised-button color="white" (click)="createRegisterRecord()">Order</button></a>
+            </div>
+        </mat-card>
+    </div>
+</div>

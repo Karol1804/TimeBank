@@ -1,0 +1,14 @@
+.card {
+    width: 400px;
+    background-color: rgb(215, 200, 252);
+    margin-left: 5%;
+    margin-top: 5%;
+    box-shadow: 0 5px 5px rgb(100, 99, 99);
+    display: inline-block;
+}
+
+.send-button {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
