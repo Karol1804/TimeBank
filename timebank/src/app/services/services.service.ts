@@ -12,7 +12,7 @@ import { map } from 'rxjs';
 
 export class ServicesService {
 
-  private api = "http://157.245.27.101:5000/api/v1/";  //=======#testing environment
+  private api = "http://localhost:5000/api/v1/";  //=======#testing environment
   // private api = "http://157.230.79.85:5000/api/v1/";  //=======#production environment
   // private api = "http://localhost:5000/api/v1/";  //=======#local
   private apiGetServicesUrl = this.api + "services";
@@ -38,7 +38,7 @@ export class ServicesService {
   remoteServices(res: any): Service[] {
     let services: Service[] = [];
     for (let service of res) {
-      services.push(new Service(service.id, service.title, service.User.user_name, service.User.phone, service.User.id))
+      services.push(new Service(service.id, service.title, service.User.user_name, service.estimated, service.User.phone, service.User.id))
     }
     return services;
   }
