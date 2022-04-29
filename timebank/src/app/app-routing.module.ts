@@ -4,23 +4,32 @@ import { CreateServiceComponent } from './guest/create-service/create-service.co
 import { GuestLayoutComponent } from './guest/guest-layout/guest-layout.component';
 import { OrderComponent } from './guest/order/order.component';
 import { ServiceRegisterComponent } from './guest/service-register/service-register.component';
+import { RegistrationComponent } from './guest/registration/registration.component';
+import { AuthGuardService } from './services/auth-guard.service';
 
 const routes: Routes = [
   {
     path: "", component: GuestLayoutComponent,
   },
   {
-    path: "create-service", component: CreateServiceComponent,
+    path: "create-service", component: CreateServiceComponent, canActivate: [AuthGuardService]
   },
   {
     path: "services", component: GuestLayoutComponent,
   },
   {
-    path: "service-register", component: ServiceRegisterComponent,
+    path: "service-register", component: ServiceRegisterComponent, canActivate: [AuthGuardService]
   },
   {
-    path: "order/:id", component: OrderComponent,
-  }  
+    path: "order/:id", component: OrderComponent,  canActivate: [AuthGuardService]
+  },
+  {
+    path: "registration", component: RegistrationComponent
+
+  } 
+
+
+
 ];
 
 @NgModule({

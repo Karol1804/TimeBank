@@ -3,7 +3,7 @@ export class Service {
         public id: number,
         public title: string,
         public user: string,
-        public estimate: number,
+     public estimate: number,
         public phone?: string,
         public user_id?: number
     ) {}
