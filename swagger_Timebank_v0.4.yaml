@@ -2,7 +2,7 @@ openapi: 3.0.1
 info:
   title: Timebank
   description: 'This is API description for Timebank project.'
-  version: 1.0.0
+  version: 0.4.0
 servers:
 - url: http://localhost:5000/api/v1
 tags:
@@ -356,6 +356,67 @@ paths:
           $ref: '#/components/responses/NotFound'
         5XX:
           $ref: '#/components/responses/ServerError'
+  /service/{title}:
+    parameters:
+      - name: title
+        in: path
+        description: ID of service to use
+        required: true
+        schema:
+          type: integer
+          format: int64
+    get:
+      security: []
+      tags:
+      - service
+      summary: Find service by ID
+      operationId: getServiceByTitle
+      responses:
+        200:
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Service'
+        400:
+          $ref: '#/components/responses/BadParam'
+        401:
+          $ref: '#/components/responses/NotAuthorized'
+        404:
+          $ref: '#/components/responses/NotFound'
+        5XX:
+          $ref: '#/components/responses/ServerError'
+  
+  /service/{user_id}:
+    parameters:
+      - name: user_id
+        in: path
+        description: ID of service to use
+        required: true
+        schema:
+          type: integer
+          format: int64
+    get:
+      security: []
+      tags:
+      - service
+      summary: Find service by ID
+      operationId: getServiceByUserID
+      responses:
+        200:
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Service'
+        400:
+          $ref: '#/components/responses/BadParam'
+        401:
+          $ref: '#/components/responses/NotAuthorized'
+        404:
+          $ref: '#/components/responses/NotFound'
+        5XX:
+          $ref: '#/components/responses/ServerError'  
   
   /service-create:
     post:
@@ -526,7 +587,7 @@ paths:
           $ref: '#/components/responses/NotFound'
         5XX:
           $ref: '#/components/responses/ServerError'
-  /serviceregister/{id}/{hours}:
+  /serviceregister/{id}/{hours}/{rating}:
     parameters:
       - name: id
         in: path
@@ -538,6 +599,13 @@ paths:
       - name: hours
         in: path
         description: Number of hours needed to do service
+        required: true
+        schema:
+          type: integer
+          format: int64
+      - name: rating
+        in: path
+        description: Rating
         required: true
         schema:
           type: integer
@@ -615,6 +683,12 @@ components:
               type: string
               format: password
               example: 9G(6`C2i~S]
+        - type: object
+          properties:
+            password_val:
+              type: string
+              format: password
+              example: 9G(6`C2i~S]
     UserWithPasswordUpdate:
       allOf:
         - $ref: '#/components/schemas/UsersUpdate'
@@ -627,9 +701,14 @@ components:
     UserPassword:
       required:
         - password
+        - password_val
       type: object
       properties:
         password:
+          type: string
+          format: password
+          example: 9G(6`C2i~S]
+        password_val:
           type: string
           format: password
           example: 9G(6`C2i~S]
@@ -661,6 +740,10 @@ components:
         title:
           type: string
           example: Pokosim travnik
+        estimate:
+          type: integer
+          format: int64
+          example: 2
     ServiceUpdate:
       type: object
       properties:
@@ -671,6 +754,10 @@ components:
         title:
           type: string
           example: Umyjem okna na mrakodrape
+        estimate:
+          type: integer
+          format: int64
+          example: 2
     ServiceRegister:
       required:
         - service_id
@@ -701,7 +788,10 @@ components:
         end_time:
           type: string
           format: date
-          example: 2022-05-26 19:00:00
+        rating:
+          type: integer
+          format: int64
+          example: 5
     ServiceRegisterUpdate:
       type: object
       properties:
