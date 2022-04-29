@@ -25,6 +25,15 @@ import { MatFormFieldModule } from '@angular/material/form-field';
 import { HashLocationStrategy, LocationStrategy } from '@angular/common';
 import { CreateServiceComponent } from './guest/create-service/create-service.component';
 import { MatAutocompleteModule } from '@angular/material/autocomplete'; 
+import { SharedModule } from './shared/shared.module';
+
+
+import {MatStepperModule} from '@angular/material/stepper';
+import { AuthGuardService } from './services/auth-guard.service';
+import { AuthServService } from './services/auth-serv.service';
+import { GlobalStorageService } from './services/global-storage.service';
+import { RegistrationComponent } from './guest/registration/registration.component';
+
 
 
 @NgModule({
@@ -34,7 +43,8 @@ import { MatAutocompleteModule } from '@angular/material/autocomplete';
     NavComponent,
     OrderComponent,
     ServiceRegisterComponent,
-    CreateServiceComponent
+    CreateServiceComponent,
+    RegistrationComponent
   ],
   imports: [
     BrowserModule,
@@ -54,9 +64,16 @@ import { MatAutocompleteModule } from '@angular/material/autocomplete';
     MatFormFieldModule,
     MatInputModule,
     FormsModule,
-    MatAutocompleteModule
+    MatAutocompleteModule,
+    SharedModule,
+    MatStepperModule
+   
+
   ],
-  providers: [ServicesService, {provide: LocationStrategy, useClass: HashLocationStrategy}],
+  providers: [ServicesService, {provide: LocationStrategy, useClass: HashLocationStrategy}, 
+              AuthGuardService, AuthServService, GlobalStorageService, RegistrationComponent
+  
+  ],
   bootstrap: [AppComponent]
 })
 

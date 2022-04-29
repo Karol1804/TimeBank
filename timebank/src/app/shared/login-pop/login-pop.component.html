@@ -1,0 +1,36 @@
+
+   <h1 mat-dialog-title  > Login </h1>
+   <div mat-dialog-content  >
+    
+     <mat-form-field appearance="fill" class="w-full" >
+       <mat-label>Phone valid.TODO</mat-label>
+       <input matInput type="tel"  [(ngModel)]="data.phone" maxlength="15" placeholder="+420 123 123456"  required pattern="[+]\d{3} \d{3} \d{6}">
+        <mat-icon matSuffix >phone</mat-icon>
+   
+      </mat-form-field>
+
+
+
+      <mat-form-field appearance="fill" class="w-full">
+        <mat-label>Enter your password</mat-label>
+        <input matInput [type]="hide ? 'password' : 'text'"  [(ngModel)]="data.password">
+
+        <button  mat-icon-button matSuffix (click)="hide = !hide" [attr.aria-label]="'Hide password'" [attr.aria-pressed]="hide">
+          <mat-icon >{{hide ? 'visibility_off' : 'visibility'}}</mat-icon>
+        </button>
+      </mat-form-field>
+         
+   
+    
+
+
+    
+   </div>
+   <div mat-dialog-actions >
+     <button mat-button (click)="onNoClick()">Close</button>
+     <button mat-button [mat-dialog-close]="data" cdkFocusInitial >Confirm</button>
+     <button mat-button (click)="onRegClick()"> Registration TODO </button>
+   </div>
+    
+
+ 

@@ -8,6 +8,9 @@
         <a routerLink="/services"><span>Services</span></a>
         <span class="divider">|</span>
         <a routerLink="/service-register"><span>Service register</span></a>
-
+        <span class="divider">|</span>
+        <a routerLink="/create-service" *ngIf="!switchBtn()"><span></span><app-login-btn></app-login-btn></a>
+        <a routerLink="" *ngIf="switchBtn()"><span></span><app-logout-btn></app-logout-btn></a>
+   
     </mat-toolbar>
 </nav>
