@@ -2,7 +2,7 @@ stages:
   - build
   - deploy
 
-build-job-test:
+build-job1:
   image: node:12-alpine
   stage: build
   tags:
@@ -28,7 +28,7 @@ build-job-test:
       - node_modules
     policy: pull
 
-build-job-prod:
+build-job2:
   image: node:12-alpine
   stage: build
   tags:
@@ -54,11 +54,11 @@ build-job-prod:
       - node_modules
     policy: pull
 
-deploy-to-test-job:
+deploy-job1:
   stage: deploy
   tags:
     - angular
-  needs: ['build-job-test']
+  needs: ['build-job1']
   before_script:
   - apk add unzip
   - apk add openssh-client
@@ -73,11 +73,11 @@ deploy-to-test-job:
     - ssh -o StrictHostKeyChecking=no automation@157.245.27.101 "cd /var/www/html; rm test.zip"
     - echo "Build for test finished"
 
-deploy-to-prod-job:
+deploy-job2:
   stage: deploy
   tags:
     - angular
-  needs: ['deploy-to-test-job', 'build-job-prod']
+  needs: ['deploy-job1', 'build-job2']
   when: manual
   before_script:
   - apk add unzip
