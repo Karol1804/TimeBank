@@ -6,7 +6,7 @@ import { EndRegisterRecord, GetRegisterRecord, RegisterRecord } from '../models/
 import { map } from 'rxjs';
 import { readFileSync } from 'fs';
 
-const url = readFileSync('./url.txt', 'utf-8');
+const url = readFileSync('./url.txt', 'utf8');
 // var url = fetch('./url.txt')
 // console.log(url)
 //   .then(response => response.text())
