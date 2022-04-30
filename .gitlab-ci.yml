@@ -34,7 +34,7 @@ build-job:
 deploy-to-test-job:
   stage: deploy
   tags:
-    - python
+    - angular
   needs: ['build-job']
   before_script:
   - apk add unzip
@@ -50,4 +50,3 @@ deploy-to-test-job:
     - ssh -o StrictHostKeyChecking=no automation@157.245.27.101 "cd /var/www/html; unzip public.zip"
     - ssh -o StrictHostKeyChecking=no automation@157.245.27.101 "cd /var/www/html; rm public.zip"
     - echo "Build for testing finished"
-    -
