@@ -1,8 +1,6 @@
 stages:
-#  - dependencies
-#  - test
   - build
-#  - publish
+#  - deploy
 #
 #install_dependencies:
 #  image: node:12-alpine
@@ -73,7 +71,7 @@ build_image:
     - ls
   artifacts:
     paths:
-      - public.zip
+      - timebank/public.zip
   cache:
     key:
       files:
