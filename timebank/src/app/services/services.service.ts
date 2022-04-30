@@ -7,9 +7,9 @@ import { map } from 'rxjs';
 
 fetch('url.txt')
   .then(response => response.text())
-  .then(data => {
+  .then(window.data => {
   	// Do something with your data
-  	console.log(data);
+  	console.log(window.data);
   });
 
 @Injectable({
@@ -28,7 +28,7 @@ export class ServicesService {
 //   }
 //   const fs = require('fs');
 
-  private api = public data
+  private api = window.data
   // private api = "http://157.245.27.101:5000/api/v1/";  //=======#testing environment
   // private api = "http://157.230.79.85:5000/api/v1/";  //=======#production environment
   // private api = "http://localhost:5000/api/v1/";  //=======#local
