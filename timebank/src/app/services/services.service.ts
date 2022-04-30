@@ -20,7 +20,10 @@ export class ServicesService {
 //   {
 //     private api = "http://157.245.27.101:5000/api/v1/";  //=======#testing environment
 //   }
-  private api = "http://157.245.27.101:5000/api/v1/";
+  const fs = require('fs');
+  const data = fs.readFileSync('url.txt', 'utf8');
+  private api = data
+  // private api = "http://157.245.27.101:5000/api/v1/";
   // private api = "http://157.230.79.85:5000/api/v1/";  //=======#production environment
   // private api = "http://localhost:5000/api/v1/";  //=======#local
   private apiGetServicesUrl = this.api + "services";
