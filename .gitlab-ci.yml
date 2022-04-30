@@ -2,7 +2,7 @@ stages:
   - build
   - deploy
 
-build-job:
+build-job1:
   image: node:12-alpine
   stage: build
   tags:
@@ -15,11 +15,37 @@ build-job:
     - npm install
     - npm run build
     - cd dist/timebank
-    - zip -r public.zip *
-    - mv public.zip ../../../public.zip
+    - zip -r public1.zip *
+    - mv public1.zip ../../../public1.zip
   artifacts:
     paths:
-      - public.zip
+      - public1.zip
+  cache:
+    key:
+      files:
+        - package-lock.json
+    paths:
+      - node_modules
+    policy: pull
+
+build-job2:
+  image: node:12-alpine
+  stage: build
+  tags:
+    - angular
+  before_script:
+    - apk add zip
+  script:
+    - npm link @angular/cli
+    - cd timebank
+    - npm install
+    - npm run build --configuration=production
+    - cd dist/timebank
+    - zip -r public2.zip *
+    - mv public2.zip ../../../public2.zip
+  artifacts:
+    paths:
+      - public2.zip
   cache:
     key:
       files:
@@ -32,7 +58,7 @@ deploy-to-test-job:
   stage: deploy
   tags:
     - angular
-  needs: ['build-job']
+  needs: ['build-job1']
   before_script:
   - apk add unzip
   - apk add openssh-client
@@ -42,16 +68,16 @@ deploy-to-test-job:
   - chmod 700 ~/.ssh
   script:
     - ssh -o StrictHostKeyChecking=no automation@157.245.27.101 " rm -r /var/www/html/*"
-    - scp -o StrictHostKeyChecking=no public.zip automation@157.245.27.101:/var/www/html
-    - ssh -o StrictHostKeyChecking=no automation@157.245.27.101 "cd /var/www/html; unzip public.zip"
-    - ssh -o StrictHostKeyChecking=no automation@157.245.27.101 "cd /var/www/html; rm public.zip"
+    - scp -o StrictHostKeyChecking=no public1.zip automation@157.245.27.101:/var/www/html
+    - ssh -o StrictHostKeyChecking=no automation@157.245.27.101 "cd /var/www/html; unzip public1.zip"
+    - ssh -o StrictHostKeyChecking=no automation@157.245.27.101 "cd /var/www/html; rm public1.zip"
     - echo "Build for test finished"
 
 deploy-to-prod-job:
   stage: deploy
   tags:
     - angular
-  needs: ['deploy-to-test-job']
+  needs: ['deploy-to-test-job', 'build-job2']
   when: manual
   before_script:
   - apk add unzip
@@ -62,7 +88,7 @@ deploy-to-prod-job:
   - chmod 700 ~/.ssh
   script:
     - ssh -o StrictHostKeyChecking=no automation@157.230.79.85 " rm -r /var/www/html/*"
-    - scp -o StrictHostKeyChecking=no public.zip automation@157.230.79.85:/var/www/html
-    - ssh -o StrictHostKeyChecking=no automation@157.230.79.85 "cd /var/www/html; unzip public.zip"
-    - ssh -o StrictHostKeyChecking=no automation@157.230.79.85 "cd /var/www/html; rm public.zip"
+    - scp -o StrictHostKeyChecking=no public2.zip automation@157.230.79.85:/var/www/html
+    - ssh -o StrictHostKeyChecking=no automation@157.230.79.85 "cd /var/www/html; unzip public2.zip"
+    - ssh -o StrictHostKeyChecking=no automation@157.230.79.85 "cd /var/www/html; rm public2.zip"
     - echo "Build for prod finished"
