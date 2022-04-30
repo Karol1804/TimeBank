@@ -61,6 +61,7 @@ build_image:
     - npm link @angular/cli
     - cd timebank
     - ls
+    - npm install
     - npm run build
   artifacts:
     paths:
