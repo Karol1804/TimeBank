@@ -57,6 +57,8 @@ build_image:
   stage: build
   tags:
     - angular
+  before_script:
+    - apk add zip
   script:
     - npm link @angular/cli
     - cd timebank
