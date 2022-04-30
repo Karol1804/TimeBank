@@ -28,31 +28,31 @@ build-job1:
       - node_modules
     policy: pull
 
-#build-job2:
-#  image: node:12-alpine
-#  stage: build
-#  tags:
-#    - angular
-#  before_script:
-#    - apk add zip
-#  script:
-#    - npm link @angular/cli
-#    - cd timebank
-#    - npm install
-#    - npm run build --prod
-#    - cd dist/timebank
-#    - zip -r prod.zip *
-#    - mv prod.zip ../../../prod.zip
-#  artifacts:
-#    paths:
-#      - prod.zip
-#  cache:
-#    key:
-#      files:
-#        - package-lock.json
-#    paths:
-#      - node_modules
-#    policy: pull
+build-job2:
+  image: node:12-alpine
+  stage: build
+  tags:
+    - angular
+  before_script:
+    - apk add zip
+  script:
+    - npm link @angular/cli
+    - cd timebank
+    - npm install
+    - npm run build --configuration=production
+    - cd dist/timebank
+    - zip -r prod.zip *
+    - mv prod.zip ../../../prod.zip
+  artifacts:
+    paths:
+      - prod.zip
+  cache:
+    key:
+      files:
+        - package-lock.json
+    paths:
+      - node_modules
+    policy: pull
 
 deploy-job1:
   stage: deploy
@@ -73,22 +73,22 @@ deploy-job1:
     - ssh -o StrictHostKeyChecking=no automation@157.245.27.101 "cd /var/www/html; rm test.zip"
     - echo "Build for test finished"
 
-#deploy-job2:
-#  stage: deploy
-#  tags:
-#    - angular
-#  needs: ['deploy-job1', 'build-job2']
-#  when: manual
-#  before_script:
-#  - apk add unzip
-#  - apk add openssh-client
-#  - eval $(ssh-agent -s)
-#  - echo "$SSH_PRIVATE_KEY" | tr -d '\r' | ssh-add -
-#  - mkdir -p ~/.ssh
-#  - chmod 700 ~/.ssh
-#  script:
-#    - ssh -o StrictHostKeyChecking=no automation@157.230.79.85 " rm -r /var/www/html/*"
-#    - scp -o StrictHostKeyChecking=no prod.zip automation@157.230.79.85:/var/www/html
-#    - ssh -o StrictHostKeyChecking=no automation@157.230.79.85 "cd /var/www/html; unzip prod.zip"
-#    - ssh -o StrictHostKeyChecking=no automation@157.230.79.85 "cd /var/www/html; rm prod.zip"
-#    - echo "Build for prod finished"
+deploy-job2:
+  stage: deploy
+  tags:
+    - angular
+  needs: ['deploy-job1', 'build-job2']
+  when: manual
+  before_script:
+  - apk add unzip
+  - apk add openssh-client
+  - eval $(ssh-agent -s)
+  - echo "$SSH_PRIVATE_KEY" | tr -d '\r' | ssh-add -
+  - mkdir -p ~/.ssh
+  - chmod 700 ~/.ssh
+  script:
+    - ssh -o StrictHostKeyChecking=no automation@157.230.79.85 " rm -r /var/www/html/*"
+    - scp -o StrictHostKeyChecking=no prod.zip automation@157.230.79.85:/var/www/html
+    - ssh -o StrictHostKeyChecking=no automation@157.230.79.85 "cd /var/www/html; unzip prod.zip"
+    - ssh -o StrictHostKeyChecking=no automation@157.230.79.85 "cd /var/www/html; rm prod.zip"
+    - echo "Build for prod finished"
