@@ -63,6 +63,9 @@ build_image:
     - ls
     - npm install
     - npm run build
+    - ls
+    - cd dist
+    - ls
   artifacts:
     paths:
       - $CI_PROJECT_DIR/dist
