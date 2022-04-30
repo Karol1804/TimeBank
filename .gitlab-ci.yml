@@ -45,4 +45,24 @@ deploy-to-test-job:
     - scp -o StrictHostKeyChecking=no public.zip automation@157.245.27.101:/var/www/html
     - ssh -o StrictHostKeyChecking=no automation@157.245.27.101 "cd /var/www/html; unzip public.zip"
     - ssh -o StrictHostKeyChecking=no automation@157.245.27.101 "cd /var/www/html; rm public.zip"
-    - echo "Build for testing finished"
+    - echo "Build for test finished"
+
+deploy-to-prod-job:
+  stage: deploy
+  tags:
+    - angular
+  needs: ['deploy-to-test-job']
+  when: manual
+  before_script:
+  - apk add unzip
+  - apk add openssh-client
+  - eval $(ssh-agent -s)
+  - echo "$SSH_PRIVATE_KEY" | tr -d '\r' | ssh-add -
+  - mkdir -p ~/.ssh
+  - chmod 700 ~/.ssh
+  script:
+    - ssh -o StrictHostKeyChecking=no automation@157.230.79.85 " rm -r /var/www/html/*"
+    - scp -o StrictHostKeyChecking=no public.zip automation@157.230.79.85:/var/www/html
+    - ssh -o StrictHostKeyChecking=no automation@157.230.79.85 "cd /var/www/html; unzip public.zip"
+    - ssh -o StrictHostKeyChecking=no automation@157.230.79.85 "cd /var/www/html; rm public.zip"
+    - echo "Build for prod finished"
