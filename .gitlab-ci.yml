@@ -41,7 +41,7 @@ deploy-to-test-job:
   - mkdir -p ~/.ssh
   - chmod 700 ~/.ssh
   script:
-    - ssh -o StrictHostKeyChecking=no automation@157.245.27.101 "rm -r /var/www/html/*"
+    - ssh -o StrictHostKeyChecking=no automation@157.245.27.101 "cd /var/www; rm -r html"
     - scp -o StrictHostKeyChecking=no public.zip automation@157.245.27.101:/var/www/html
     - ssh -o StrictHostKeyChecking=no automation@157.245.27.101 "cd /var/www/html; unzip public.zip"
     - ssh -o StrictHostKeyChecking=no automation@157.245.27.101 "cd /var/www/html; rm public.zip"
