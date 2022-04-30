@@ -12,7 +12,14 @@ import { map } from 'rxjs';
 
 export class ServicesService {
 
-  private api = "http://157.245.27.101:5000/api/v1/";  //=======#testing environment
+  if (configuration=production)
+  {
+    private api = "http://157.230.79.85:5000/api/v1/";
+  }
+  else
+  {
+    private api = "http://157.245.27.101:5000/api/v1/";  //=======#testing environment
+  }
   // private api = "http://157.230.79.85:5000/api/v1/";  //=======#production environment
   // private api = "http://localhost:5000/api/v1/";  //=======#local
   private apiGetServicesUrl = this.api + "services";
