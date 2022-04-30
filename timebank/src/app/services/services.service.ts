@@ -12,9 +12,9 @@ import { map } from 'rxjs';
 
 export class ServicesService {
 
-  //private api = "http://157.245.27.101:5000/api/v1/";  //=======#testing environment
+  // private api = "http://157.245.27.101:5000/api/v1/";  //=======#testing environment
   // private api = "http://157.230.79.85:5000/api/v1/";  //=======#production environment
-   private api = "http://0.0.0.0:5000/api/v1/";  //=======#local
+  private api = "http://0.0.0.0:5000/api/v1/";  //=======#local
   private apiGetServicesUrl = this.api + "services";
   private apiGetServiceUrl = (id: number) => this.api + "service/" + id;
   private apiGetUserUrl = (userid: number) => this.api + "user/" + userid;
