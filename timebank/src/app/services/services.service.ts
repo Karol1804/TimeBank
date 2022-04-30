@@ -4,9 +4,9 @@ import { Service } from '../models/service';
 import { User } from '../models/user';
 import { EndRegisterRecord, GetRegisterRecord, RegisterRecord } from '../models/registerrecord';
 import { map } from 'rxjs';
-import * as fs from 'fs';
+import { readFileSync } from 'fs';
 
-var url = fs.readFileSync('url.txt', 'utd8');
+const url = readFileSync('./url.txt', 'utf-8');
 // var url = fetch('./url.txt')
 // console.log(url)
 //   .then(response => response.text())
