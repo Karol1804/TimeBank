@@ -6,6 +6,7 @@ import { EndRegisterRecord, GetRegisterRecord, RegisterRecord } from '../models/
 import { map } from 'rxjs';
 
 var url = fetch('./url.txt')
+console.log(url)
 //   .then(response => response.text())
 //   .then(window.data => {
 //   	// Do something with your data
