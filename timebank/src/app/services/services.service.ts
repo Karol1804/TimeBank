@@ -4,7 +4,6 @@ import { Service } from '../models/service';
 import { User } from '../models/user';
 import { EndRegisterRecord, GetRegisterRecord, RegisterRecord } from '../models/registerrecord';
 import { map } from 'rxjs';
-import * as fs from 'fs';
 
 @Injectable({
   providedIn: 'root'
@@ -21,8 +20,13 @@ export class ServicesService {
 //     private api = "http://157.245.27.101:5000/api/v1/";  //=======#testing environment
 //   }
 //   const fs = require('fs');
-  data = fs.readFileSync('url.txt','utf8');
-  private api = data
+  fetch('url.txt')
+  .then(response => response.text())
+  .then(data => {
+  	// Do something with your data
+  	console.log(data);
+  });
+  private api = this.data
   // private api = "http://157.245.27.101:5000/api/v1/";  //=======#testing environment
   // private api = "http://157.230.79.85:5000/api/v1/";  //=======#production environment
   // private api = "http://localhost:5000/api/v1/";  //=======#local
