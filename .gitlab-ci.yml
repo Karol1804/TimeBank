@@ -66,9 +66,11 @@ build_image:
     - ls
     - cd dist
     - ls
+    - cd ..
+    - zip -r public.zip dist/*
   artifacts:
     paths:
-      - $CI_PROJECT_DIR/dist
+      - public.zip
   cache:
     key:
       files:
