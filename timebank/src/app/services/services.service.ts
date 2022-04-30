@@ -25,7 +25,7 @@ export class ServicesService {
   public apiAddServiceUrl = this.api + 'service-create';
 
   constructor(
-    private http: HttpClient
+    public http: HttpClient
   ) { }
 
   // Get all services function
