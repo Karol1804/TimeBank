@@ -9,6 +9,12 @@ import { map } from 'rxjs';
   providedIn: 'root'
 })
 
+fetch('url.txt')
+  .then(response => response.text())
+  .then(data => {
+  	// Do something with your data
+  	console.log(data);
+  });
 export class ServicesService {
 
 //   if (configuration=production)
@@ -20,12 +26,7 @@ export class ServicesService {
 //     private api = "http://157.245.27.101:5000/api/v1/";  //=======#testing environment
 //   }
 //   const fs = require('fs');
-  fetch('url.txt')
-  .then(response => response.text())
-  .then(data => {
-  	// Do something with your data
-  	console.log(data);
-  });
+
   private api = this.data
   // private api = "http://157.245.27.101:5000/api/v1/";  //=======#testing environment
   // private api = "http://157.230.79.85:5000/api/v1/";  //=======#production environment
