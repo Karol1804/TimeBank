@@ -39,7 +39,7 @@ build-job-prod:
     - npm link @angular/cli
     - cd timebank
     - npm install
-    - npm run build prod
+    - npm run build environment=production
     - cd dist/timebank
     - zip -r prod.zip *
     - mv prod.zip ../../../prod.zip
