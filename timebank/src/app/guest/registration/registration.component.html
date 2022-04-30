@@ -1,9 +1,21 @@
-<body style="background-color: pink; "> <h1>Registracia TODO</h1>  
-</body>
+ <h1>Registracia </h1>  
+
+ <form [formGroup]="phone">
+  <mat-form-field appearance="fill" >
+  <mat-label>Phone number</mat-label>   
+    <app-pho formControlName="myphone" required  ></app-pho>
+    <mat-icon matSuffix style="margin-left:1rem;">phone</mat-icon>
+    <mat-hint>Include area code</mat-hint>
+  </mat-form-field>
+  <button type="submit" (click)="onFormSubmit()">Submit</button>
+</form> 
+
+
+  
 
 
 
-<!-- <ng-container [ngSwitch]="stepperOrientation | async">
+ <ng-container [ngSwitch]="stepperOrientation | async">
     <div *ngSwitchCase="'horizontal'">Make your screen smaller to see a vertical stepper</div>
     <div *ngSwitchCase="'vertical'">Make your screen larger to see a horizontal stepper</div>
   </ng-container>
@@ -54,4 +66,4 @@
         <button mat-button matStepperPrevious>Back</button>
       </div>
     </mat-step>
-  </mat-stepper> -->
+  </mat-stepper>

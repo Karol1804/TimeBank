@@ -1,0 +1,44 @@
+
+
+  .inputC {
+    width: 100%;
+  } 
+
+ .groupBTNS {
+
+ margin-bottom: 0.2em;
+ display: flex; 
+ flex-direction: column; }
+
+.twobutton{ width: 100%;  display: flex; justify-content:space-around;}
+
+ button { margin: 0.2em;}
+
+  hr {
+    display: block;
+    margin: 10px 0 10px 0;
+    border-top: 1px solid rgba(0, 0, 0, .12);
+    width: 100%
+  }
+
+  .registration {
+    width: 12em;
+    height: 2.5em;
+    max-width: 100%;
+   
+  }
+
+
+  .logcon{  min-width: 150px;
+    max-width: 500px;
+    width: 100%;}
+
+  .closeBTN{ 
+    opacity: 1;
+   z-index: 2 ;
+  
+ 
+    position:absolute;
+    top:-1.4em;
+    right:-1.4em;
+}

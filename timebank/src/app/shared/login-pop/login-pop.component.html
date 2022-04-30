@@ -1,36 +1,42 @@
+    <div style="position: relative"> 
+    <button mat-icon-button  class="closeBTN"   (click)="onNoClick()"><mat-icon > close </mat-icon> </button>
 
-   <h1 mat-dialog-title  > Login </h1>
-   <div mat-dialog-content  >
+   <h1 mat-dialog-title> Login </h1>
+    <div mat-dialog-content class="logcon" >
     
-     <mat-form-field appearance="fill" class="w-full" >
-       <mat-label>Phone valid.TODO</mat-label>
-       <input matInput type="tel"  [(ngModel)]="data.phone" maxlength="15" placeholder="+420 123 123456"  required pattern="[+]\d{3} \d{3} \d{6}">
-        <mat-icon matSuffix >phone</mat-icon>
-   
+    <div [formGroup]="phone"  >
+      <mat-form-field appearance="fill" class="inputC" >
+      <mat-label >Phone number</mat-label>   
+        <app-pho class="inputC" formControlName="myphone" required  #tel></app-pho>
+        <mat-icon matSuffix style="margin-left:1.4rem;">phone</mat-icon>
+        <mat-hint>Include country code</mat-hint>
+        <mat-error *ngIf="tel.errorState" style="text-align: center;" >Wrong format ex."+XXX 444 556677" </mat-error>
       </mat-form-field>
-
-
-
-      <mat-form-field appearance="fill" class="w-full">
+   </div>
+  
+      <mat-form-field appearance="fill" class="inputC" >
         <mat-label>Enter your password</mat-label>
-        <input matInput [type]="hide ? 'password' : 'text'"  [(ngModel)]="data.password">
+        <input class="inputC" matInput [type]="hide ? 'password' : 'text'"  [(ngModel)]="data.password">
 
-        <button  mat-icon-button matSuffix (click)="hide = !hide" [attr.aria-label]="'Hide password'" [attr.aria-pressed]="hide">
+        <button  mat-icon-button matSuffix style="margin-left:1rem;" (click)="hide = !hide" [attr.aria-label]="'Hide password'" [attr.aria-pressed]="hide">
           <mat-icon >{{hide ? 'visibility_off' : 'visibility'}}</mat-icon>
         </button>
       </mat-form-field>
-         
-   
-    
+    </div>
+
+   <div mat-dialog-actions class="groupBTNS">
+    <div class="twobutton">  
+     <button mat-fab color="secondary"  [mat-dialog-close]="data" cdkFocusInitial [disabled]="!(tel.value && data.password)"><mat-icon >done</mat-icon></button>
+    </div>
+      
 
 
-    
-   </div>
-   <div mat-dialog-actions >
-     <button mat-button (click)="onNoClick()">Close</button>
-     <button mat-button [mat-dialog-close]="data" cdkFocusInitial >Confirm</button>
-     <button mat-button (click)="onRegClick()"> Registration TODO </button>
-   </div>
-    
+      <hr>
+      <mat-hint style="font-size: small; "> No account? Sign up for free </mat-hint>
+      <button mat-raised-button class="registration" color="accent" (click)="onRegClick()"> Next </button>
+
+    </div>
+  </div>
+
 
  

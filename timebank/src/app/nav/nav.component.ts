@@ -1,5 +1,4 @@
 import { Component, OnInit } from '@angular/core';
-import { AuthServService } from '../services/auth-serv.service';
 import { GlobalStorageService } from '../services/global-storage.service';
 
 @Component({
@@ -12,7 +11,7 @@ export class NavComponent implements OnInit {
 
 
 
-  constructor( private aut: AuthServService, private globalstorage: GlobalStorageService
+  constructor( private globalstorage: GlobalStorageService
     ) { }
 
   ngOnInit(): void {

@@ -11,9 +11,15 @@ private token: string | undefined = undefined ;
 private userLoggedId: string | undefined = undefined ;
 
 constructor() {
+
   let localStorageToken = localStorage.getItem("token");
   if (localStorageToken) {
     this.token = localStorageToken;
+  }
+
+  let localStorageUserid = localStorage.getItem("userLoggedId");
+  if (localStorageUserid) {
+    this.userLoggedId = localStorageUserid;
   }
 }
 

@@ -2,7 +2,7 @@ import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 import { RouterModule } from '@angular/router';
 import { HttpClientModule } from "@angular/common/http";
-import { FormsModule } from '@angular/forms';
+import { FormsModule,ReactiveFormsModule  } from '@angular/forms';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { GuestLayoutComponent } from './guest/guest-layout/guest-layout.component';
@@ -26,14 +26,12 @@ import { HashLocationStrategy, LocationStrategy } from '@angular/common';
 import { CreateServiceComponent } from './guest/create-service/create-service.component';
 import { MatAutocompleteModule } from '@angular/material/autocomplete'; 
 import { SharedModule } from './shared/shared.module';
-
-
 import {MatStepperModule} from '@angular/material/stepper';
 import { AuthGuardService } from './services/auth-guard.service';
 import { AuthServService } from './services/auth-serv.service';
 import { GlobalStorageService } from './services/global-storage.service';
 import { RegistrationComponent } from './guest/registration/registration.component';
-
+import { MatDividerModule } from '@angular/material/divider';
 
 
 @NgModule({
@@ -66,7 +64,9 @@ import { RegistrationComponent } from './guest/registration/registration.compone
     FormsModule,
     MatAutocompleteModule,
     SharedModule,
-    MatStepperModule
+    MatStepperModule,
+    ReactiveFormsModule,
+    MatDividerModule
    
 
   ],
