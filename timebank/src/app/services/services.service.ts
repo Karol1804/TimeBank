@@ -5,12 +5,12 @@ import { User } from '../models/user';
 import { EndRegisterRecord, GetRegisterRecord, RegisterRecord } from '../models/registerrecord';
 import { map } from 'rxjs';
 
-fetch('url.txt')
-  .then(response => response.text())
-  .then(window.data => {
-  	// Do something with your data
-  	console.log(window.data);
-  });
+url = fetch('./url.txt')
+//   .then(response => response.text())
+//   .then(window.data => {
+//   	// Do something with your data
+//   	console.log(window.data);
+//   });
 
 @Injectable({
   providedIn: 'root'
@@ -28,7 +28,7 @@ export class ServicesService {
 //   }
 //   const fs = require('fs');
 
-  private api = window.data
+  private api = url
   // private api = "http://157.245.27.101:5000/api/v1/";  //=======#testing environment
   // private api = "http://157.230.79.85:5000/api/v1/";  //=======#production environment
   // private api = "http://localhost:5000/api/v1/";  //=======#local
