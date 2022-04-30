@@ -70,6 +70,7 @@ build_image:
     - ls
     - cd ../..
     - zip -r public.zip dist/timebank/*
+    - ls
   artifacts:
     paths:
       - public.zip
