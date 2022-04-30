@@ -69,7 +69,7 @@ build_image:
     - cd dist/timebank
     - ls
     - cd ../..
-    - zip -r public.zip dist/timebank/
+    - zip -r public.zip dist/timebank/*
   artifacts:
     paths:
       - public.zip
