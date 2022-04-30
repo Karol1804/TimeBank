@@ -64,10 +64,10 @@ build_image:
     - npm install
     - npm run build
     - ls
-    - cd dist
+    - cd dist/timebank
     - ls
-    - cd ..
-    - zip -r public.zip dist/*
+    - cd ../..
+    - zip -r public.zip dist/timebank/*
   artifacts:
     paths:
       - public.zip
