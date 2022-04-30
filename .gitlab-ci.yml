@@ -1,56 +1,56 @@
 stages:
-  - dependencies
-  - test
+#  - dependencies
+#  - test
   - build
-  - publish
-
-install_dependencies:
-  image: node:12-alpine
-  stage: dependencies
-  tags:
-    - angular
-  script:
-    - npm install
-  only:
-    - main
-  cache:
-    key:
-      files:
-        - package-lock.json
-    paths:
-      - node_modules
-
-lint:
-  image: node:12-alpine
-  stage: test
-  tags:
-    - angular
-  script:
-    - npm link @angular/cli@11.2.6
-    - ng lint
-  cache:
-    key:
-      files:
-        - package-lock.json
-    paths:
-      - node_modules
-    policy: pull
-
-test:
-  image: markhobson/node-chrome:latest
-  stage: test
-  tags:
-    - angular
-  script:
-    - npm link @angular/cli@11.2.6
-    - npm test -- --browsers=ChromeHeadless --watch=false
-  cache:
-    key:
-      files:
-        - package-lock.json
-    paths:
-      - node_modules
-    policy: pull
+#  - publish
+#
+#install_dependencies:
+#  image: node:12-alpine
+#  stage: dependencies
+#  tags:
+#    - angular
+#  script:
+#    - npm install
+#  only:
+#    - main
+#  cache:
+#    key:
+#      files:
+#        - package-lock.json
+#    paths:
+#      - node_modules
+#
+#lint:
+#  image: node:12-alpine
+#  stage: test
+#  tags:
+#    - angular
+#  script:
+#    - npm link @angular/cli@11.2.6
+#    - ng lint
+#  cache:
+#    key:
+#      files:
+#        - package-lock.json
+#    paths:
+#      - node_modules
+#    policy: pull
+#
+#test:
+#  image: markhobson/node-chrome:latest
+#  stage: test
+#  tags:
+#    - angular
+#  script:
+#    - npm link @angular/cli@11.2.6
+#    - npm test -- --browsers=ChromeHeadless --watch=false
+#  cache:
+#    key:
+#      files:
+#        - package-lock.json
+#    paths:
+#      - node_modules
+#    policy: pull
 
 build_image:
   image: node:12-alpine
