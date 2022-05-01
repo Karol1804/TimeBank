@@ -61,7 +61,29 @@
               "extractLicenses": false,
               "sourceMap": true,
               "namedChunks": true
+            },
+            "test": {
+              "budgets": [
+                {
+                  "type": "initial",
+                  "maximumWarning": "500kb",
+                  "maximumError": "1mb"
+                },
+                {
+                  "type": "anyComponentStyle",
+                  "maximumWarning": "2kb",
+                  "maximumError": "4kb"
+                }
+              ],
+              "fileReplacements": [
+                {
+                  "replace": "src/app/url/apiUrl.ts",
+                  "with": "src/app/url/apiUrl.test.ts"
+                }
+              ],
+              "outputHashing": "all"
             }
+            
           },
           "defaultConfiguration": "production"
         },
