@@ -7,7 +7,7 @@ import { UserRespond } from '../models/UserRespond';
 import {GlobalStorageService} from "./global-storage.service";
 import { MatDialog } from '@angular/material/dialog';
 import { LoginPopComponent } from '../shared/login-pop/login-pop.component';
-
+import { apiurl } from '../url/apiUrl';
 
 
 
@@ -28,9 +28,7 @@ export class AuthServService {
 
   //** API */ 
 
-  private api = "http://157.245.27.101:5000/api/v1";  //=======#testing environment
-  // private api = "http://157.230.79.85:5000/api/v1";  //=======#production environment
-
+  private api = apiurl.url;
 
   private apiGetUsersList =  this.api + "/users";
   private apiGetPutDelUserId = (userId: string) =>  this.api + "/users/"  + userId;

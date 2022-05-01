@@ -13,7 +13,7 @@ build-job1:
     - npm link @angular/cli
     - cd timebank
     - npm install
-    - npm run build
+    - ng build --configuration=testing
     - cd dist/timebank
     - zip -r test.zip *
     - mv test.zip ../../../test.zip
@@ -39,7 +39,7 @@ build-job2:
     - npm link @angular/cli
     - cd timebank
     - npm install
-    - npm run build --configuration=production
+    - ng build --configuration=production
     - cd dist/timebank
     - zip -r prod.zip *
     - mv prod.zip ../../../prod.zip
@@ -77,7 +77,7 @@ deploy-job2:
   stage: deploy
   tags:
     - angular
-  needs: ['deploy-job1', 'build-job2']
+  needs: ['build-job2', 'deploy-job1']
   when: manual
   before_script:
   - apk add unzip

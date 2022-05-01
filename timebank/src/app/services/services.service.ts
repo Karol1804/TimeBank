@@ -4,37 +4,15 @@ import { Service } from '../models/service';
 import { User } from '../models/user';
 import { EndRegisterRecord, GetRegisterRecord, RegisterRecord } from '../models/registerrecord';
 import { map } from 'rxjs';
-import { readFileSync } from 'fs';
-
-//const url = readFileSync('./url.txt', 'utf8');
-// var url = fetch('./url.txt')
-// console.log(url)
-//   .then(response => response.text())
-//   .then(window.data => {
-//   	// Do something with your data
-//   	console.log(window.data);
-//   });
+import { apiurl } from '../url/apiUrl';
 
 @Injectable({
   providedIn: 'root'
 })
 
 export class ServicesService {
-
-//   if (configuration=production)
-//   {
-//     private api = "http://157.230.79.85:5000/api/v1/";
-//   }
-//   else
-//   {
-//     private api = "http://157.245.27.101:5000/api/v1/";  //=======#testing environment
-//   }
-//   const fs = require('fs');
-
-//private api = url;
-   private api = "http://157.245.27.101:5000/api/v1/";  //=======#testing environment
-  // private api = "http://157.230.79.85:5000/api/v1/";  //=======#production environment
-  // private api = "http://localhost:5000/api/v1/";  //=======#local
+ 
+  private api = apiurl.url;
   private apiGetServicesUrl = this.api + "services";
   private apiGetServiceUrl = (id: number) => this.api + "service/" + id;
   private apiGetUserUrl = (userid: number) => this.api + "user/" + userid;
@@ -46,7 +24,9 @@ export class ServicesService {
 
   constructor(
     private http: HttpClient
-  ) { }
+  ) { 
+    console.log("toto")
+  }
 
   // Get all services function
   getServices(query: string) {

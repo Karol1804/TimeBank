@@ -48,8 +48,8 @@
               ],
               "fileReplacements": [
                 {
-                  "replace": "src/environments/environment.ts",
-                  "with": "src/environments/environment.prod.ts"
+                  "replace": "src/app/url/apiUrl.ts",
+                  "with": "src/app/url/apiUrl.prod.ts"
                 }
               ],
               "outputHashing": "all"
@@ -61,7 +61,29 @@
               "extractLicenses": false,
               "sourceMap": true,
               "namedChunks": true
+            },
+            "testing": {
+              "budgets": [
+                {
+                  "type": "initial",
+                  "maximumWarning": "500kb",
+                  "maximumError": "1mb"
+                },
+                {
+                  "type": "anyComponentStyle",
+                  "maximumWarning": "2kb",
+                  "maximumError": "4kb"
+                }
+              ],
+              "fileReplacements": [
+                {
+                  "replace": "src/app/url/apiUrl.ts",
+                  "with": "src/app/url/apiUrl.test.ts"
+                }
+              ],
+              "outputHashing": "all"
             }
+            
           },
           "defaultConfiguration": "production"
         },
@@ -73,6 +95,9 @@
             },
             "development": {
               "browserTarget": "timebank:build:development"
+            },
+            "testing": {
+              "browserTarget": "timebank:build:testing"
             }
           },
           "defaultConfiguration": "development"
