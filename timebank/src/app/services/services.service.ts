@@ -4,6 +4,7 @@ import { Service } from '../models/service';
 import { User } from '../models/user';
 import { EndRegisterRecord, GetRegisterRecord, RegisterRecord } from '../models/registerrecord';
 import { map } from 'rxjs';
+import { ApiUrl } from '../url/apiUrl'
 
 
 @Injectable({
@@ -11,10 +12,8 @@ import { map } from 'rxjs';
 })
 
 export class ServicesService {
-
-  private api = "http://157.245.27.101:5000/api/v1/";  //=======#testing environment
-  // private api = "http://157.230.79.85:5000/api/v1/";  //=======#production environment
-  // private api = "http://localhost:5000/api/v1/";  //=======#local
+ 
+  private api = new ApiUrl();
   private apiGetServicesUrl = this.api + "services";
   private apiGetServiceUrl = (id: number) => this.api + "service/" + id;
   private apiGetUserUrl = (userid: number) => this.api + "user/" + userid;
