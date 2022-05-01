@@ -35,10 +35,30 @@
 
   .closeBTN{ 
     opacity: 1;
-   z-index: 2 ;
-  
- 
+    z-index: 2 ;
     position:absolute;
     top:-1.4em;
     right:-1.4em;
+    height:18px;
+    border-radius:18px;
+    width:18px;
+    text-align:center;
+   background-color:rgba(0, 0, 0, .3);
+   line-height: 0%;
+   color:white;
+  
+   
+  
 }
+
+
+.closeBTN:hover{    
+  transition:all 200ms cubic-bezier(.08,.52,.52,1);
+  z-index: 4;
+  top:-1.8em;
+  right:-1.8em;
+  background-color: rgb(151, 12, 12);
+  height: 30px;
+  opacity: 1;
+  transform: scale(1);
+  width: 30px;}
