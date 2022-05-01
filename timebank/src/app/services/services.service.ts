@@ -6,7 +6,6 @@ import { EndRegisterRecord, GetRegisterRecord, RegisterRecord } from '../models/
 import { map } from 'rxjs';
 import { ApiUrl } from '../url/apiUrl'
 
-
 @Injectable({
   providedIn: 'root'
 })
@@ -37,7 +36,7 @@ export class ServicesService {
   remoteServices(res: any): Service[] {
     let services: Service[] = [];
     for (let service of res) {
-      services.push(new Service(service.id, service.title, service.User.user_name, service.User.phone, service.User.id))
+      services.push(new Service(service.id, service.title, service.User.user_name, service.estimated, service.User.phone, service.User.id))
     }
     return services;
   }
@@ -74,7 +73,7 @@ export class ServicesService {
   getService(id: number) {
     return this.http.get(this.apiGetServiceUrl(id)).pipe(map(this.remoteServices));
   }
-  
+
   // Gets all registered users
   getUsers(query: string) {
     return this.http.get(this.apiGetUsersUrl + query).pipe(map(this.remoteUsers));
