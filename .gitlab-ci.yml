@@ -13,7 +13,7 @@ build-job1:
     - npm link @angular/cli
     - cd timebank
     - npm install
-    - npm run build
+    - npm run build --configuration=testing
     - cd dist/timebank
     - zip -r test.zip *
     - mv test.zip ../../../test.zip
