@@ -17,8 +17,8 @@ import { readFileSync } from 'fs';
 
 var fs = require('fs');
 fs.readFile('url.txt', 'utf8', function(err, data){ 
-var url = data
-})
+window.url = data
+});
 
 @Injectable({
   providedIn: 'root'
