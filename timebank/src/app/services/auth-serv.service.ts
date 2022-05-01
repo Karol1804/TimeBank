@@ -102,9 +102,7 @@ export class AuthServService {
           }
         }
       }
-
-
-   
+      
       popOpenDialog(): void {
 
         this.dialog.open(LoginPopComponent, {
@@ -113,9 +111,4 @@ export class AuthServService {
           });
        
   }
-
-
-
-
-
 }

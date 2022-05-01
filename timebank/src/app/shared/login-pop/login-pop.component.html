@@ -10,7 +10,7 @@
         <app-pho class="inputC" formControlName="myphone" required  #tel></app-pho>
         <mat-icon matSuffix style="margin-left:1.4rem;">phone</mat-icon>
         <mat-hint>Include country code</mat-hint>
-        <mat-error *ngIf="tel.errorState" style="text-align: center;" >Wrong format ex."+XXX 444 556677" </mat-error>
+        <mat-error *ngIf="tel.errorState" style="text-align: center;" >Wrong format +XXX 444 556677 </mat-error>
       </mat-form-field>
    </div>
   
@@ -26,7 +26,10 @@
 
    <div mat-dialog-actions class="groupBTNS">
     <div class="twobutton">  
-     <button mat-fab color="secondary"  [mat-dialog-close]="data" cdkFocusInitial [disabled]="!(tel.value && data.password)"><mat-icon >done</mat-icon></button>
+     <button mat-fab color="secondary" 
+      [mat-dialog-close]="data" 
+      [disabled]="!(tel.value && data.password)">
+      <mat-icon >done</mat-icon></button>
     </div>
       
 
