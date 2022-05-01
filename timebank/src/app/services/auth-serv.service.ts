@@ -30,14 +30,14 @@ export class AuthServService {
 
   private api = apiurl.url;
 
-  private apiGetUsersList =  this.api + "/users";
-  private apiGetPutDelUserId = (userId: string) =>  this.api + "/users/"  + userId;
-  private apiPostUserCreate =  this.api + "/user-create";
-  private apiPuttUserSetPass = (userId: string) => this.api + "/user/" + userId + "/set-password";
+  private apiGetUsersList =  this.api + "users";
+  private apiGetPutDelUserId = (userId: string) =>  this.api + "users/"  + userId;
+  private apiPostUserCreate =  this.api + "user-create";
+  private apiPuttUserSetPass = (userId: string) => this.api + "user/" + userId + "/set-password";
 
-  private apiPostUserLogin =  this.api + "/user/login";
-  private apiPostUserLogout =  this.api + "/user/logout";
-  private apiPostUserProfile =  this.api + "/user/profile";
+  private apiPostUserLogin =  this.api + "user/login";
+  private apiPostUserLogout =  this.api + "user/logout";
+  private apiPostUserProfile =  this.api + "user/profile";
 
   //private apiSearchUrl = this.api + "/service?q=";
 
