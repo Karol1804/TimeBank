@@ -48,23 +48,17 @@ export class LoginPopComponent implements OnDestroy {
         + this.phone.get('myphone')?.value.area 
         +' '+ this.phone.get('myphone')?.value.exchange
         +' '+ this.phone.get('myphone')?.value.subscriber;
-
         if(data){
   
             this.loginData = {phone: this.valuePhone, password: data.password};
-            console.log('Login data:'+JSON.stringify(this.loginData));
             this.userService.userlogin(this.loginData.phone, this.loginData.password).subscribe(
               (userObject) => {  
-                console.log('userobject'+JSON.stringify(userObject));
                       if(userObject){
                       
                        this.userService.tokenExtraction(userObject);
-                       console.log('save TOKEN:'+ !!this.globalStorageService.getToken())
-                       console.log('save UserId:'+ !!this.globalStorageService.getUserId())
       
                        this.router.navigateByUrl('');
                        this.userLogedzip= userObject;
-                        console.log('A:' + JSON.stringify(this.userLogedzip));
                        return this.userLogedzip;
       
                       } else { alert('Error extract user?'); return undefined}}) 

@@ -8,6 +8,7 @@ import {GlobalStorageService} from "./global-storage.service";
 import { MatDialog } from '@angular/material/dialog';
 import { LoginPopComponent } from '../shared/login-pop/login-pop.component';
 import { apiurl } from '../url/apiUrl';
+import { SnackBarService } from './snackbar.service';
 
 
 
@@ -47,6 +48,7 @@ export class AuthServService {
     private http: HttpClient,
     private globalStorageService: GlobalStorageService,
     public dialog: MatDialog,
+    private snackbar: SnackBarService
     ) { 
      
   
@@ -84,7 +86,8 @@ export class AuthServService {
          if (userRes.access_token) {
            this.globalStorageService.saveToken(userRes.access_token);
            this.globalStorageService.saveUserId(userRes.id.toString());
-
+           this.snackbar.openSnackBar(' Welcome back !','center',
+            'bottom',5000,'snack-login')
            return userRes.access_token;
          } 
          else {

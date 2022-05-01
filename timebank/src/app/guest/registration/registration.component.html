@@ -1,11 +1,6 @@
  <h1>Registration </h1>  
 
 
-
-  
-
-
-
  <ng-container [ngSwitch]="stepperOrientation | async">
 
  <!-- <div *ngSwitchCase="'horizontal'">Make your screen smaller to see a vertical stepper</div>
@@ -36,19 +31,18 @@
                     <mat-icon matSuffix style="margin-left:1rem;">phone</mat-icon>
                     <mat-hint>Include area code</mat-hint>
                   </mat-form-field>
-                
-  
-        <div>
-          <button mat-button matStepperPrevious>Back</button>
-          <button mat-button matStepperNext>Next</button>
-        </div>
-      </form>
+         <div>
+           <button mat-button matStepperPrevious>Back</button>
+           <button mat-button matStepperNext>Next</button>
+         </div>
+       </form>
+
     </mat-step>
     <mat-step [stepControl]="thirdFormGroup" label="Fill out your password">
       <form [formGroup]="thirdFormGroup">
         <mat-form-field appearance="fill">
-          <mat-label>Phone number</mat-label>
-          <input matInput formControlName="thirdCtrl" placeholder="Ex. 12345678" required>
+          <mat-label>Password</mat-label>
+          <input matInput formControlName="thirdCtrl" required>
         </mat-form-field>
         <div>
           <button mat-button matStepperPrevious>Back</button>

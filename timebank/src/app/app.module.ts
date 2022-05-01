@@ -32,6 +32,8 @@ import { AuthServService } from './services/auth-serv.service';
 import { GlobalStorageService } from './services/global-storage.service';
 import { RegistrationComponent } from './guest/registration/registration.component';
 import { MatDividerModule } from '@angular/material/divider';
+import { SnackBarService } from './services/snackbar.service';
+import { MatSnackBarModule } from '@angular/material/snack-bar';
 
 
 @NgModule({
@@ -66,12 +68,13 @@ import { MatDividerModule } from '@angular/material/divider';
     SharedModule,
     MatStepperModule,
     ReactiveFormsModule,
-    MatDividerModule
+    MatDividerModule,
+    MatSnackBarModule
    
 
   ],
   providers: [ServicesService, {provide: LocationStrategy, useClass: HashLocationStrategy}, 
-              AuthGuardService, AuthServService, GlobalStorageService, RegistrationComponent
+              AuthGuardService, SnackBarService, AuthServService, GlobalStorageService, RegistrationComponent
   
   ],
   bootstrap: [AppComponent]

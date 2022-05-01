@@ -21,7 +21,8 @@ import {MatDividerModule} from '@angular/material/divider';
     LoginPopComponent,
     LoginBtnComponent,
     LogoutBtnComponent,
-    PhoComponent
+    PhoComponent,
+    
     
   
   ],

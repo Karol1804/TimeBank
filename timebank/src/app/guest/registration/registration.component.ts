@@ -14,7 +14,7 @@ import { MyTel } from 'src/app/shared/pho/MyTel';
 })
 export class RegistrationComponent  {
 
-  valuePhone: string;
+valuePhone: string;
 
  phone: FormGroup = new FormGroup({
     myphone: new FormControl(new MyTel('+','', '', '')),
@@ -24,8 +24,7 @@ export class RegistrationComponent  {
     this.valuePhone=this.phone.get('myphone')?.value.plus
     +' '+ this.phone.get('myphone')?.value.area 
     +' '+ this.phone.get('myphone')?.value.exchange
-    +' '+ this.phone.get('myphone')?.value.subscriber;
-} 
+    +' '+ this.phone.get('myphone')?.value.subscriber;} 
 
 
   firstFormGroup = this._formBuilder.group({
