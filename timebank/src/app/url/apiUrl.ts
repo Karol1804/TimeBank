@@ -1,5 +1,3 @@
-export class ApiUrl {
-    constructor(
-        private api = "http://localhost:5000/api/v1/"
-    ){}
+export const apiurl = {
+    url: "http://localhost:5000/api/v1/"
 }

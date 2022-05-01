@@ -4,7 +4,7 @@ import { Service } from '../models/service';
 import { User } from '../models/user';
 import { EndRegisterRecord, GetRegisterRecord, RegisterRecord } from '../models/registerrecord';
 import { map } from 'rxjs';
-import { ApiUrl } from '../url/apiUrl'
+import { apiurl } from '../url/apiUrl'
 
 @Injectable({
   providedIn: 'root'
@@ -12,7 +12,7 @@ import { ApiUrl } from '../url/apiUrl'
 
 export class ServicesService {
  
-  private api = new ApiUrl();
+  private api = apiurl.url;
   private apiGetServicesUrl = this.api + "services";
   private apiGetServiceUrl = (id: number) => this.api + "service/" + id;
   private apiGetUserUrl = (userid: number) => this.api + "user/" + userid;
@@ -24,7 +24,9 @@ export class ServicesService {
 
   constructor(
     private http: HttpClient
-  ) { }
+  ) { 
+    console.log("toto")
+  }
 
   // Get all services function
   getServices(query: string) {

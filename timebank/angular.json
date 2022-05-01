@@ -62,7 +62,7 @@
               "sourceMap": true,
               "namedChunks": true
             },
-            "test": {
+            "testing": {
               "budgets": [
                 {
                   "type": "initial",
@@ -95,6 +95,9 @@
             },
             "development": {
               "browserTarget": "timebank:build:development"
+            },
+            "testing": {
+              "browserTarget": "timebank:build:testing"
             }
           },
           "defaultConfiguration": "development"
