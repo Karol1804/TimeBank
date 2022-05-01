@@ -6,7 +6,7 @@ import { EndRegisterRecord, GetRegisterRecord, RegisterRecord } from '../models/
 import { map } from 'rxjs';
 import { readFileSync } from 'fs';
 
-const url = readFileSync('./timebank/src/app/services/url.txt', 'utf-8');
+// const url = readFileSync('./timebank/src/app/services/url.txt', 'utf-8');
 // var url = fetch('./url.txt')
 // console.log(url)
 //   .then(response => response.text())
@@ -14,6 +14,11 @@ const url = readFileSync('./timebank/src/app/services/url.txt', 'utf-8');
 //   	// Do something with your data
 //   	console.log(window.data);
 //   });
+
+var fs = require('fs');
+fs.readFile('url.txt', 'utf8', function(err, data){ 
+var url = data
+})
 
 @Injectable({
   providedIn: 'root'
