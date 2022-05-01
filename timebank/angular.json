@@ -48,8 +48,8 @@
               ],
               "fileReplacements": [
                 {
-                  "replace": "src/url/apiUrl.ts",
-                  "with": "src/url/apiUrl.prod.ts"
+                  "replace": "src/app/url/apiUrl.ts",
+                  "with": "src/app/url/apiUrl.prod.ts"
                 }
               ],
               "outputHashing": "all"
