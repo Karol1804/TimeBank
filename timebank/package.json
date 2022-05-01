@@ -1,7 +1,4 @@
 {
-  "browser": {
-    "fs": false
-  },
   "name": "timebank",
   "version": "0.0.0",
   "scripts": {
