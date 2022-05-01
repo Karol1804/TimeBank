@@ -17,9 +17,9 @@ import { MyTel } from '../pho/MyTel';
 
 export class LoginPopComponent implements OnDestroy {
 
-  private valuePhone: string;
+  public valuePhone: string;
   private userLogedzip: UserRespond | null= null ;
-  private loginData: LoginData = {phone: '', password: ''}
+  public loginData: LoginData = {phone: '', password: ''}
    hide: boolean = true;
   
   public phone: FormGroup = new FormGroup({
@@ -42,20 +42,20 @@ export class LoginPopComponent implements OnDestroy {
      
         this.dialogRef.afterClosed().subscribe(data => {
         
-          if (this.valuePhone) {
+         
         this.valuePhone =
         this.phone.get('myphone')?.value.plus
-        +' '+ this.phone.get('myphone')?.value.area 
+        + this.phone.get('myphone')?.value.area 
         +' '+ this.phone.get('myphone')?.value.exchange
-        +' '+ this.phone.get('myphone')?.value.subscriber;}
+        +' '+ this.phone.get('myphone')?.value.subscriber;
 
         if(data){
-           
+  
             this.loginData = {phone: this.valuePhone, password: data.password};
-
+            console.log('Login data:'+JSON.stringify(this.loginData));
             this.userService.userlogin(this.loginData.phone, this.loginData.password).subscribe(
               (userObject) => {  
-                console.log(userObject);
+                console.log('userobject'+JSON.stringify(userObject));
                       if(userObject){
                       
                        this.userService.tokenExtraction(userObject);
@@ -64,11 +64,12 @@ export class LoginPopComponent implements OnDestroy {
       
                        this.router.navigateByUrl('');
                        this.userLogedzip= userObject;
-  
+                        console.log('A:' + JSON.stringify(this.userLogedzip));
                        return this.userLogedzip;
       
                       } else { alert('Error extract user?'); return undefined}}) 
            } 
+           
        });
   
   
