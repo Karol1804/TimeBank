@@ -28,11 +28,31 @@ build-job1:
       - node_modules
     policy: pull
 
+deploy-job1:
+  stage: deploy
+  tags:
+    - angular
+  needs: ['build-job1']
+  before_script:
+  - apk add unzip
+  - apk add openssh-client
+  - eval $(ssh-agent -s)
+  - echo "$SSH_PRIVATE_KEY" | tr -d '\r' | ssh-add -
+  - mkdir -p ~/.ssh
+  - chmod 700 ~/.ssh
+  script:
+    - ssh -o StrictHostKeyChecking=no automation@157.245.27.101 " rm -r /var/www/html/*"
+    - scp -o StrictHostKeyChecking=no test.zip automation@157.245.27.101:/var/www/html
+    - ssh -o StrictHostKeyChecking=no automation@157.245.27.101 "cd /var/www/html; unzip test.zip"
+    - ssh -o StrictHostKeyChecking=no automation@157.245.27.101 "cd /var/www/html; rm test.zip"
+    - echo "Build for test finished"
+
 build-job2:
   image: node:12-alpine
   stage: build
   tags:
     - angular
+  needs: ['deploy-job1']
   before_script:
     - apk add zip
   script:
@@ -54,30 +74,11 @@ build-job2:
       - node_modules
     policy: pull
 
-deploy-job1:
-  stage: deploy
-  tags:
-    - angular
-  needs: ['build-job1']
-  before_script:
-  - apk add unzip
-  - apk add openssh-client
-  - eval $(ssh-agent -s)
-  - echo "$SSH_PRIVATE_KEY" | tr -d '\r' | ssh-add -
-  - mkdir -p ~/.ssh
-  - chmod 700 ~/.ssh
-  script:
-    - ssh -o StrictHostKeyChecking=no automation@157.245.27.101 " rm -r /var/www/html/*"
-    - scp -o StrictHostKeyChecking=no test.zip automation@157.245.27.101:/var/www/html
-    - ssh -o StrictHostKeyChecking=no automation@157.245.27.101 "cd /var/www/html; unzip test.zip"
-    - ssh -o StrictHostKeyChecking=no automation@157.245.27.101 "cd /var/www/html; rm test.zip"
-    - echo "Build for test finished"
-
 deploy-job2:
   stage: deploy
   tags:
     - angular
-  needs: ['deploy-job1', 'build-job2']
+  needs: ['build-job2']
   when: manual
   before_script:
   - apk add unzip
