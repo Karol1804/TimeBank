@@ -4,7 +4,7 @@ import { Service } from '../models/service';
 import { User } from '../models/user';
 import { EndRegisterRecord, GetRegisterRecord, RegisterRecord } from '../models/registerrecord';
 import { map } from 'rxjs';
-import { apiurl } from '../url/apiUrl'
+import { apiurl } from '../url/apiUrl';
 
 @Injectable({
   providedIn: 'root'
