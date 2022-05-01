@@ -24,9 +24,7 @@ export class ServicesService {
 
   constructor(
     private http: HttpClient
-  ) { 
-    console.log("toto")
-  }
+  ) {}
 
   // Get all services function
   getServices(query: string) {
@@ -38,7 +36,7 @@ export class ServicesService {
   remoteServices(res: any): Service[] {
     let services: Service[] = [];
     for (let service of res) {
-      services.push(new Service(service.id, service.title, service.User.user_name, service.estimated, service.User.phone, service.User.id))
+      services.push(new Service(service.id, service.title, service.User.user_name, service.estimate, service.User.phone, service.User.id))
     }
     return services;
   }
