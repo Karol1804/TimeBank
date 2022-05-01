@@ -1,14 +1,5 @@
- <h1>Registracia </h1>  
+ <h1>Registration </h1>  
 
- <form [formGroup]="phone">
-  <mat-form-field appearance="fill" >
-  <mat-label>Phone number</mat-label>   
-    <app-pho formControlName="myphone" required  ></app-pho>
-    <mat-icon matSuffix style="margin-left:1rem;">phone</mat-icon>
-    <mat-hint>Include area code</mat-hint>
-  </mat-form-field>
-  <button type="submit" (click)="onFormSubmit()">Submit</button>
-</form> 
 
 
   
@@ -16,8 +7,9 @@
 
 
  <ng-container [ngSwitch]="stepperOrientation | async">
-    <div *ngSwitchCase="'horizontal'">Make your screen smaller to see a vertical stepper</div>
-    <div *ngSwitchCase="'vertical'">Make your screen larger to see a horizontal stepper</div>
+
+ <!-- <div *ngSwitchCase="'horizontal'">Make your screen smaller to see a vertical stepper</div>
+      <div *ngSwitchCase="'vertical'">Make your screen larger to see a horizontal stepper</div> -->
   </ng-container>
   
   <mat-stepper
@@ -34,20 +26,25 @@
         </div>
       </form>
     </mat-step>
-    <mat-step [stepControl]="secondFormGroup" label="Fill out your address">
-      <form [formGroup]="secondFormGroup">
-        <mat-form-field appearance="fill">
-          <mat-label>Address</mat-label>
-          <input matInput formControlName="secondCtrl" placeholder="Ex. 1 Main St, New York, NY"
-                 required>
-        </mat-form-field>
+    <mat-step [stepControl]="secondFormGroup" label="Fill out your phone number">
+   <!--  <form [formGroup]="secondFormGroup">  
+     formControlName="secondCtrl"-->
+       <form [formGroup]="phone">
+                  <mat-form-field appearance="fill" >
+                  <mat-label>Phone</mat-label>   
+                    <app-pho formControlName="myphone" required  ></app-pho>
+                    <mat-icon matSuffix style="margin-left:1rem;">phone</mat-icon>
+                    <mat-hint>Include area code</mat-hint>
+                  </mat-form-field>
+                
+  
         <div>
           <button mat-button matStepperPrevious>Back</button>
           <button mat-button matStepperNext>Next</button>
         </div>
       </form>
     </mat-step>
-    <mat-step [stepControl]="thirdFormGroup" label="Fill out your phone number">
+    <mat-step [stepControl]="thirdFormGroup" label="Fill out your password">
       <form [formGroup]="thirdFormGroup">
         <mat-form-field appearance="fill">
           <mat-label>Phone number</mat-label>
@@ -61,7 +58,7 @@
     </mat-step>
     <mat-step>
       <ng-template matStepLabel>Done</ng-template>
-      <p>You are now done.</p>
+      <p>Send your filled registration </p>
       <div>
         <button mat-button matStepperPrevious>Back</button>
       </div>
