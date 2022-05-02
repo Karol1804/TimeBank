@@ -52,6 +52,8 @@ build-job2:
   stage: build
   tags:
     - angular
+  when: manual
+  allow_failure: false
   before_script:
     - apk add zip
   script:
@@ -77,8 +79,8 @@ deploy-job2:
   stage: deploy
   tags:
     - angular
+  allow_failure: false
   needs: ['build-job2', 'deploy-job1']
-  when: manual
   before_script:
   - apk add unzip
   - apk add openssh-client
