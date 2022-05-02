@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import { HttpClient, HttpResponse } from '@angular/common/http';
-
+import { ProfileRespond } from '../models/profileRespond';
 import { map, tap } from 'rxjs/operators';
 import { Observable, of, Subscription } from 'rxjs';
 import { UserRespond } from '../models/UserRespond';
@@ -9,6 +9,7 @@ import { MatDialog } from '@angular/material/dialog';
 import { LoginPopComponent } from '../shared/login-pop/login-pop.component';
 import { apiurl } from '../url/apiUrl';
 import { SnackBarService } from './snackbar.service';
+import { InterceptorService } from './interceptor.service';
 
 @Injectable({
   providedIn: 'root',
@@ -17,6 +18,7 @@ export class AuthServService {
   // returned object z metody tokenExtraction pri userlogin() {access_token:string,login:boolean,phone:string,id:number}
 
   public userLoggeed: UserRespond | null = null;
+  public userProfile: ProfileRespond | null = null;
 
   //** API */
 
@@ -38,7 +40,8 @@ export class AuthServService {
     private http: HttpClient,
     private globalStorageService: GlobalStorageService,
     public dialog: MatDialog,
-    private snackbar: SnackBarService
+    private snackbar: SnackBarService,
+    private intercept: InterceptorService
   ) {}
 
   //**  API LOGIN @param Datalogin from dialog => return object User | undef*/
@@ -87,19 +90,24 @@ export class AuthServService {
     }
   }
 
-  // pre autentifikaciu cez token do HTTP
-  optionsWithToken() {
-    return {
-      headers: {
-        authorization: 'Bearer ' + this.globalStorageService.getToken(),
-      },
-    };
-  }
-
   popOpenDialog(): void {
     this.dialog.open(LoginPopComponent, {
       width: '300px',
       data: {},
     });
+  }
+
+  userGetProfile(): Observable<ProfileRespond | undefined> {
+    return this.http
+      .get(this.apiPostUserProfile, { observe: 'response' })
+      .pipe(map(this.profileExtraction));
+  }
+
+  profileExtraction(res: HttpResponse<any>): ProfileRespond | undefined {
+    if (res.body) {
+      return res.body;
+    } else {
+      return undefined;
+    }
   }
 }

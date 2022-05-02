@@ -1,8 +1,8 @@
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 import { RouterModule } from '@angular/router';
-import { HttpClientModule } from "@angular/common/http";
-import { FormsModule,ReactiveFormsModule  } from '@angular/forms';
+import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { GuestLayoutComponent } from './guest/guest-layout/guest-layout.component';
@@ -24,9 +24,9 @@ import { MatInputModule } from '@angular/material/input';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { HashLocationStrategy, LocationStrategy } from '@angular/common';
 import { CreateServiceComponent } from './guest/create-service/create-service.component';
-import { MatAutocompleteModule } from '@angular/material/autocomplete'; 
+import { MatAutocompleteModule } from '@angular/material/autocomplete';
 import { SharedModule } from './shared/shared.module';
-import {MatStepperModule} from '@angular/material/stepper';
+import { MatStepperModule } from '@angular/material/stepper';
 import { AuthGuardService } from './services/auth-guard.service';
 import { AuthServService } from './services/auth-serv.service';
 import { GlobalStorageService } from './services/global-storage.service';
@@ -34,7 +34,7 @@ import { RegistrationComponent } from './guest/registration/registration.compone
 import { MatDividerModule } from '@angular/material/divider';
 import { SnackBarService } from './services/snackbar.service';
 import { MatSnackBarModule } from '@angular/material/snack-bar';
-
+import { InterceptorService } from './services/interceptor.service';
 
 @NgModule({
   declarations: [
@@ -44,14 +44,14 @@ import { MatSnackBarModule } from '@angular/material/snack-bar';
     OrderComponent,
     ServiceRegisterComponent,
     CreateServiceComponent,
-    RegistrationComponent
+    RegistrationComponent,
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
     RouterModule,
     HttpClientModule,
-    MatSidenavModule, 
+    MatSidenavModule,
     MatMenuModule,
     MatToolbarModule,
     MatIconModule,
@@ -69,15 +69,22 @@ import { MatSnackBarModule } from '@angular/material/snack-bar';
     MatStepperModule,
     ReactiveFormsModule,
     MatDividerModule,
-    MatSnackBarModule
-   
-
+    MatSnackBarModule,
   ],
-  providers: [ServicesService, {provide: LocationStrategy, useClass: HashLocationStrategy}, 
-              AuthGuardService, SnackBarService, AuthServService, GlobalStorageService, RegistrationComponent
-  
+  providers: [
+    ServicesService,
+    { provide: LocationStrategy, useClass: HashLocationStrategy },
+    AuthGuardService,
+    SnackBarService,
+    AuthServService,
+    GlobalStorageService,
+    RegistrationComponent,
+    {
+      provide: HTTP_INTERCEPTORS,
+      useClass: InterceptorService,
+      multi: true,
+    },
   ],
-  bootstrap: [AppComponent]
+  bootstrap: [AppComponent],
 })
-
-export class AppModule { }
+export class AppModule {}
