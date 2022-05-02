@@ -3,6 +3,7 @@ import { ActivatedRoute } from '@angular/router';
 import { RegisterRecord } from 'src/app/models/registerrecord';
 import { Service } from '../../models/service';
 import { ServicesService } from '../../services/services.service';
+import { GlobalStorageService } from '../../services/global-storage.service';
 
 
 @Component({
@@ -23,18 +24,21 @@ export class OrderComponent implements OnInit {
   public service_id: number | undefined;
   public service_status: string | undefined;
   public hours: number | undefined;
-  public userid: number | undefined;
+  public userId: any | undefined;
   public end_time: Date | undefined;
   public user_id: number | undefined;
   
   constructor(
     private route: ActivatedRoute,
-    private servicesService: ServicesService
+    private servicesService: ServicesService,
+    private globalStorage: GlobalStorageService
     ) { }
 
   ngOnInit() {
     let id = this.route.snapshot.params['id'];
+    let userId = this.globalStorage.getUserId();
     this.loadData(id);
+    this.loadUser(userId);
   }
  
   loadData(id: number) {
@@ -49,19 +53,23 @@ export class OrderComponent implements OnInit {
     }) 
   }
 
+  loadUser(userId: any) {
+    this.servicesService.getUser(userId).subscribe(user => {
+      this.obj_user_name = user[0].user_name;
+      this.obj_phone = user[0].phone;
+      this.obj_id = user[0].id;
+      console.log("Toto je objednavajuci s consumer_id:")
+      console.log(user)
+    })
+  }
+
   createRegisterRecord(){
-    if(this.user_id==1) {
-      this.obj_id=2
-    }
-    else {
-      this.obj_id=1
-    }
-    
+ 
     let record = new RegisterRecord(
       this.service_id,
       this.obj_id,
       this.service_status = "inprogress",
-      this.userid,
+      this.userId,
       this.hours,
       this.end_time
     )
