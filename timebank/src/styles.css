@@ -1,25 +1,46 @@
 /* You can add global styles to this file, and also import other style files */
 
-html, body { height: 100%; }
-body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
+html,
+body {
+  height: 100%;
+}
+body {
+  margin: 0;
+  font-family: Roboto, "Helvetica Neue", sans-serif;
+}
 
+.snack-logout {
+  color: rgb(255, 255, 255);
+}
 
- .snack-logout{text-align: center;
-     color: rgb(255, 255, 255);}
+.snack-login {
+  color: rgb(255, 255, 255);
+}
+.snack-wrong {
+  background-color: red;
+  color: rgb(255, 255, 255);
+}
 
-.snack-login{ text-align: center;
-     color: rgb(255, 255, 255);}
+.snack-login .mat-simple-snackbar {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  line-height: 20px;
+  opacity: 1;
+}
 
-     .snack-login .mat-simple-snackbar {
-         
-         display:flex;
-         justify-content: center;
-         align-items:center;
-         line-height:20px;opacity:1}
+.snack-logout .mat-simple-snackbar {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  line-height: 20px;
+  opacity: 1;
+}
 
-         .snack-logout .mat-simple-snackbar {
-         
-            display:flex;
-            justify-content: center;
-            align-items:center;
-            line-height:20px;opacity:1}
+.snack-wrong .mat-simple-snackbar {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  line-height: 20px;
+  opacity: 1;
+}
