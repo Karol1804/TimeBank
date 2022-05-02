@@ -7,6 +7,7 @@
                 <br>
                 <mat-card-content>
                     <p>Name: <b>{{service.user}}</b></p>
+                    <p>User ID: <b>{{service.user_id}}</b></p>
                     <p>Phone: <b>{{service.phone}}</b></p>
                     
                     <div *ngIf="service.estimate != null;else estimateIsNull">
