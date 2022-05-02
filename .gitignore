@@ -3,3 +3,6 @@
 
 # Visual Studio Code
 .vscode/*
+/src/app/url/*
+timebank/src/app/url/apiUrl.ts
+
