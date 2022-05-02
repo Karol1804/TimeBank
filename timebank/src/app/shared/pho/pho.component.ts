@@ -1,5 +1,5 @@
-import {FocusMonitor} from '@angular/cdk/a11y';
-import {BooleanInput, coerceBooleanProperty} from '@angular/cdk/coercion';
+import { FocusMonitor } from '@angular/cdk/a11y';
+import { BooleanInput, coerceBooleanProperty } from '@angular/cdk/coercion';
 import {
   Component,
   ElementRef,
@@ -18,22 +18,27 @@ import {
   NgControl,
   Validators,
 } from '@angular/forms';
-import {MAT_FORM_FIELD, MatFormField, MatFormFieldControl} from '@angular/material/form-field';
-import {Subject} from 'rxjs';
+import {
+  MAT_FORM_FIELD,
+  MatFormField,
+  MatFormFieldControl,
+} from '@angular/material/form-field';
+import { Subject } from 'rxjs';
 import { MyTel } from './MyTel';
-
 
 @Component({
   selector: 'app-pho',
   templateUrl: 'pho.component.html',
   styleUrls: ['pho.component.css'],
-  providers: [{provide: MatFormFieldControl, useExisting: PhoComponent}],
+  providers: [{ provide: MatFormFieldControl, useExisting: PhoComponent }],
   host: {
     '[class.example-floating]': 'shouldLabelFloat',
     '[id]': 'id',
   },
 })
-export class PhoComponent implements ControlValueAccessor, MatFormFieldControl<MyTel>, OnDestroy {
+export class PhoComponent
+  implements ControlValueAccessor, MatFormFieldControl<MyTel>, OnDestroy
+{
   static nextId = 0;
   @ViewChild('plus') plusInput: HTMLInputElement;
   @ViewChild('area') areaInput: HTMLInputElement;
@@ -51,7 +56,7 @@ export class PhoComponent implements ControlValueAccessor, MatFormFieldControl<M
 
   get empty() {
     const {
-      value: {plus, area, exchange, subscriber},
+      value: { plus, area, exchange, subscriber },
     } = this.parts;
 
     return !plus && !area && !exchange && !subscriber;
@@ -90,7 +95,7 @@ export class PhoComponent implements ControlValueAccessor, MatFormFieldControl<M
   set disabled(value: BooleanInput) {
     this._disabled = coerceBooleanProperty(value);
     this._disabled ? this.parts.disable() : this.parts.enable();
-    
+
     this.stateChanges.next();
   }
   private _disabled = true;
@@ -99,15 +104,16 @@ export class PhoComponent implements ControlValueAccessor, MatFormFieldControl<M
   get value(): MyTel | null {
     if (this.parts.valid) {
       const {
-        value: {plus,area, exchange, subscriber},
+        value: { plus, area, exchange, subscriber },
       } = this.parts;
       return new MyTel(plus, area, exchange, subscriber);
     }
     return null;
   }
   set value(tel: MyTel | null) {
-    const {plus, area, exchange, subscriber} = tel || new MyTel('+','', '', '');
-    this.parts.setValue({plus, area, exchange, subscriber});
+    const { plus, area, exchange, subscriber } =
+      tel || new MyTel('+', '', '', '');
+    this.parts.setValue({ plus, area, exchange, subscriber });
     this.stateChanges.next();
   }
 
@@ -120,13 +126,45 @@ export class PhoComponent implements ControlValueAccessor, MatFormFieldControl<M
     private _focusMonitor: FocusMonitor,
     private _elementRef: ElementRef<HTMLElement>,
     @Optional() @Inject(MAT_FORM_FIELD) public _formField: MatFormField,
-    @Optional() @Self() public ngControl: NgControl,
+    @Optional() @Self() public ngControl: NgControl
   ) {
     this.parts = formBuilder.group({
-      plus: [null, [Validators.required, Validators.minLength(1), Validators.maxLength(1), Validators.pattern(/\+/)]],
-      area: [null, [Validators.required, Validators.minLength(3), Validators.maxLength(3), Validators.pattern(/\d{3}/)]],
-      exchange: [null, [Validators.required, Validators.minLength(3), Validators.maxLength(3), Validators.pattern(/\d{3}/)]],
-      subscriber: [null, [Validators.required, Validators.minLength(6), Validators.maxLength(6), Validators.pattern(/\d{6}/)]],
+      plus: [
+        null,
+        [
+          Validators.required,
+          Validators.minLength(1),
+          Validators.maxLength(1),
+          Validators.pattern(/\+/),
+        ],
+      ],
+      area: [
+        null,
+        [
+          Validators.required,
+          Validators.minLength(3),
+          Validators.maxLength(3),
+          Validators.pattern(/\d{3}/),
+        ],
+      ],
+      exchange: [
+        null,
+        [
+          Validators.required,
+          Validators.minLength(3),
+          Validators.maxLength(3),
+          Validators.pattern(/\d{3}/),
+        ],
+      ],
+      subscriber: [
+        null,
+        [
+          Validators.required,
+          Validators.minLength(6),
+          Validators.maxLength(6),
+          Validators.pattern(/\d{6}/),
+        ],
+      ],
     });
 
     if (this.ngControl != null) {
@@ -147,8 +185,9 @@ export class PhoComponent implements ControlValueAccessor, MatFormFieldControl<M
   }
 
   onFocusOut(event: FocusEvent) {
-    
-    if (!this._elementRef.nativeElement.contains(event.relatedTarget as Element)) {
+    if (
+      !this._elementRef.nativeElement.contains(event.relatedTarget as Element)
+    ) {
       this.touched = true;
       this.focused = false;
       this.onTouched();
@@ -156,7 +195,10 @@ export class PhoComponent implements ControlValueAccessor, MatFormFieldControl<M
     }
   }
 
-  autoFocusNext(control: AbstractControl, nextElement?: HTMLInputElement): void {
+  autoFocusNext(
+    control: AbstractControl,
+    nextElement?: HTMLInputElement
+  ): void {
     if (!control.errors && nextElement) {
       this._focusMonitor.focusVia(nextElement, 'program');
     }
@@ -166,11 +208,11 @@ export class PhoComponent implements ControlValueAccessor, MatFormFieldControl<M
     if (control.value.length < 1) {
       this._focusMonitor.focusVia(prevElement, 'program');
     }
-  } 
+  }
 
   setDescribedByIds(ids: string[]) {
     const controlElement = this._elementRef.nativeElement.querySelector(
-      '.example-tel-input-container',
+      '.example-tel-input-container'
     )!;
     controlElement.setAttribute('aria-describedby', ids.join(' '));
   }
@@ -208,7 +250,6 @@ export class PhoComponent implements ControlValueAccessor, MatFormFieldControl<M
     this.onChange(this.value);
   }
 }
-
 
 /**  Copyright 2022 Google LLC. All Rights Reserved.
     Use of this source code is governed by an MIT-style license that
