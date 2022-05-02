@@ -22,3 +22,9 @@ a, a:visited {
     display: block;
     width: 9rem;
 }
+
+.loggeduser {
+    position: relative;
+    font-size: 0.8rem;
+    top: 1px;
+}
