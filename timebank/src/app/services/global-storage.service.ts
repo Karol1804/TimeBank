@@ -1,5 +1,4 @@
 import { Injectable } from '@angular/core';
-import { ProfileRespond } from '../models/profileRespond';
 import { SnackBarService } from './snackbar.service';
 
 @Injectable({
@@ -8,7 +7,7 @@ import { SnackBarService } from './snackbar.service';
 export class GlobalStorageService {
   private token: string | undefined = undefined;
   private userLoggedId: string | undefined = undefined;
-  private userLoggedName: string;
+  public userLoggedName: string | undefined = undefined;
 
   constructor(private snackbar: SnackBarService) {
     let localStorageToken = localStorage.getItem('token');
@@ -20,6 +19,11 @@ export class GlobalStorageService {
     if (localStorageUserid) {
       this.userLoggedId = localStorageUserid;
     }
+
+    let localStorageUserName = localStorage.getItem('userLoggedName');
+    if (localStorageUserName) {
+      this.userLoggedName = localStorageUserName;
+    }
   }
 
   logout() {
@@ -27,6 +31,7 @@ export class GlobalStorageService {
     this.userLoggedId = undefined;
     localStorage.removeItem('token');
     localStorage.removeItem('userLoggedId');
+    localStorage.removeItem('userLoggedName');
     this.snackbar.openSnackBar(
       'You are logged out. Have a nice day!',
       'center',

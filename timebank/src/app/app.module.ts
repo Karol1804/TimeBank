@@ -36,6 +36,7 @@ import { SnackBarService } from './services/snackbar.service';
 import { MatSnackBarModule } from '@angular/material/snack-bar';
 import { InterceptorService } from './services/interceptor.service';
 import { RatingModule } from 'ng-starrating';
+import { UserhomeComponent } from './user/user-layout/userhome/userhome.component';
 
 @NgModule({
   declarations: [
@@ -46,6 +47,7 @@ import { RatingModule } from 'ng-starrating';
     ServiceRegisterComponent,
     CreateServiceComponent,
     RegistrationComponent,
+    UserhomeComponent,
   ],
   imports: [
     BrowserModule,

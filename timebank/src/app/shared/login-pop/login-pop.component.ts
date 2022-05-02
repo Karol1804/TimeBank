@@ -33,8 +33,8 @@ export class LoginPopComponent implements OnDestroy {
   hide: boolean = true;
 
   public phone: FormGroup = new FormGroup({
-   // myphone: new FormControl(new MyTel('+', '', '', '')),
-    myphone: new FormControl(new MyTel('+','421', '905', '111222')),
+    // myphone: new FormControl(new MyTel('+', '', '', '')),
+    myphone: new FormControl(new MyTel('+', '421', '905', '111222')),
   });
 
   constructor(
@@ -59,7 +59,6 @@ export class LoginPopComponent implements OnDestroy {
         ' ' +
         this.phone.get('myphone')?.value.subscriber;
 
-  
       let condi = [
         /0{3}/.test(this.phone.get('myphone')?.value.area),
         /0{3}/.test(this.phone.get('myphone')?.value.exchange),
@@ -90,8 +89,10 @@ export class LoginPopComponent implements OnDestroy {
               this.userService.tokenExtraction(userObject);
 
               this.userLogedzip = userObject;
-              this.userService.userGetProfile().subscribe((profileRespo)=>{console.log(profileRespo)});
-              this.router.navigateByUrl('');
+              this.userService.userGetProfile().subscribe((profileRespo) => {
+                console.log(profileRespo);
+              });
+              this.router.navigateByUrl('/userhome');
               return this.userLogedzip;
             } else {
               alert('Error extract user?');

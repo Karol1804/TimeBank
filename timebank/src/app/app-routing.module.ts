@@ -6,35 +6,45 @@ import { OrderComponent } from './guest/order/order.component';
 import { ServiceRegisterComponent } from './guest/service-register/service-register.component';
 import { RegistrationComponent } from './guest/registration/registration.component';
 import { AuthGuardService } from './services/auth-guard.service';
+import { UserhomeComponent } from './user/user-layout/userhome/userhome.component';
 
 const routes: Routes = [
   {
-    path: "", component: GuestLayoutComponent,
+    path: '',
+    component: GuestLayoutComponent,
   },
   {
-    path: "create-service", component: CreateServiceComponent, canActivate: [AuthGuardService]
+    path: 'create-service',
+    component: CreateServiceComponent,
+    canActivate: [AuthGuardService],
   },
   {
-    path: "services", component: GuestLayoutComponent,
+    path: 'services',
+    component: GuestLayoutComponent,
   },
   {
-    path: "service-register", component: ServiceRegisterComponent, canActivate: [AuthGuardService]
+    path: 'service-register',
+    component: ServiceRegisterComponent,
+    canActivate: [AuthGuardService],
   },
   {
-    path: "order/:id", component: OrderComponent,  canActivate: [AuthGuardService]
+    path: 'order/:id',
+    component: OrderComponent,
+    canActivate: [AuthGuardService],
   },
   {
-    path: "registration", component: RegistrationComponent
-
-  } 
-
-
-
+    path: 'registration',
+    component: RegistrationComponent,
+  },
+  {
+    path: 'userhome',
+    component: UserhomeComponent,
+    canActivate: [AuthGuardService],
+  },
 ];
 
 @NgModule({
   imports: [RouterModule.forRoot(routes)],
-  exports: [RouterModule]
+  exports: [RouterModule],
 })
-
-export class AppRoutingModule { }
+export class AppRoutingModule {}
