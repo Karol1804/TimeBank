@@ -1,0 +1,23 @@
+
+
+<div class="main">
+    
+    <div *ngFor="let userservice of userservices">
+        <a routerLink="/order/{{userservice.user_id}}">
+            <mat-card class="card">
+                <mat-card-title>{{userservice.title}}</mat-card-title>
+                <mat-divider inset></mat-divider>
+                <br>
+                <mat-card-content>
+                    <p>Name: <a routerLink="/service-register" class="clickable"><b>{{userservice.user_name}}</b></a></p>
+                    <p>Phone: <b>{{userservice.phone}}</b></p>
+                    <span class="next"><p>I want it!</p>
+                    <mat-icon class="arrow" aria-label="arrow_forward_ios">arrow_forward_ios</mat-icon>
+                    </span>
+                    
+                </mat-card-content>
+                
+            </mat-card>
+        </a>
+    </div>
+</div>

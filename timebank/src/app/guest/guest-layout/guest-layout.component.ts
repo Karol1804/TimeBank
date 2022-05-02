@@ -43,6 +43,7 @@ export class GuestLayoutComponent implements OnInit {
   loadData() {
     this.servicesService.getServices("").subscribe(servicesFromService => {
       this.services = servicesFromService
+      console.log(servicesFromService)
     })
   }
 }

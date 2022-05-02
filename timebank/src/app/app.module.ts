@@ -33,6 +33,7 @@ import { AuthGuardService } from './services/auth-guard.service';
 import { AuthServService } from './services/auth-serv.service';
 import { GlobalStorageService } from './services/global-storage.service';
 import { RegistrationComponent } from './guest/registration/registration.component';
+import { UserServicesComponent } from './guest/user-services/user-services.component';
 
 
 
@@ -44,7 +45,8 @@ import { RegistrationComponent } from './guest/registration/registration.compone
     OrderComponent,
     ServiceRegisterComponent,
     CreateServiceComponent,
-    RegistrationComponent
+    RegistrationComponent,
+    UserServicesComponent
   ],
   imports: [
     BrowserModule,

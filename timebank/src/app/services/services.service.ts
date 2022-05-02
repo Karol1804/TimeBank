@@ -4,6 +4,7 @@ import { Service } from '../models/service';
 import { User } from '../models/user';
 import { EndRegisterRecord, GetRegisterRecord, RegisterRecord } from '../models/registerrecord';
 import { map } from 'rxjs';
+import { Userservices } from '../models/userservices';
 
 
 @Injectable({
@@ -12,9 +13,9 @@ import { map } from 'rxjs';
 
 export class ServicesService {
 
-  private api = "http://157.245.27.101:5000/api/v1/";  //=======#testing environment
+  // private api = "http://157.245.27.101:5000/api/v1/";  //=======#testing environment
   // private api = "http://157.230.79.85:5000/api/v1/";  //=======#production environment
-  // private api = "http://localhost:5000/api/v1/";  //=======#local
+  private api = "http://localhost:5000/api/v1/";  //=======#local
   private apiGetServicesUrl = this.api + "services";
   private apiGetServiceUrl = (id: number) => this.api + "service/" + id;
   private apiGetUserUrl = (userid: number) => this.api + "user/" + userid;
@@ -23,6 +24,7 @@ export class ServicesService {
   private apiGetServiceRegisterUrl = this.api + "serviceregister";
   private apiEndServiceRegisterUrl = (id: number, hours: number) => this.api + "serviceregister/" + id + "/" + hours;
   private apiAddServiceUrl = this.api + 'service-create';
+  private apiUserServicesUrl = (user_id: number) => this.api + "services-user/" + user_id;
 
   constructor(
     private http: HttpClient
@@ -34,13 +36,34 @@ export class ServicesService {
     console.log(query);
   }
 
+
   // Helper for "Services" related functions. Returns services based on service model for mapping.
   remoteServices(res: any): Service[] {
     let services: Service[] = [];
     for (let service of res) {
-      services.push(new Service(service.id, service.title, service.User.user_name, service.User.phone, service.User.id))
+      services.push(new Service(service.id, service.title, service.User.user_name,service.estimate ,service.User.phone, service.User.id))
     }
     return services;
+  }
+
+  // Get all services of user function
+
+  getUserServices(user_id: number) {
+    return this.http.get(this.apiUserServicesUrl(user_id)).pipe(map(this.remoteUserServices));
+    console.log(user_id);
+  }
+
+  // Helper for "UserServices" related functions. Returns services based on service model for mapping.
+
+  remoteUserServices(res: any): Userservices[] {
+    let userservices: Userservices[] = [];
+    for (let userservice of res) {
+      userservices.push(new Userservices(userservice.estimate,userservice.phone, userservice.rating,userservice.title ,userservice.user_id, userservice.user_name))
+      
+    }
+    return userservices;
+    console.log(userservices)
+    
   }
 
   // Creating record in Service Register table.
