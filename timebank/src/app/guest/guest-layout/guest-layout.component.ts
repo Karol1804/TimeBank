@@ -26,7 +26,7 @@ export class GuestLayoutComponent implements OnInit {
 
   ngOnInit(): void {
     this.loadData();
-    this.reload();
+    //this.reload();
   }
 
   reload() {

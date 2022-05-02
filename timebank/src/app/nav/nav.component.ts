@@ -8,6 +8,9 @@ import { GlobalStorageService } from '../services/global-storage.service';
 })
 
 export class NavComponent implements OnInit {
+  userLoggedId: any;
+  GlobalStorageService: any;
+  userId: any;
 
 
 
@@ -15,15 +18,24 @@ export class NavComponent implements OnInit {
     ) { }
 
   ngOnInit(): void {
+    let userId = this.globalstorage.getUserId();
+    //this.loadId()
+    console.log("userId je " + userId);
+    
   }
 
 
 
-  switchBtn() { return !!this.globalstorage.getToken()}
+  switchBtn() { 
+    return !!this.globalstorage.getToken()
+  }
 
-
-
-
+   loadUser() {
+    let user_id = this.GlobalStorageService.getUserId(); 
+      console.log("Toto je ID:")
+      console.log(user_id)
+    }
+  
 }
 
 
