@@ -34,7 +34,7 @@ import { RegistrationComponent } from './guest/registration/registration.compone
 import { MatDividerModule } from '@angular/material/divider';
 import { SnackBarService } from './services/snackbar.service';
 import { MatSnackBarModule } from '@angular/material/snack-bar';
-
+import { RatingModule } from 'ng-starrating';
 
 @NgModule({
   declarations: [
@@ -69,8 +69,8 @@ import { MatSnackBarModule } from '@angular/material/snack-bar';
     MatStepperModule,
     ReactiveFormsModule,
     MatDividerModule,
-    MatSnackBarModule
-   
+    MatSnackBarModule,
+    RatingModule,  
 
   ],
   providers: [ServicesService, {provide: LocationStrategy, useClass: HashLocationStrategy}, 

@@ -18,6 +18,7 @@ export class CreateServiceComponent implements OnInit {
   public title: string;
   public user:string;
   public estimate:number;
+  public avg_rating:number;
   public phone: string;
   public user_id: number;
   public emptyInputError = false;
@@ -43,7 +44,7 @@ export class CreateServiceComponent implements OnInit {
     if (!this.user_id || !this.title) {
       this.emptyInputError = true;
     } else {
-      let service = new Service(this.id, this.title, this.user, this.estimate, this.phone, this.user_id,);
+      let service = new Service(this.id, this.title, this.user, this.estimate, this.avg_rating, this.phone, this.user_id,);
       console.log('pridavam novy service');
       console.log(service);
 
