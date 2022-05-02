@@ -4,6 +4,7 @@ export class Service {
         public title: string,
         public user: string,
         public estimate: number,
+        public avg_rating: number,
         public phone?: string,
         public user_id?: number
     ) {}
