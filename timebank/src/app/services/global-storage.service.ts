@@ -54,7 +54,6 @@ getUserId() {
 
 getUserName() {
   return this.userLoggedName;
-  ;
 }
 
 saveUserId(userId: string) {

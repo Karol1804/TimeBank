@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, Input, OnInit } from '@angular/core';
 import { GlobalStorageService } from '../services/global-storage.service';
 
 @Component({
@@ -8,22 +8,29 @@ import { GlobalStorageService } from '../services/global-storage.service';
 })
 
 export class NavComponent implements OnInit {
+  GlobalStorageService: any;
+  userId: any;
+  userName: any;
 
-
-
-  constructor( private globalstorage: GlobalStorageService
+  constructor( private globalStorage: GlobalStorageService
     ) { }
 
   ngOnInit(): void {
+    let userId = this.globalStorage.getUserId();
+    let userName = this.globalStorage.getUserName();
+    //this.loadId()
+    console.log("userId je " + userId);
+    console.log("userName je " + userName);
   }
 
 
 
-  switchBtn() { return !!this.globalstorage.getToken()}
+  switchBtn() { 
+    return !!this.globalStorage.getToken()
+  }
 
-
-
-
+   
+  
 }
 
 

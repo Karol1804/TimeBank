@@ -79,6 +79,7 @@ deploy-job2:
     - angular
   needs: ['build-job2', 'deploy-job1']
   when: manual
+  allow_failure: false
   before_script:
   - apk add unzip
   - apk add openssh-client
