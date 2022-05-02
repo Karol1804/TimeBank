@@ -35,6 +35,7 @@ import { MatDividerModule } from '@angular/material/divider';
 import { SnackBarService } from './services/snackbar.service';
 import { MatSnackBarModule } from '@angular/material/snack-bar';
 import { InterceptorService } from './services/interceptor.service';
+import { RatingModule } from 'ng-starrating';
 
 @NgModule({
   declarations: [
@@ -70,6 +71,7 @@ import { InterceptorService } from './services/interceptor.service';
     ReactiveFormsModule,
     MatDividerModule,
     MatSnackBarModule,
+    RatingModule
   ],
   providers: [
     ServicesService,

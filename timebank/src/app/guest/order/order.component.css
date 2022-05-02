@@ -12,3 +12,55 @@
     flex-direction: column;
     align-items: center;
 }
+
+.notice {
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    top: 16px;
+}
+
+.back {
+    position: relative;
+    float: left;
+    color: rgb(161, 149, 192);
+    font-size: 1.5rem;
+    left: -10px;
+}
+
+.back span {
+    position: relative;
+    float: right;
+    top: 15px;
+    left: 5px;
+    margin-bottom: 0px;
+}
+
+.back.arrow {
+    float: right;
+}
+
+.order {
+    position: relative;
+    float: right;
+    background: #FFF;
+    color: rgb(161, 149, 192);
+    font-size: 1.5rem;
+    padding: 0 10px 5px 10px;
+    /* border: 2px solid #FFF; */
+    border-radius: 10px;
+    box-shadow: rgba(0, 0, 0, 0.15) 1.95px 1.95px 2.6px;
+}
+
+.order span {
+    position: relative;
+    float: left;
+    top: 15px;
+    margin-bottom: 0px;
+}
+
+.arrow {
+    font-size: 2rem;
+    padding: 10px 0;
+}

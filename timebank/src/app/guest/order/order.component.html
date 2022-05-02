@@ -6,10 +6,29 @@
             <br>
             <mat-card-content>
                 <p>Provider: {{user_name}}, {{phone}}</p>
+                <p>Orderer: {{obj_user_name}}, {{obj_phone}}</p>
             </mat-card-content>
-            <div class="send-button">
-                <a routerLink="/service-register"><button mat-raised-button color="white" (click)="createRegisterRecord()">Order</button></a>
+            <!-- <div class="send-button">
+                <a routerLink="/services"><button mat-raised-button color="white">Back</button></a>
+            </div> -->
+
+            <a class="back" routerLink="/services">
+                <mat-icon class="arrow" aria-label="arrow_back_ios_new">arrow_back_ios_new</mat-icon>
+                <span>back</span>
+            </a>
+            <div *ngIf="user_id != obj_id; else sameUser">
+                <!-- <div class="send-button">
+                    <a routerLink="/service-register"><button mat-raised-button color="white" (click)="createRegisterRecord()">Order</button></a>
+                </div> -->
+                <a routerLink="/service-register">
+                    <span class="order" (click)="createRegisterRecord()">
+                        <span>Order!</span>
+                        <mat-icon class="arrow" aria-label="arrow_forward_ios">arrow_forward_ios</mat-icon>
+                    </span>
+                </a>
             </div>
+            <ng-template #sameUser><p class="notice">The user cannot order his own service!</p></ng-template>
+            
         </mat-card>
     </div>
 </div>
