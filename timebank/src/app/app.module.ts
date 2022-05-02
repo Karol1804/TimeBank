@@ -26,7 +26,7 @@ import { HashLocationStrategy, LocationStrategy } from '@angular/common';
 import { CreateServiceComponent } from './guest/create-service/create-service.component';
 import { MatAutocompleteModule } from '@angular/material/autocomplete'; 
 import { SharedModule } from './shared/shared.module';
-import {MatStepperModule} from '@angular/material/stepper';
+import { MatStepperModule } from '@angular/material/stepper';
 import { AuthGuardService } from './services/auth-guard.service';
 import { AuthServService } from './services/auth-serv.service';
 import { GlobalStorageService } from './services/global-storage.service';
@@ -70,8 +70,7 @@ import { RatingModule } from 'ng-starrating';
     ReactiveFormsModule,
     MatDividerModule,
     MatSnackBarModule,
-    RatingModule,  
-
+    RatingModule
   ],
   providers: [ServicesService, {provide: LocationStrategy, useClass: HashLocationStrategy}, 
               AuthGuardService, SnackBarService, AuthServService, GlobalStorageService, RegistrationComponent
