@@ -53,6 +53,8 @@ build-job2:
     paths:
       - node_modules
     policy: pull
+  only:
+    - main
 
 deploy-job1:
   stage: deploy

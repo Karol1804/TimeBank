@@ -39,6 +39,8 @@ import { RatingModule } from 'ng-starrating';
 import { UserhomeComponent } from './user/user-layout/userhome/userhome.component';
 import { UserServicesComponent } from './guest/user-services/user-services.component';
 
+
+
 @NgModule({
   declarations: [
     AppComponent,
@@ -75,7 +77,8 @@ import { UserServicesComponent } from './guest/user-services/user-services.compo
     ReactiveFormsModule,
     MatDividerModule,
     MatSnackBarModule,
-    RatingModule
+    RatingModule,
+    
   ],
   providers: [
     ServicesService,

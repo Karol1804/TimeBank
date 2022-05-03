@@ -1,16 +1,33 @@
 <nav>
-    <mat-toolbar class="mat-toolbar mat-primary">
-        
-        <a routerLink="/"><img class="logo" src="/assets/img/logo.svg" alt="Timebank" /></a>
-        <span class="spacer"></span>
-        <a routerLink="/create-service"><span>Create service</span></a>
-        <span class="divider">|</span>
-        <a routerLink="/services"><span>Services</span></a>
-        <span class="divider">|</span>
-        <a routerLink="/service-register"><span>Service register</span></a>
-        <span class="divider">|</span>
-        <a routerLink="/create-service" *ngIf="!switchBtn()"><span></span><app-login-btn></app-login-btn></a>
-        <a routerLink="" *ngIf="switchBtn()"><span class="loggeduser">{{userName | async}}</span><app-logout-btn></app-logout-btn></a>
+  <mat-toolbar class="mat-toolbar mat-primary firstBar">
    
-    </mat-toolbar>
+    <a routerLink="/"
+      ><img class="logo" src="/assets/img/logo.svg" alt="Timebank"
+    /></a>
+
+    <span class="example-spacer"></span>
+    <ng-container *ngIf="switchBtn()"> 
+      <button mat-button (click)="routeToProfile()">profile </button>
+      <button mat-button (click)=" routeToOrders() "> orders </button>
+      <button mat-button (click)=" routeToCreateService() ">create service </button>
+       </ng-container>  
+    <span class="example-spacer"></span>
+
+
+    <div>
+      <a routerLink="/userhome" *ngIf="!switchBtn()"
+        ><app-login-btn *ngIf="!switchBtn()"></app-login-btn
+      ></a>
+
+      <span *ngIf="switchBtn()" class="loggeduser">{{ userName | async }}</span>
+
+      <app-menu-btn *ngIf="switchBtn()"></app-menu-btn>
+
+      <a routerLink="" *ngIf="switchBtn()"><app-logout-btn></app-logout-btn></a>
+    </div>
+ 
+
+
+
+  </mat-toolbar>
 </nav>
