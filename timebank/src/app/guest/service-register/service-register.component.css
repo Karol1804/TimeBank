@@ -50,3 +50,12 @@
 .error {
     color: red;
 }
+input:focus{
+    outline: none;
+
+}
+input{
+    border: none;
+    border-radius:5px;
+    width: 10%;
+}
