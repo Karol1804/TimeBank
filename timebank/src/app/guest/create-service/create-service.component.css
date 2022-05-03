@@ -1,13 +1,13 @@
-.clickable {
-    cursor: pointer;
-    text-decoration: none;
+.sidenav-container {
+    height: 100%;
 }
 
-.main {
-    display: flex;
-    justify-content: center;
-    padding-bottom: 100px;
+.sidenav .mat-toolbar {
+    background: inherit;
+}
 
+.clickable {
+    cursor: pointer;
 }
 
 .card {
@@ -22,13 +22,12 @@
 .next {
     position: relative;
     float: right;
-    color:rgb(161, 149, 192);
+    color: rgb(161, 149, 192);
     font-size: 1.5rem;
 }
 
 .next p {
     position: relative;
-    display: box;
     float: left;
     top: 15px;
     margin-bottom: 0px;
@@ -38,21 +37,8 @@
     font-size: 2rem;
     padding: 10px 0;
 }
-.error {
-    color: red;
-}
-input:focus{
-    outline: none;
-
-}
-input{
-    border: none;
-    border-radius:5px;
-    width: 10%;
-}
-
-.title{
-    border: none;
-    border-radius:5px;
-    width: 50%;
+.mat-card {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
 }
