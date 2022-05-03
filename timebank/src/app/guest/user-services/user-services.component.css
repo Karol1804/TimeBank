@@ -25,6 +25,7 @@
 
 .next p {
     position: relative;
+    display: box;
     float: left;
     top: 15px;
     margin-bottom: 0px;
@@ -34,5 +35,3 @@
     font-size: 2rem;
     padding: 10px 0;
 }
-
-

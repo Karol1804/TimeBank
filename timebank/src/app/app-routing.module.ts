@@ -7,6 +7,7 @@ import { ServiceRegisterComponent } from './guest/service-register/service-regis
 import { RegistrationComponent } from './guest/registration/registration.component';
 import { AuthGuardService } from './services/auth-guard.service';
 import { UserhomeComponent } from './user/user-layout/userhome/userhome.component';
+import { UserServicesComponent } from './guest/user-services/user-services.component';
 
 const routes: Routes = [
   {
@@ -40,6 +41,10 @@ const routes: Routes = [
     path: 'userhome',
     component: UserhomeComponent,
     canActivate: [AuthGuardService],
+  },
+  {
+    path: "user-service/:user_id", component: UserServicesComponent
+
   },
 ];
 

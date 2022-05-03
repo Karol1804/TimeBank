@@ -1,13 +1,13 @@
 <div class="main">
   <div *ngFor="let service of services">
-    <a routerLink="/order/{{ service.id }}">
+    
       <mat-card class="card">
         <mat-card-title>{{ service.title }}</mat-card-title>
         <mat-divider inset></mat-divider>
         <br />
         <mat-card-content>
           <p>
-            Name: <b>{{ service.user }}</b>
+            Name: <a routerLink="/user-service/{{service.user_id}}" class="clickable"><b>{{service.user}}</b></a>
           </p>
           <p>
             Phone: <b>{{ service.phone }}</b>
@@ -39,15 +39,16 @@
               [readonly]="true"
             ></star-rating>
           </div>
-
+          <a routerLink="/order/{{ service.id }}">
           <span class="next"
             ><p>I want it!</p>
             <mat-icon class="arrow" aria-label="arrow_forward_ios"
               >arrow_forward_ios</mat-icon>
           </span>
+          </a>
         </mat-card-content>
         <!-- <mat-divider inset></mat-divider> -->
       </mat-card>
-    </a>
+    
   </div>
 </div>
