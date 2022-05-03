@@ -65,16 +65,16 @@ hr {
 
 .sidenavButton{ 
   
-margin-top: 0.3rem;
-margin-bottom:  0.3rem;
- padding:  0.7rem;
+margin-top: 0.2rem;
+margin-bottom:  0.2rem;
+ 
 }
 
 .sidenavButton:hover{ 
   
   background-color: white;
  color: black;
- padding: 0.7rem;
+
  overflow:hidden;
 }
 
