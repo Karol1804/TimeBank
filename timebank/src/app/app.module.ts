@@ -38,7 +38,8 @@ import { InterceptorService } from './services/interceptor.service';
 import { RatingModule } from 'ng-starrating';
 import { UserhomeComponent } from './user/user-layout/userhome/userhome.component';
 import { UserServicesComponent } from './guest/user-services/user-services.component';
-import { MyServicesComponent } from './user/my-services/my-services.component';
+import {MatSlideToggleModule} from '@angular/material/slide-toggle';
+ 
 
 
 
@@ -53,7 +54,6 @@ import { MyServicesComponent } from './user/my-services/my-services.component';
     RegistrationComponent,
     UserhomeComponent,
     UserServicesComponent,
-    MyServicesComponent,
   ],
   imports: [
     BrowserModule,
@@ -80,6 +80,9 @@ import { MyServicesComponent } from './user/my-services/my-services.component';
     MatDividerModule,
     MatSnackBarModule,
     RatingModule,
+    MatSlideToggleModule
+
+
     
   ],
   providers: [

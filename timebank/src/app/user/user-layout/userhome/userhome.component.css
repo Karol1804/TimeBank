@@ -51,17 +51,32 @@ a:visited {
 
 .sidenav{ 
   
-  background-color: black;
-display: flex;
-flex-direction: column;
-flex-wrap: nowrap;
+  background-color: rgb(58, 57, 57);
+
 }
 
-
+hr {
+  display: block;
+  margin: 10px 0 10px 0;
+  border-top: 1px solid rgba(0, 0, 0, 0.12);
+  width: 100%;
+  background-color: rgb(181, 0, 0);
+}
 
 .sidenavButton{ 
   
-  background-color: white;}
+margin-top: 0.5rem;
+margin-bottom:  0.5rem;
+ padding:  0.5rem;
+}
+
+.sidenavButton:hover{ 
+  
+  background-color: white;
+ color: black;
+ padding: 0.5rem;
+ overflow:hidden;
+}
 
 .loggeduser {
   position: relative;

@@ -16,7 +16,7 @@
      
         <span class="example-spacer"></span>
       
-        <ng-container *ngIf="switchBtn()" fxLayout="column"> 
+        <ng-container *ngIf="switchBtn()" > 
           <button mat-button (click)="routeToServices()">services </button>
           <button mat-button (click)=" routeToOrders() "> orders </button>
           <button mat-button (click)=" routeToCreateService() ">create service </button>
@@ -48,11 +48,19 @@
 
 
 
-      <mat-nav-list > 
-          <button mat-button class="sidenavButton">button</button> 
-          <button mat-button  class="sidenavButton">button</button> 
-          <button mat-button  class="sidenavButton">button</button> 
-          <button mat-button  class="sidenavButton">button</button> 
+      <mat-nav-list style="display:flex; flex-direction: column; width:10rem; height:100%; margin:0; padding:0; justify-content:start;"  > 
+        <span style="color:white;"> Your Profile  </span>
+        <hr>
+        <img  style="border-radius: 9999px; 
+        height: 5rem; width: 5rem;
+         border: 2px; border-color: white;
+         border:solid"/> 
+          <hr>
+          <button mat-raised-button color="primary"  class="sidenavButton">button</button> 
+          <button mat-raised-button color="primary" class="sidenavButton"  color="primary">button</button> 
+          <button mat-raised-button color="primary" class="sidenavButton"  color="primary">button</button> 
+          <button mat-raised-button color="primary"  class="sidenavButton"  color="primary">button</button> 
+      
          </mat-nav-list>
     </mat-sidenav>
 

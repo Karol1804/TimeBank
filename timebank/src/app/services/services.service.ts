@@ -55,7 +55,7 @@ export class ServicesService {
     remoteUserServices(res: any): Userservices[] {
       let userservices: Userservices[] = [];
       for (let userservice of res) {
-        userservices.push(new Userservices(userservice.estimate,userservice.phone, userservice.rating,userservice.title ,userservice.user_id, userservice.user_name))
+        userservices.push(new Userservices(userservice.estimate,userservice.phone, userservice.rating,userservice.title ,userservice.user_id, userservice.user_name,userservice.service_id))
         
       }
       return userservices;
