@@ -24,6 +24,7 @@
     float: right;
     color:rgb(161, 149, 192);
     font-size: 1.5rem;
+    cursor: pointer;
 }
 
 .next p {
