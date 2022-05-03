@@ -1,9 +1,11 @@
+
 .clickable {
     cursor: pointer;
     text-decoration: none;
 }
 
 .main {
+    height: 100%;
     padding-bottom: 100px;
 }
 
@@ -14,6 +16,10 @@
     margin-top: 5%;
     box-shadow: 0 5px 5px rgb(100, 99, 99);
     float: left;
+}
+
+.card:hover {
+    box-shadow: 0 1px 1px rgb(100, 99, 99);
 }
 
 .next {
