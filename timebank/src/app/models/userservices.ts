@@ -6,5 +6,6 @@ export class Userservices {
         public title: string,
         public user_id?: number,
         public user_name?: string,
+        public service_id?: number,
     ) {}
 }
