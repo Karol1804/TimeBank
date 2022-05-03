@@ -34,5 +34,14 @@
     font-size: 2rem;
     padding: 10px 0;
 }
-
+.example-section {
+    display: flex;
+    align-content: center;
+    align-items: center;
+    height: 60px;
+    border: solid 2px black;
+  }
+  .example-margin {
+    margin: 10px;
+  }
 

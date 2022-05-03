@@ -2,6 +2,8 @@ import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { Service } from '../../models/service';
 import { ServicesService } from '../../services/services.service';
+import {ThemePalette} from '@angular/material/core';
+
 
 
 @Component({
@@ -13,6 +15,9 @@ import { ServicesService } from '../../services/services.service';
 export class GuestLayoutComponent implements OnInit {
   public services: Service[] | undefined;
   ServicesService: any;
+  color: ThemePalette = 'accent';
+  checked = false;
+  disabled = false;
 
   constructor(
     private router: Router,
