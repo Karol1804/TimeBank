@@ -1,9 +1,9 @@
 .clickable {
     cursor: pointer;
+    text-decoration: none;
 }
+
 .main {
-    margin-top: 5%;
-    margin-left: 5%;
     padding-bottom: 100px;
 }
 
@@ -16,21 +16,16 @@
     display: inline-block;
 }
 
-.send-button {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-}
-
 .next {
     position: relative;
     float: right;
-    color: rgb(161, 149, 192);
+    color:rgb(161, 149, 192);
     font-size: 1.5rem;
 }
 
 .next p {
     position: relative;
+    display: box;
     float: left;
     top: 15px;
     margin-bottom: 0px;
@@ -39,23 +34,4 @@
 .arrow {
     font-size: 2rem;
     padding: 10px 0;
-}
-
-:host {
-    display: flex;
-    flex-direction: column;
-    align-items: flex-start;
-}
-
-.error {
-    color: red;
-}
-input:focus{
-    outline: none;
-
-}
-input{
-    border: none;
-    border-radius:5px;
-    width: 10%;
 }

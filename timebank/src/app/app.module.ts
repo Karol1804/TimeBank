@@ -37,6 +37,7 @@ import { MatSnackBarModule } from '@angular/material/snack-bar';
 import { InterceptorService } from './services/interceptor.service';
 import { RatingModule } from 'ng-starrating';
 import { UserhomeComponent } from './user/user-layout/userhome/userhome.component';
+import { UserServicesComponent } from './guest/user-services/user-services.component';
 
 
 
@@ -50,6 +51,7 @@ import { UserhomeComponent } from './user/user-layout/userhome/userhome.componen
     CreateServiceComponent,
     RegistrationComponent,
     UserhomeComponent,
+    UserServicesComponent,
   ],
   imports: [
     BrowserModule,

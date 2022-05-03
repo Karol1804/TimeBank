@@ -27,6 +27,7 @@ export class OrderComponent implements OnInit {
   public userId: any | undefined;
   public end_time: Date | undefined;
   public user_id: number | undefined;
+  public estimate: number;
   
   constructor(
     private route: ActivatedRoute,
@@ -48,6 +49,7 @@ export class OrderComponent implements OnInit {
       this.phone = service[0].phone;
       this.user_name = service[0].user;
       this.user_id = service[0].user_id;
+      this.estimate = service[0].estimate;
       console.log("Toto je ponukany service so service_id:")
       console.log(service)
     }) 

@@ -5,6 +5,7 @@ import { User } from '../models/user';
 import { EndRegisterRecord, GetRegisterRecord, RegisterRecord } from '../models/registerrecord';
 import { map } from 'rxjs';
 import { apiurl } from '../url/apiUrl';
+import { Userservices } from '../models/userservices';
 
 @Injectable({
   providedIn: 'root'
@@ -21,6 +22,7 @@ export class ServicesService {
   private apiGetServiceRegisterUrl = this.api + "serviceregister";
   private apiEndServiceRegisterUrl = (id: number, hours: number) => this.api + "serviceregister/" + id + "/" + hours;
   private apiAddServiceUrl = this.api + 'service-create';
+  private apiUserServicesUrl = (user_id: number) => this.api + "services-user/" + user_id;
 
   constructor(
     private http: HttpClient
@@ -40,6 +42,26 @@ export class ServicesService {
     }
     return services;
   }
+
+    // Get all services of user function
+
+    getUserServices(user_id: number) {
+      return this.http.get(this.apiUserServicesUrl(user_id)).pipe(map(this.remoteUserServices));
+      console.log(user_id);
+    }
+  
+    // Helper for "UserServices" related functions. Returns services based on service model for mapping.
+  
+    remoteUserServices(res: any): Userservices[] {
+      let userservices: Userservices[] = [];
+      for (let userservice of res) {
+        userservices.push(new Userservices(userservice.estimate,userservice.phone, userservice.rating,userservice.title ,userservice.user_id, userservice.user_name))
+        
+      }
+      return userservices;
+      console.log(userservices)
+      
+    }
 
   // Creating record in Service Register table.
   createRegisterRecord(addRecord: RegisterRecord){
