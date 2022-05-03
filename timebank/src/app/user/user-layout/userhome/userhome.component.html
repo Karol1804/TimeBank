@@ -1,1 +1,68 @@
-<p>Profile</p>
+
+<div class="example-container" [class.example-is-mobile]="mobileQuery.matches">
+
+
+
+    <mat-toolbar class="secondBar example-toolbar " color="primary" > 
+      
+        <button mat-icon-button (click)="snav.toggle()">
+            <mat-icon>menu</mat-icon>
+          </button>
+          <h1 class="example-app-name">Profile</h1>
+
+
+     
+        <span class="example-spacer"></span>
+     
+        <ng-container *ngIf="switchBtn()"> 
+          <button mat-button (click)="routeToServices()">services </button>
+          <button mat-button (click)=" routeToOrders() "> orders </button>
+          <button mat-button (click)=" routeToCreateService() ">create service </button>
+           </ng-container>  
+
+      
+
+        <span class="example-spacer"></span>
+        <span *ngIf="switchBtn()" class="loggeduser">{{ userName | async }}</span>
+
+      <app-menu-btn *ngIf="switchBtn()"></app-menu-btn>
+        <a routerLink="" *ngIf="switchBtn()"><app-logout-btn></app-logout-btn></a>
+      
+      </mat-toolbar> 
+    
+
+  <mat-sidenav-container
+    class="example-sidenav-container" 
+    [style.marginTop.px]="mobileQuery.matches ? 56 : 0"
+  >
+    <mat-sidenav
+      #snav
+      [mode]="mobileQuery.matches ? 'over' : 'side'"
+      [fixedInViewport]="mobileQuery.matches"
+      fixedTopGap="56"
+      class="sidenav"
+    >
+
+
+
+
+      <mat-nav-list > 
+          <button mat-button class="sidenavButton">button</button> 
+          <button mat-button  class="sidenavButton">button</button> 
+          <button mat-button  class="sidenavButton">button</button> 
+          <button mat-button  class="sidenavButton">button</button> 
+         </mat-nav-list>
+    </mat-sidenav>
+
+
+
+
+    <mat-sidenav-content>
+      <a>dasdasd </a>
+    </mat-sidenav-content>
+  </mat-sidenav-container>
+
+
+
+</div>
+
