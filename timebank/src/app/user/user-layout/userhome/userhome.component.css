@@ -38,7 +38,6 @@ a:visited {
   text-decoration: none;
 }
 
-
 .secondBar {
   height: 3rem;
 }
@@ -48,34 +47,28 @@ a:visited {
   width: 8rem;
 }
 
-
-.sidenav{ 
-  
-  background-color: rgb(58, 57, 57);
-
+.sidenav {
+  background-color: rgb(0, 0, 0);
 }
 
 hr {
-  display: block;
-  margin: 10px 0 10px 0;
+  display: flex;
   border-top: 1px solid rgba(0, 0, 0, 0.12);
   width: 100%;
   background-color: rgb(255, 255, 255);
 }
 
-.sidenavButton{ 
-  
-margin-top: 0.05rem;
-margin-bottom:  0.05rem;
- 
+.sidenavButton {
+  font-size: small;
+  margin-top: 0.05rem;
+  margin-bottom: 0.05rem;
+  color: white;
+  background-color: black;
 }
 
-.sidenavButton:hover{ 
-  
-  background-color: white;
- color: black;
-
- overflow:hidden;
+.sidenavButton:hover {
+  background-color: rgb(59, 57, 57);
+  color: rgb(255, 255, 255);
 }
 
 .loggeduser {
