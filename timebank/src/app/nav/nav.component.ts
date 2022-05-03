@@ -1,4 +1,5 @@
 import { Component, Input, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
 import { Observable, Observer } from 'rxjs';
 import { GlobalStorageService } from '../services/global-storage.service';
 import { ServicesService } from '../services/services.service';
@@ -19,12 +20,26 @@ export class NavComponent implements OnInit {
 
   constructor(
     private globalStorage: GlobalStorageService,
-    public servicesService: ServicesService
+    public servicesService: ServicesService,
+    private router:Router
   ) {}
 
   ngOnInit(): void {}
 
   switchBtn() {
-    return !!this.globalStorage.getToken();
+    return !!this.globalStorage.getToken(); }
+
+    routeToOrders() {
+      this.router.navigateByUrl('/service-register');
+    }
+    routeToServices() {
+      this.router.navigateByUrl('/services');
+    }
+    routeToCreateService() {
+      this.router.navigateByUrl('/create-service');
+    }
+    routeToProfile() {
+      this.router.navigateByUrl('/userhome');
+    }
+
   }
-}

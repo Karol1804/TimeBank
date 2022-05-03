@@ -38,6 +38,8 @@ import { InterceptorService } from './services/interceptor.service';
 import { RatingModule } from 'ng-starrating';
 import { UserhomeComponent } from './user/user-layout/userhome/userhome.component';
 
+
+
 @NgModule({
   declarations: [
     AppComponent,
@@ -73,7 +75,8 @@ import { UserhomeComponent } from './user/user-layout/userhome/userhome.componen
     ReactiveFormsModule,
     MatDividerModule,
     MatSnackBarModule,
-    RatingModule
+    RatingModule,
+    
   ],
   providers: [
     ServicesService,
