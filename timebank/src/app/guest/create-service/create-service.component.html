@@ -1,29 +1,45 @@
 <div class="main">
-    <mat-card class="add-service">
-        <mat-card-title>Create service</mat-card-title>
+  <mat-card class="card">
+    <mat-card-title>Create a new service</mat-card-title>
+    <mat-divider inset></mat-divider>
+    <br />
+    <mat-card-content>
+      <span><b>Title: </b> </span>
+      <input
+        class="title"
+        type="text"
+        [(ngModel)]="title"
+        value="{{ title }}"
+        maxlength="1000"
+      />
+      <br />
+      <br />
+      
 
-        <!-- User_id Autocomplet Column -->
-        <mat-form-field class="full-width" appearance="fill">
-            <mat-label>User</mat-label>
-            <input type="text" matInput [(ngModel)]="user_id" [matAutocomplete]="auto">
-            <mat-autocomplete #auto="matAutocomplete">
-                <mat-option *ngFor="let user of users" [value]="user.id">
-                    {{user.user_name}}
-                </mat-option>
-            </mat-autocomplete>
-        </mat-form-field>
-        <br />
-
-        <!-- Title Column -->
-        <mat-form-field class="full-width" appearance="fill">
-            <mat-label>Title</mat-label><input matInput [(ngModel)]="title" maxlength="1000" />
-        </mat-form-field>
-        <br />
-
-        <mat-error *ngIf="emptyInputError"> All fields are requried! </mat-error>
-
-        <button mat-raised-button color="primary" (click)="addNewOffer()">
-            Add new service
-        </button>
-    </mat-card>
+      <p>
+        Name:<b> {{ obj_user_name }}</b>
+      </p>
+      <p>
+        Phone: <b>{{ obj_phone }}</b>
+      </p>
+      <span>Estimate hours: </span>
+      <input
+        type="number"
+        (keypress)="omit_special_char($event)"
+        [(ngModel)]="estimate"
+        value="{{ estimate }}"
+      />
+      <br />
+      <mat-error *ngIf="emptyInputError"> All fields are requried! </mat-error>
+      <span class="next" (click)="addNewOffer()"
+        ><p>Create new service</p>
+        <mat-icon
+          class="arrow"
+          aria-label="arrow_forward_ios"
+          (click)="addNewOffer()"
+          >arrow_forward_ios</mat-icon
+        >
+      </span>
+    </mat-card-content>
+  </mat-card>
 </div>

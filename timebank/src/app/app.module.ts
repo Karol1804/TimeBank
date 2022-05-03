@@ -39,7 +39,7 @@ import { RatingModule } from 'ng-starrating';
 import { UserhomeComponent } from './user/user-layout/userhome/userhome.component';
 import { UserServicesComponent } from './guest/user-services/user-services.component';
 import {MatSlideToggleModule} from '@angular/material/slide-toggle';
- 
+import { MyServicesComponent } from './user/my-services/my-services.component';
 
 
 
@@ -54,6 +54,7 @@ import {MatSlideToggleModule} from '@angular/material/slide-toggle';
     RegistrationComponent,
     UserhomeComponent,
     UserServicesComponent,
+    MyServicesComponent,
   ],
   imports: [
     BrowserModule,
@@ -83,7 +84,7 @@ import {MatSlideToggleModule} from '@angular/material/slide-toggle';
     MatSlideToggleModule
 
 
-    
+
   ],
   providers: [
     ServicesService,
