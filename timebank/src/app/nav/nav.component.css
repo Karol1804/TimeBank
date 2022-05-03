@@ -18,7 +18,8 @@ a:visited {
 
 .logo {
   display: block;
-  width: 9rem;
+  width: 8rem;
+  margin-left: 2.5rem;
 }
 
 .loggeduser {
