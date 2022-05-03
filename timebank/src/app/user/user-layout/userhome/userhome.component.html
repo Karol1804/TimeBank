@@ -3,18 +3,20 @@
 
 
 
-    <mat-toolbar class="secondBar example-toolbar " color="primary" > 
+    <mat-toolbar class="secondBar example-toolbar"  color="primary" > 
       
         <button mat-icon-button (click)="snav.toggle()">
             <mat-icon>menu</mat-icon>
           </button>
-          <h1 class="example-app-name">Profile</h1>
+          <a routerLink="/"
+          ><img class="logo" src="/assets/img/logo.svg" alt="Timebank"
+        /></a>
 
 
      
         <span class="example-spacer"></span>
-     
-        <ng-container *ngIf="switchBtn()"> 
+      
+        <ng-container *ngIf="switchBtn()" fxLayout="column"> 
           <button mat-button (click)="routeToServices()">services </button>
           <button mat-button (click)=" routeToOrders() "> orders </button>
           <button mat-button (click)=" routeToCreateService() ">create service </button>

@@ -43,15 +43,25 @@ a:visited {
   height: 3rem;
 }
 
+.logo {
+  display: flex;
+  width: 8rem;
+}
+
 
 .sidenav{ 
   
   background-color: black;
 display: flex;
 flex-direction: column;
+flex-wrap: nowrap;
 }
 
-.sidenavButton{ background-color: white;}
+
+
+.sidenavButton{ 
+  
+  background-color: white;}
 
 .loggeduser {
   position: relative;
