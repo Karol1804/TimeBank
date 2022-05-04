@@ -40,6 +40,7 @@ import { UserhomeComponent } from './user/user-layout/userhome/userhome.componen
 import { UserServicesComponent } from './guest/user-services/user-services.component';
 import {MatSlideToggleModule} from '@angular/material/slide-toggle';
 import { MyServicesComponent } from './user/my-services/my-services.component';
+import { EditComponent } from './user/my-services/edit/edit.component';
 
 
 
@@ -55,6 +56,7 @@ import { MyServicesComponent } from './user/my-services/my-services.component';
     UserhomeComponent,
     UserServicesComponent,
     MyServicesComponent,
+    EditComponent,
   ],
   imports: [
     BrowserModule,

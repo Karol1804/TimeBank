@@ -9,6 +9,7 @@ import { AuthGuardService } from './services/auth-guard.service';
 import { UserhomeComponent } from './user/user-layout/userhome/userhome.component';
 import { UserServicesComponent } from './guest/user-services/user-services.component';
 import { MyServicesComponent } from './user/my-services/my-services.component';
+import { EditComponent } from './user/my-services/edit/edit.component';
 
 const routes: Routes = [
   {
@@ -49,6 +50,10 @@ const routes: Routes = [
   },
   {
     path: "my-services", component: MyServicesComponent
+
+  },
+  {
+    path: "my-services/edit/:id", component: EditComponent
 
   }
 ];
