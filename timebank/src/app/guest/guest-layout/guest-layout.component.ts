@@ -15,7 +15,7 @@ import {ThemePalette} from '@angular/material/core';
 export class GuestLayoutComponent implements OnInit {
   public services: Service[] | undefined;
   ServicesService: any;
-  color: ThemePalette = 'accent';
+  color: ThemePalette = 'primary';
   public checked: boolean;
   search : String ="";
  
