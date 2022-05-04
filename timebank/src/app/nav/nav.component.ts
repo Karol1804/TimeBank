@@ -41,5 +41,7 @@ export class NavComponent implements OnInit {
     routeToProfile() {
       this.router.navigateByUrl('/userhome');
     }
-
+    routeToMyServices() {
+      this.router.navigateByUrl('/my-services');
+    }
   }
