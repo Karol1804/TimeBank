@@ -40,14 +40,23 @@
     font-size: 2rem;
     padding: 10px 0;
 }
-.example-section {
-    display: flex;
+/* .example-section {
+     
     align-content: center;
-    align-items: center;
-    height: 60px;
-    border: solid 2px black;
-  }
+    /* align-items: center; */
+    /* height: 60px;
+    /* align-items: flex-end; */
+    /* align-items: center; */
+    
+  /* }
   .example-margin {
     margin: 10px;
-  }
+    width:100%;
+    align-content: center;
+  } */ 
 
+  .flex-container {
+    display: flex;
+    flex-direction: row-reverse;
+    padding: 2% 5% 0 0;
+  }

@@ -16,7 +16,6 @@ export class GuestLayoutComponent implements OnInit {
   public services: Service[] | undefined;
   ServicesService: any;
   color: ThemePalette = 'accent';
-  checked = false;
   disabled = false;
 
   constructor(
@@ -44,10 +43,32 @@ export class GuestLayoutComponent implements OnInit {
         }
     }
   }
-
+  public checked = 0;
   loadData() {
-    this.servicesService.getServices("").subscribe(servicesFromService => {
-      this.services = servicesFromService
+    
+    if(this.checked == 0){
+      this.servicesService.getServices("desc").subscribe(servicesFromService => {
+        this.services = servicesFromService
+
     })
   }
+    if(this.checked == 1){  
+      this.servicesService.getServicesAsc("asc").subscribe(servicesFromService => {
+      this.services = servicesFromService
+    })
+    }
+
+ }
+
+
+refresh(): void {
+    
+    if(this.checked == 1){
+      window.location.reload();
+       this.checked = 0;
+     
+    }
+    
+    console.log(this.checked);
+}
 }

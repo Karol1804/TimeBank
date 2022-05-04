@@ -6,6 +6,7 @@ import { EndRegisterRecord, GetRegisterRecord, RegisterRecord } from '../models/
 import { map } from 'rxjs';
 import { apiurl } from '../url/apiUrl';
 import { Userservices } from '../models/userservices';
+import { query } from '@angular/animations';
 
 @Injectable({
   providedIn: 'root'
@@ -23,14 +24,20 @@ export class ServicesService {
   private apiEndServiceRegisterUrl = (id: number, hours: number) => this.api + "serviceregister/" + id + "/" + hours;
   private apiAddServiceUrl = this.api + 'service-create';
   private apiUserServicesUrl = (user_id: number) => this.api + "services-user/" + user_id;
-
+  private apiGetServicesSortUrl = this.api + "services?sort=";
+  
+  
   constructor(
     private http: HttpClient
   ) {}
 
   // Get all services function
   getServices(query: string) {
-    return this.http.get(this.apiGetServicesUrl + query).pipe(map(this.remoteServices));
+    return this.http.get(this.apiGetServicesSortUrl + query).pipe(map(this.remoteServices));
+    console.log(query);
+  }
+  getServicesAsc(query: string) {
+    return this.http.get(this.apiGetServicesSortUrl + query).pipe(map(this.remoteServices));
     console.log(query);
   }
 

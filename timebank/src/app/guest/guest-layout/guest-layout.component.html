@@ -1,9 +1,9 @@
 <div class="main">
+  <div class="flex-container">
   
-  <section class="example-section">
-    <mat-checkbox class="example-margin" [(ngModel)]="checked">Checked</mat-checkbox>
-  </section>
+    <mat-checkbox class="example-margin" (click)="refresh()" [(ngModel)]="checked">Ratting sort</mat-checkbox>
   
+</div>
   <div *ngFor="let service of services">
     
       <mat-card class="card">
