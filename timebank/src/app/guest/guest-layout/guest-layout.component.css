@@ -50,7 +50,7 @@
     
    }
   .example-margin {
-    background-color: rgb(215, 200, 252);
+    /* background-color: rgb(215, 200, 252); */
     padding: 10px;
     border-radius:5px;
     color:red;
