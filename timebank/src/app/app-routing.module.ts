@@ -43,19 +43,36 @@ const routes: Routes = [
     path: 'userhome',
     component: UserhomeComponent,
     canActivate: [AuthGuardService],
+    children: [
+      {
+        path: 'myS',
+        component: MyServicesComponent,
+        canActivate: [AuthGuardService],
+      },
+      {
+        path: 'myC',
+        component: CreateServiceComponent,
+        canActivate: [AuthGuardService],
+      },
+      {
+        path: 'myE',
+        component: EditComponent,
+        canActivate: [AuthGuardService],
+      },
+    ],
   },
   {
-    path: "user-service/:user_id", component: UserServicesComponent
-
+    path: 'user-service/:user_id',
+    component: UserServicesComponent,
   },
   {
-    path: "my-services", component: MyServicesComponent
-
+    path: 'my-services',
+    component: MyServicesComponent,
   },
   {
-    path: "my-services/edit/:id", component: EditComponent
-
-  }
+    path: 'my-services/edit/:id',
+    component: EditComponent,
+  },
 ];
 
 @NgModule({
