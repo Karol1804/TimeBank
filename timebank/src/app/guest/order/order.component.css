@@ -7,6 +7,10 @@
     display: inline-block;
 }
 
+.main {
+    margin-top: 50px;
+}
+
 .send-button {
     display: flex;
     flex-direction: column;
