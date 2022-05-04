@@ -9,3 +9,12 @@ export class Service {
         public user_id?: number
     ) {}
 }
+
+export class UpdateService {
+    constructor(
+        public id: number,
+        public title: string,
+        public estimate: number,
+        public user_id?: number
+    ) {}
+}

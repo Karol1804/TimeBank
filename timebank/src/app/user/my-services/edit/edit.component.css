@@ -1,0 +1,62 @@
+.clickable {
+    cursor: pointer;
+    text-decoration: none;
+}
+
+.main {
+    display: flex;
+    justify-content: center;
+    padding-bottom: 100px;
+
+}
+
+.card {
+    width: 400px;
+    background-color: rgb(215, 200, 252);
+    margin-left: 5%;
+    margin-top: 5%;
+    box-shadow: 0 5px 5px rgb(100, 99, 99);
+    display: inline-block;
+}
+
+.next {
+    position: relative;
+    float: right;
+    color: rgb(161, 149, 192);
+    font-size: 1.5rem;
+    cursor: pointer;
+}
+
+.next p {
+    position: relative;
+    display: box;
+    float: left;
+    top: 15px;
+    margin-bottom: 0px;
+}
+
+.arrow {
+    font-size: 2rem;
+    padding: 10px 0;
+}
+
+.error {
+    color: red;
+}
+
+input:focus {
+    outline: none;
+
+}
+
+input {
+    border: none;
+    border-radius: 5px;
+    width: 10%;
+}
+
+.title {
+    border: none;
+    border-radius: 5px;
+    width: 50%;
+}

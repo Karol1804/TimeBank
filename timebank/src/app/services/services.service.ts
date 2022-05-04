@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from "@angular/common/http";
-import { Service } from '../models/service';
+import { Service, UpdateService } from '../models/service';
 import { User } from '../models/user';
 import { EndRegisterRecord, GetRegisterRecord, RegisterRecord } from '../models/registerrecord';
 import { map } from 'rxjs';
@@ -24,6 +24,7 @@ export class ServicesService {
   private apiGetServiceRegisterUrl = this.api + "serviceregister";
   private apiEndServiceRegisterUrl = (id: number, hours: number, rating:number) => this.api + "serviceregister/" + id + "/" + hours+ "/" +rating;
   private apiAddServiceUrl = this.api + 'service-create';
+  private apiUpdateServiceUrl = (id: number) => this.api + 'service/' + id;
   private apiUserServicesUrl = (user_id: number) => this.api + "services-user/" + user_id;
   private apiGetServicesSortUrl = this.api + "services?sort=";
   
@@ -140,6 +141,12 @@ export class ServicesService {
   saveCreatedService(offer: Service) {
     return this.http.post(this.apiAddServiceUrl, offer);
   }
+
+  // Update existing service
+  updateService(id: number, update: UpdateService) {
+    return this.http.put(this.apiUpdateServiceUrl(id), update);
+  }
+  
  // Gets single ServiceRegister based on ID.
  getServiceRegisterId(service_id: number) {
   return this.http.get(this.apiGetServiceRegisterIdUrl(service_id)).pipe(map(this.remoteUsers));
