@@ -28,7 +28,7 @@ export class ServicesService {
   private apiUpdateServiceUrl = (service_id: number) => this.api + 'service/' + service_id;
   private apiUserServicesUrl = (user_id: number) => this.api + "services-user/" + user_id;
   private apiGetServicesSortUrl = this.api + "services?sort=";
-  
+  private apiGetServicesSearchUrl = this.api + "service-search?";
   
   constructor(
     private http: HttpClient
@@ -48,6 +48,11 @@ export class ServicesService {
   // Get all services sort function Desc
   getServicesDesc(query: string) {
     return this.http.get(this.apiGetServicesSortUrl + query).pipe(map(this.remoteServices));
+    console.log(query);
+  }
+
+  getServicesDescSearchTit(query: string) {
+    return this.http.get(this.apiGetServicesSearchUrl + query).pipe(map(this.remoteServices));
     console.log(query);
   }
 
