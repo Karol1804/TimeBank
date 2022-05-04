@@ -13,9 +13,17 @@
                         value="{{record.hours}}">
                     <br>
                     <span class="error" *ngIf="record.hours == 0">The number of hours must be equal or greater than 1</span>
+                    
+                    <mat-slide-toggle [(ngModel)]="isChecked">I don't want to rate!</mat-slide-toggle>
                     <br>
-                    <star-rating [value]="0" [totalstars]="5" checkedcolor="red" uncheckedcolor="black" size="24px" [readonly]="false" (rate)="onRate($event)"></star-rating>
+                    
+
+                    <div *ngIf="isChecked">
+                    <star-rating [value]="0" [totalstars]="5" checkedcolor="#ffd740" uncheckedcolor="black" size="24px" [readonly]="false" (rate)="onRate($event)"></star-rating>
+                        </div>
                     <br>
+
+
                     <div class="send-button">
                     <button mat-raised-button color="white"
                         (click)="endRegisterRecord(record.id, record.hours)">Submit</button>

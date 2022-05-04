@@ -23,6 +23,7 @@ export class ServicesService {
   private apiCreateRegisterRecord = this.api + "serviceregister-create";
   private apiGetServiceRegisterUrl = this.api + "serviceregister";
   private apiEndServiceRegisterUrl = (id: number, hours: number, rating:number) => this.api + "serviceregister/" + id + "/" + hours+ "/" +rating;
+  private apiEndServiceRegisterWRUrl = (id: number, hours: number) => this.api + "serviceregister/" + id + "/" + hours;
   private apiAddServiceUrl = this.api + 'service-create';
   private apiUpdateServiceUrl = (id: number) => this.api + 'service/' + id;
   private apiUserServicesUrl = (user_id: number) => this.api + "services-user/" + user_id;
@@ -132,9 +133,14 @@ export class ServicesService {
   }
 
   
-  // Ends records from Service register based on ID and HOURS.
+  // Ends records from Service register based on ID and HOURS and RATING.
   endRegisterRecord(id: number, hours: number, rating: number, endRecord: EndRegisterRecord){
     return this.http.put(this.apiEndServiceRegisterUrl(id, hours, rating), endRecord)
+  }
+
+  // Ends records without Rating from Service register based on ID and HOURS.
+  endRegisterRecordWR(id: number, hours: number, endRecord: EndRegisterRecord){
+    return this.http.put(this.apiEndServiceRegisterWRUrl(id, hours), endRecord)
   }
 
   // Save service in Services table.
