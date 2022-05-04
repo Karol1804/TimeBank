@@ -18,6 +18,10 @@
     float: left;
 }
 
+.title {
+    overflow: hidden;
+}
+
 .card:hover {
     box-shadow: 0 1px 1px rgb(100, 99, 99);
 }

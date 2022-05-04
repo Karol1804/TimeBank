@@ -16,6 +16,10 @@
     float: left;
 }
 
+.title {
+    overflow: hidden;
+}
+
 .send-button {
     display: flex;
     flex-direction: column;
