@@ -29,6 +29,7 @@ export class UserServicesComponent implements OnInit {
   public userid: number | undefined;
   public end_time: Date | undefined;
   public user_id: number | undefined;
+ 
 
   constructor(
     private router: Router,
@@ -54,5 +55,6 @@ export class UserServicesComponent implements OnInit {
     })
  
   }
+
 
 }

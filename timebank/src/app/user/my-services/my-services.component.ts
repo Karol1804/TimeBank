@@ -1,33 +1,19 @@
 import { Component, OnInit } from '@angular/core';
-import { Router } from '@angular/router';
 import { Service } from '../../models/service';
 import { ServicesService } from '../../services/services.service';
-import {ThemePalette} from '@angular/material/core';
-
-
 
 @Component({
-  selector: 'app-guest-layout',
-  templateUrl: './guest-layout.component.html',
-  styleUrls: ['./guest-layout.component.css']
+  selector: 'app-my-services',
+  templateUrl: './my-services.component.html',
+  styleUrls: ['./my-services.component.css']
 })
-
-export class GuestLayoutComponent implements OnInit {
+export class MyServicesComponent implements OnInit {
   public services: Service[] | undefined;
   ServicesService: any;
-  color: ThemePalette = 'accent';
-  checked = false;
-  disabled = false;
 
   constructor(
-    private router: Router,
-    private servicesService: ServicesService,
-    
+    private servicesService: ServicesService
   ) {}
-
-  goTo(path: string) {
-    this.router.navigate([path]);
-  }
 
   ngOnInit(): void {
     this.loadData();
@@ -50,4 +36,7 @@ export class GuestLayoutComponent implements OnInit {
       this.services = servicesFromService
     })
   }
+
+
+
 }

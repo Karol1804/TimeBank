@@ -1,4 +1,3 @@
-
 .clickable {
     cursor: pointer;
     text-decoration: none;
@@ -25,7 +24,7 @@
 .next {
     position: relative;
     float: right;
-    color:rgb(161, 149, 192);
+    color: rgb(161, 149, 192);
     font-size: 1.5rem;
 }
 
@@ -40,14 +39,3 @@
     font-size: 2rem;
     padding: 10px 0;
 }
-.example-section {
-    display: flex;
-    align-content: center;
-    align-items: center;
-    height: 60px;
-    border: solid 2px black;
-  }
-  .example-margin {
-    margin: 10px;
-  }
-
