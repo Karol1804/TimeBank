@@ -35,7 +35,7 @@
       (mouseenter)="onSinenavToggle()"
       (mouseleave)="onSinenavToggle()"
       [@onSideNavChange]="sideNavState ? 'open' : 'close'"
-      style="z-index: 0"
+      style="z-index: 1"
       opened
     >
       <mat-nav-list
@@ -69,16 +69,16 @@
 
         <hr />
         <div class="menubut">
-          <button mat-mini-fab color="primary" class="sidenavButton" (click)="routeToMyServices()">
+          <button mat-mini-fab color="primary" class="sidenavButton" routerLink="myS">
             <mat-icon> home </mat-icon><span>My services</span>
           </button>
-          <button mat-mini-fab color="primary" class="sidenavButton">
-            <mat-icon> edit </mat-icon><span>New service</span>
+          <button mat-mini-fab color="primary" class="sidenavButton" routerLink="myC">
+            <mat-icon> add_circle </mat-icon><span>New service</span>
           </button>
-          <button mat-mini-fab color="primary" class="sidenavButton">
-            <mat-icon> add_circle</mat-icon><span>Edit service</span>
+          <button mat-mini-fab color="primary" class="sidenavButton" routerLink="myE">
+            <mat-icon> edit</mat-icon><span>Edit service</span>
           </button>
-          <button mat-mini-fab color="primary" class="sidenavButton">
+          <button mat-mini-fab color="primary" class="sidenavButton" >
             <mat-icon> shopping_cart</mat-icon><span>Ordered service</span>
           </button>
         </div>
@@ -86,15 +86,20 @@
       </mat-nav-list>
     </mat-sidenav>
 
-    
+  
     <mat-sidenav-content
       style="
-        z-index: 2;
+        z-index: 3;
         margin-left: 1rem;
         background-color: rgb(255, 255, 255);
       "
       [@onMainContentChange]="onSideNavChange ? 'open' : 'close'"
     >
+
+    <router-outlet></router-outlet>
+
+
     </mat-sidenav-content>
+   
   </mat-sidenav-container>
 </div>
