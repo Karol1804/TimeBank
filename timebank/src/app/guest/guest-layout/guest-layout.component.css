@@ -40,23 +40,25 @@
     font-size: 2rem;
     padding: 10px 0;
 }
-/* .example-section {
+.example-section {
      
     align-content: center;
-    /* align-items: center; */
-    /* height: 60px;
-    /* align-items: flex-end; */
-    /* align-items: center; */
+    align-items: center;
+    height: 60px;
     
-  /* }
+    align-items: center; 
+    
+   }
   .example-margin {
-    margin: 10px;
-    width:100%;
-    align-content: center;
-  } */ 
+    background-color: rgb(215, 200, 252);
+    padding: 10px;
+    border-radius:5px;
+    color:red;
+  }  
 
   .flex-container {
     display: flex;
     flex-direction: row-reverse;
     padding: 2% 5% 0 0;
+    
   }

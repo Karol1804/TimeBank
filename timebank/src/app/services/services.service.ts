@@ -41,6 +41,10 @@ export class ServicesService {
     return this.http.get(this.apiGetServicesSortUrl + query).pipe(map(this.remoteServices));
     console.log(query);
   }
+  getServicesDesc(query: string) {
+    return this.http.get(this.apiGetServicesSortUrl + query).pipe(map(this.remoteServices));
+    console.log(query);
+  }
 
   // Helper for "Services" related functions. Returns services based on service model for mapping.
   remoteServices(res: any): Service[] {

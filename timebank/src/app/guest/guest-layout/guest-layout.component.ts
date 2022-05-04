@@ -16,59 +16,83 @@ export class GuestLayoutComponent implements OnInit {
   public services: Service[] | undefined;
   ServicesService: any;
   color: ThemePalette = 'accent';
-  disabled = false;
+  public checked: boolean;
+ 
 
   constructor(
     private router: Router,
     private servicesService: ServicesService,
     
-  ) {}
-
+  )  {
+    this.checked=false;
+    
+  }
+  
+  
   goTo(path: string) {
     this.router.navigate([path]);
   }
 
   ngOnInit(): void {
-    this.loadData();
+    this.loadData()
+    // if(this.checked == false){
+    // this.loadData1();
+    // }
+    // else{
+    //   this.loadData2();
+    // }
     //this.reload();
   }
 
-  reload() {
-    if (window.localStorage) {
-      if (!localStorage.getItem('reload')) {
-        localStorage['reload'] = true;
-        window.location.reload();
-      } else {
-          localStorage.removeItem('reload');
-        }
-    }
-  }
-  public checked = 0;
+  // Function to load data-gestlayout,welcomepage
   loadData() {
     
-    if(this.checked == 0){
-      this.servicesService.getServices("desc").subscribe(servicesFromService => {
-        this.services = servicesFromService
+    this.servicesService.getServices("").subscribe(servicesFromService => {
+    this.services = servicesFromService
 
     })
+    console.log(this.checked)
+  
   }
-    if(this.checked == 1){  
-      this.servicesService.getServicesAsc("asc").subscribe(servicesFromService => {
+  
+  // Function to load data rating/sort=desc
+  loadData1() {
+    
+    this.servicesService.getServicesDesc("desc&field=avg_rating").subscribe(servicesFromService => {
+    this.services = servicesFromService
+
+    })
+ 
+  }
+   // Function to load data rating/sort=asc
+  loadData2() {
+      
+      this.servicesService.getServicesAsc("asc&field=avg_rating").subscribe(servicesFromService => {
       this.services = servicesFromService
     })
-    }
-
- }
-
-
-refresh(): void {
     
-    if(this.checked == 1){
-      window.location.reload();
-       this.checked = 0;
-     
+  }
+
+ // Function of chechbox to sort by rating and load right data
+  refresh(boolenvalue: boolean){
+
+    if(this.checked == false){
+      this.loadData1();
     }
-    
     console.log(this.checked);
-}
+
+    if(this.checked == true){
+      this.loadData2();
+     }  
+    console.log(this.checked);
+    if(this.checked === false){
+      boolenvalue = !this.checked
+    }
+    else{
+      boolenvalue = this.checked 
+  }
+    // console.log(boolenvalue);
+  } 
+  
+ 
 }
