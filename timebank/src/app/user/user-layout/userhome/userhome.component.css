@@ -66,12 +66,13 @@ hr {
   display: flex;
   border-top: 1px solid rgba(0, 0, 0, 0.12);
   width: 100%;
-  background-color: rgb(255, 255, 255);
+  background-color: rgb(121, 121, 121);
+  margin-top: 2rem;
 }
 
 
 .menubut{
-  margin-top: 2rem;
+  margin-top: 1rem;
  display: flex;
  flex-direction: column;
 flex-wrap: nowrap;

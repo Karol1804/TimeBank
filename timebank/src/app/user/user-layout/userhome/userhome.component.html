@@ -1,85 +1,100 @@
-
 <div class="example-container" [class.example-is-mobile]="mobileQuery.matches">
+  <mat-toolbar class="secondBar example-toolbar" color="primary">
+    <button mat-icon-button (click)="snav.toggle()"></button>
+    <a routerLink="/"
+      ><img class="logo" src="/assets/img/logo.svg" alt="Timebank"
+    /></a>
 
+    <span class="example-spacer"></span>
 
+    <ng-container *ngIf="switchBtn()">
+      <button mat-button (click)="routeToServices()">services</button>
+      <button mat-button (click)="routeToOrders()">orders</button>
+      <button mat-button (click)="routeToCreateService()">
+        create service
+      </button>
+    </ng-container>
 
-    <mat-toolbar class="secondBar example-toolbar"  color="primary" > 
-      
-        <button mat-icon-button (click)="snav.toggle()">
-           
-          </button>
-          <a routerLink="/"
-          ><img class="logo" src="/assets/img/logo.svg" alt="Timebank"
-        /></a>
+    <span class="example-spacer"></span>
+    <span *ngIf="switchBtn()" class="loggeduser">{{ userName | async }}</span>
 
-
-     
-        <span class="example-spacer"></span>
-      
-        <ng-container *ngIf="switchBtn()" > 
-          <button mat-button (click)="routeToServices()">services </button>
-          <button mat-button (click)=" routeToOrders() "> orders </button>
-          <button mat-button (click)=" routeToCreateService() ">create service </button>
-           </ng-container>  
-
-      
-
-        <span class="example-spacer"></span>
-        <span *ngIf="switchBtn()" class="loggeduser">{{ userName | async }}</span>
-
-      <app-menu-btn *ngIf="switchBtn()"></app-menu-btn>
-        <a routerLink="" *ngIf="switchBtn()"><app-logout-btn></app-logout-btn></a>
-      
-      </mat-toolbar> 
-    
+    <app-menu-btn *ngIf="switchBtn()"></app-menu-btn>
+    <a routerLink="" *ngIf="switchBtn()"><app-logout-btn></app-logout-btn></a>
+  </mat-toolbar>
 
   <mat-sidenav-container
-    class="example-sidenav-container" 
+    class="example-sidenav-container"
     [style.marginTop.px]="mobileQuery.matches ? 56 : 0"
-    >
+  >
     <mat-sidenav
       #snav
       [mode]="'side'"
       [fixedInViewport]="mobileQuery.matches"
       fixedTopGap="56"
       class="sidenav"
-      (mouseenter)="onSinenavToggle()" (mouseleave)="onSinenavToggle()" [@onSideNavChange]="sideNavState ? 'open' : 'close'"   
-     style="z-index: 0;"
+      (mouseenter)="onSinenavToggle()"
+      (mouseleave)="onSinenavToggle()"
+      [@onSideNavChange]="sideNavState ? 'open' : 'close'"
+      style="z-index: 0"
       opened
     >
+      <mat-nav-list
+        style="
+          display: flex;
+          overflow: hidden;
+          flex-direction: column;
+          width: 12rem;
+          height: 100%;
+          margin: 0;
+          padding: 0;
+          justify-content: start;
+        "
+      >
+        <img
+          src="/assets/img/darthh.png"
+          style="
+            border-radius: 9999px;
+            height: 3.5rem;
+            width: 3.5rem;
+            border: 0.5rem;
+            border-color: white;
+            border: solid;
+            align-self: center;
+            margin-top: 2rem;
+          "
+        />
+        <span style="color: white; text-align: center; margin-top: 1rem">
+          Your Profile
+        </span>
 
-
-
-
-      <mat-nav-list style="display:flex; overflow: hidden;flex-direction: column; width:12rem; height:100%; margin:0; padding:0; justify-content:start;"  > 
-       
-        
-        <img src="/assets/img/darthh.png" style="border-radius: 9999px; 
-        height: 3.5rem; width: 3.5rem;
-         border: 0.5rem; border-color: white;
-         border:solid; align-self: center; margin-top: 2rem;"/> 
-           <span style="color:white; text-align: center; margin-top: 1rem;"> Your Profile  </span>
-          
-          <div  class="menubut"> 
-          <button mat-mini-fab  color="primary" class="sidenavButton" ><mat-icon> home </mat-icon><span>My services</span></button> 
-         <button mat-mini-fab  color="primary" class="sidenavButton"  > <mat-icon> edit </mat-icon><span>New service</span></button> 
-          <button mat-mini-fab color="primary" class="sidenavButton"  ><mat-icon> add_circle</mat-icon><span>Edit service</span></button> 
-          <button mat-mini-fab  color="primary" class="sidenavButton" ><mat-icon> shopping_cart</mat-icon><span>Ordered service</span></button> 
-          </div>
-         </mat-nav-list>
-       
+        <hr />
+        <div class="menubut">
+          <button mat-mini-fab color="primary" class="sidenavButton">
+            <mat-icon> home </mat-icon><span>My services</span>
+          </button>
+          <button mat-mini-fab color="primary" class="sidenavButton">
+            <mat-icon> edit </mat-icon><span>New service</span>
+          </button>
+          <button mat-mini-fab color="primary" class="sidenavButton">
+            <mat-icon> add_circle</mat-icon><span>Edit service</span>
+          </button>
+          <button mat-mini-fab color="primary" class="sidenavButton">
+            <mat-icon> shopping_cart</mat-icon><span>Ordered service</span>
+          </button>
+        </div>
+        <hr />
+      </mat-nav-list>
     </mat-sidenav>
 
-
-
-
-    <mat-sidenav-content  style="z-index: 2; margin-left: 1rem; background-color: rgb(255, 255, 255) ;" [@onMainContentChange]="onSideNavChange ? 'open': 'close'">
-
-
+    
+    <mat-sidenav-content
+      style="
+        z-index: 2;
+        margin-left: 1rem;
+        background-color: rgb(255, 255, 255);
+      "
+      [@onMainContentChange]="onSideNavChange ? 'open' : 'close'"
+    >
     </mat-sidenav-content>
   </mat-sidenav-container>
-
-
-
 </div>
-
