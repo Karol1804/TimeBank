@@ -60,5 +60,9 @@
     display: flex;
     flex-direction: row-reverse;
     padding: 2% 5% 0 0;
+    justify-content: space-between;
     
+  }
+  .example-form{ 
+      padding-left:5%; ;
   }

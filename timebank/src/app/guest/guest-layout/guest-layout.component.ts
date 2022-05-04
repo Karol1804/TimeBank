@@ -17,6 +17,7 @@ export class GuestLayoutComponent implements OnInit {
   ServicesService: any;
   color: ThemePalette = 'accent';
   public checked: boolean;
+  search : String ="";
  
 
   constructor(
@@ -55,7 +56,7 @@ export class GuestLayoutComponent implements OnInit {
 
     })
   }
-  
+
    // Function to load data rating/sort=asc
   // loadData2() {
       

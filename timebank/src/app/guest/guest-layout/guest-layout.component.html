@@ -1,7 +1,18 @@
 <div class="main">
+<div>
   <div class="flex-container">
     <!-- <mat-checkbox class="example-margin" (click)="refresh(checked)" [(ngModel)]="checked">Ratting sort</mat-checkbox> -->
     <mat-slide-toggle class="example-margin" (click)="refresh(checked)" [(ngModel)]="checked">Sort by rating!</mat-slide-toggle>
+    <form class="example-form">
+      <mat-form-field class="example-full-width">
+      <span matPrefix> </span>
+      <input type="tel" matInput placeholder="Search" name= "search" [(ngModel)]= "search">
+      <button matSuffix mat-button><mat-icon >search</mat-icon></button>
+      </mat-form-field>
+      <br/>
+      {{search}}
+      </form>
+</div>
 </div>
   <div *ngFor="let service of services">
     
