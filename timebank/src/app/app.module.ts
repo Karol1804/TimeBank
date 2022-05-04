@@ -41,6 +41,7 @@ import { UserServicesComponent } from './guest/user-services/user-services.compo
 import {MatSlideToggleModule} from '@angular/material/slide-toggle';
 import {MatCheckboxModule} from '@angular/material/checkbox';
  
+import { MyServicesComponent } from './user/my-services/my-services.component';
 
 
 
@@ -55,6 +56,7 @@ import {MatCheckboxModule} from '@angular/material/checkbox';
     RegistrationComponent,
     UserhomeComponent,
     UserServicesComponent,
+    MyServicesComponent,
   ],
   imports: [
     BrowserModule,
@@ -85,7 +87,7 @@ import {MatCheckboxModule} from '@angular/material/checkbox';
     MatCheckboxModule
 
 
-    
+
   ],
   providers: [
     ServicesService,

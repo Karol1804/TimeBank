@@ -5,7 +5,8 @@ export class RegisterRecord {
         public service_status: string,
         public id?: number,
         public hours?: number,
-        public end_time?: Date
+        public end_time?: Date,
+        public rating?:number,
     ) {}
 }
 
@@ -19,13 +20,15 @@ export class GetRegisterRecord {
         public user_name: string,
         public id?: number,
         public hours?: number,
-        public end_time?: Date
+        public end_time?: Date,
+        public rating?:number,
     ) {}
 }
 
 export class EndRegisterRecord {
     constructor(
         public id: number,
-        public hours: number
+        public hours: number,
+        public rating?:number,
     ) {}
 }

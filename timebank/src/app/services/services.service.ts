@@ -18,10 +18,11 @@ export class ServicesService {
   private apiGetServicesUrl = this.api + "services";
   private apiGetServiceUrl = (id: number) => this.api + "service/" + id;
   private apiGetUserUrl = (userid: number) => this.api + "user/" + userid;
+  private apiGetServiceRegisterIdUrl = (service_id: number) => this.api + "serviceregister/" + service_id;
   private apiGetUsersUrl = this.api + "users";
   private apiCreateRegisterRecord = this.api + "serviceregister-create";
   private apiGetServiceRegisterUrl = this.api + "serviceregister";
-  private apiEndServiceRegisterUrl = (id: number, hours: number) => this.api + "serviceregister/" + id + "/" + hours;
+  private apiEndServiceRegisterUrl = (id: number, hours: number, rating:number) => this.api + "serviceregister/" + id + "/" + hours+ "/" +rating;
   private apiAddServiceUrl = this.api + 'service-create';
   private apiUserServicesUrl = (user_id: number) => this.api + "services-user/" + user_id;
   private apiGetServicesSortUrl = this.api + "services?sort=";
@@ -79,7 +80,7 @@ export class ServicesService {
   remoteRegister(res: any): RegisterRecord[] {
     let records: RegisterRecord[] = [];
     for (let record of res) {
-      records.push(new RegisterRecord(record.service_id, record.consumer_id, record.service_status, record.id, record.end_time))
+      records.push(new RegisterRecord(record.service_id, record.consumer_id, record.service_status, record.id, record.end_time,record.rating))
     }
     return records;
   }
@@ -88,7 +89,7 @@ export class ServicesService {
   remoteRegisterRecords(res: any): GetRegisterRecord[] {
     let records: GetRegisterRecord[] = [];
     for (let record of res) {
-      records.push(new GetRegisterRecord(record.Service.title, record.Service.id, record.User.id, record.service_status, record.User.phone, record.User.user_name, record.id, record.hours, record.end_time))
+      records.push(new GetRegisterRecord(record.Service.title, record.Service.id, record.User.id, record.service_status, record.User.phone, record.User.user_name, record.id, record.hours, record.end_time, record.rating))
     }
     return records;
   }
@@ -122,13 +123,19 @@ export class ServicesService {
     return this.http.get(this.apiGetUserUrl(userid)).pipe(map(this.remoteUsers));
   }
 
+  
   // Ends records from Service register based on ID and HOURS.
-  endRegisterRecord(id: number, hours: number, endRecord: EndRegisterRecord){
-    return this.http.put(this.apiEndServiceRegisterUrl(id, hours), endRecord)
+  endRegisterRecord(id: number, hours: number, rating: number, endRecord: EndRegisterRecord){
+    return this.http.put(this.apiEndServiceRegisterUrl(id, hours, rating), endRecord)
   }
 
   // Save service in Services table.
   saveCreatedService(offer: Service) {
     return this.http.post(this.apiAddServiceUrl, offer);
   }
+ // Gets single ServiceRegister based on ID.
+ getServiceRegisterId(service_id: number) {
+  return this.http.get(this.apiGetServiceRegisterIdUrl(service_id)).pipe(map(this.remoteUsers));
+}
+
 }

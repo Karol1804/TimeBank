@@ -4,10 +4,8 @@
 }
 
 .main {
-    display: flex;
-    justify-content: center;
+    height: 100%;
     padding-bottom: 100px;
-
 }
 
 .card {
@@ -16,20 +14,22 @@
     margin-left: 5%;
     margin-top: 5%;
     box-shadow: 0 5px 5px rgb(100, 99, 99);
-    display: inline-block;
+    float: left;
+}
+
+.card:hover {
+    box-shadow: 0 1px 1px rgb(100, 99, 99);
 }
 
 .next {
     position: relative;
     float: right;
-    color:rgb(161, 149, 192);
+    color: rgb(161, 149, 192);
     font-size: 1.5rem;
-    cursor: pointer;
 }
 
 .next p {
     position: relative;
-    display: box;
     float: left;
     top: 15px;
     margin-bottom: 0px;
@@ -38,22 +38,4 @@
 .arrow {
     font-size: 2rem;
     padding: 10px 0;
-}
-.error {
-    color: red;
-}
-input:focus{
-    outline: none;
-
-}
-input{
-    border: none;
-    border-radius:5px;
-    width: 10%;
-}
-
-.title{
-    border: none;
-    border-radius:5px;
-    width: 50%;
 }

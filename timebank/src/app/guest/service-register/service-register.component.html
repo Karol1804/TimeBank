@@ -14,6 +14,8 @@
                     <br>
                     <span class="error" *ngIf="record.hours == 0">The number of hours must be equal or greater than 1</span>
                     <br>
+                    <star-rating [value]="0" [totalstars]="5" checkedcolor="red" uncheckedcolor="black" size="24px" [readonly]="false" (rate)="onRate($event)"></star-rating>
+                    <br>
                     <div class="send-button">
                     <button mat-raised-button color="white"
                         (click)="endRegisterRecord(record.id, record.hours)">Submit</button>
