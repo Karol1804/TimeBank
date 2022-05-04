@@ -37,10 +37,13 @@ export class ServicesService {
     return this.http.get(this.apiGetServicesSortUrl + query).pipe(map(this.remoteServices));
     console.log(query);
   }
-  getServicesAsc(query: string) {
-    return this.http.get(this.apiGetServicesSortUrl + query).pipe(map(this.remoteServices));
-    console.log(query);
-  }
+  // Get all services sort function Asc
+  // getServicesAsc(query: string) {
+  //   return this.http.get(this.apiGetServicesSortUrl + query).pipe(map(this.remoteServices));
+  //   console.log(query);
+  // }
+
+  // Get all services sort function Desc
   getServicesDesc(query: string) {
     return this.http.get(this.apiGetServicesSortUrl + query).pipe(map(this.remoteServices));
     console.log(query);

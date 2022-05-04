@@ -23,11 +23,10 @@ export class GuestLayoutComponent implements OnInit {
     private router: Router,
     private servicesService: ServicesService,
     
-  )  {
+  )  
+  {
     this.checked=false;
-    
   }
-  
   
   goTo(path: string) {
     this.router.navigate([path]);
@@ -35,12 +34,6 @@ export class GuestLayoutComponent implements OnInit {
 
   ngOnInit(): void {
     this.loadData()
-    // if(this.checked == false){
-    // this.loadData1();
-    // }
-    // else{
-    //   this.loadData2();
-    // }
     //this.reload();
   }
 
@@ -51,10 +44,9 @@ export class GuestLayoutComponent implements OnInit {
     this.services = servicesFromService
 
     })
-    console.log(this.checked)
-  
+    //console.log(this.checked)
   }
-  
+
   // Function to load data rating/sort=desc
   loadData1() {
     
@@ -62,16 +54,16 @@ export class GuestLayoutComponent implements OnInit {
     this.services = servicesFromService
 
     })
- 
   }
+  
    // Function to load data rating/sort=asc
-  loadData2() {
+  // loadData2() {
       
-      this.servicesService.getServicesAsc("asc&field=avg_rating").subscribe(servicesFromService => {
-      this.services = servicesFromService
-    })
+  //     this.servicesService.getServicesAsc("asc&field=avg_rating").subscribe(servicesFromService => {
+  //     this.services = servicesFromService
+  //   })
     
-  }
+  // }
 
  // Function of chechbox to sort by rating and load right data
   refresh(boolenvalue: boolean){
@@ -82,16 +74,16 @@ export class GuestLayoutComponent implements OnInit {
     console.log(this.checked);
 
     if(this.checked == true){
-      this.loadData2();
+      this.loadData();
      }  
     console.log(this.checked);
-    if(this.checked === false){
+    if(this.checked == false){
       boolenvalue = !this.checked
     }
     else{
-      boolenvalue = this.checked 
+      boolenvalue = !this.checked 
   }
-    // console.log(boolenvalue);
+    //console.log(boolenvalue);
   } 
   
  
