@@ -6,7 +6,7 @@
     <mat-toolbar class="secondBar example-toolbar"  color="primary" > 
       
         <button mat-icon-button (click)="snav.toggle()">
-            <mat-icon>menu</mat-icon>
+           
           </button>
           <a routerLink="/"
           ><img class="logo" src="/assets/img/logo.svg" alt="Timebank"
@@ -36,39 +36,46 @@
   <mat-sidenav-container
     class="example-sidenav-container" 
     [style.marginTop.px]="mobileQuery.matches ? 56 : 0"
-  >
+    >
     <mat-sidenav
       #snav
-      [mode]="mobileQuery.matches ? 'over' : 'side'"
+      [mode]="'side'"
       [fixedInViewport]="mobileQuery.matches"
       fixedTopGap="56"
       class="sidenav"
+      (mouseenter)="onSinenavToggle()" (mouseleave)="onSinenavToggle()" [@onSideNavChange]="sideNavState ? 'open' : 'close'"   
+     style="z-index: 0;"
+      opened
     >
 
 
 
 
-      <mat-nav-list style="display:flex; flex-direction: column; width:12rem; height:100%; margin:0; padding:0; justify-content:start;"  > 
-        <span style="color:white; text-align: center; margin-top: 1rem;"> Your Profile  </span>
-        <hr>
+      <mat-nav-list style="display:flex; overflow: hidden;flex-direction: column; width:12rem; height:100%; margin:0; padding:0; justify-content:start;"  > 
+       
+        
         <img src="/assets/img/darthh.png" style="border-radius: 9999px; 
-        height: 5rem; width: 5rem;
+        height: 3.5rem; width: 3.5rem;
          border: 0.5rem; border-color: white;
-         border:solid; align-self: center;"/> 
-          <hr>
-          <button mat-raised-button   class="sidenavButton" >my services</button> 
-          <button mat-raised-button  class="sidenavButton"  >create service</button> 
-          <button mat-raised-button  class="sidenavButton"  >edit service</button> 
-          <button mat-raised-button   class="sidenavButton"  >calendar</button> 
-      
+         border:solid; align-self: center; margin-top: 2rem;"/> 
+           <span style="color:white; text-align: center; margin-top: 1rem;"> Your Profile  </span>
+          
+          <div  class="menubut"> 
+          <button mat-mini-fab  color="primary" class="sidenavButton" ><mat-icon> home </mat-icon><span>My services</span></button> 
+         <button mat-mini-fab  color="primary" class="sidenavButton"  > <mat-icon> edit </mat-icon><span>New service</span></button> 
+          <button mat-mini-fab color="primary" class="sidenavButton"  ><mat-icon> add_circle</mat-icon><span>Edit service</span></button> 
+          <button mat-mini-fab  color="primary" class="sidenavButton" ><mat-icon> shopping_cart</mat-icon><span>Ordered service</span></button> 
+          </div>
          </mat-nav-list>
+       
     </mat-sidenav>
 
 
 
 
-    <mat-sidenav-content >
-      <a>dumb > a child componenty </a>
+    <mat-sidenav-content  style="z-index: 2; margin-left: 1rem; background-color: rgb(255, 255, 255) ;" [@onMainContentChange]="onSideNavChange ? 'open': 'close'">
+
+
     </mat-sidenav-content>
   </mat-sidenav-container>
 
