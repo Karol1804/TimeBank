@@ -1,12 +1,15 @@
 stages:
-  - build
-  - deploy
+  - build1
+  - deploy1
+  - build2
+  - deploy2
 
 build-job1:
   image: node:12-alpine
-  stage: build
+  stage: build1
   tags:
     - angular
+  allow_failure: false
   before_script:
     - apk add zip
   script:
@@ -28,12 +31,34 @@ build-job1:
       - node_modules
     policy: pull
 
+deploy-job1:
+  stage: deploy1
+  tags:
+    - angular
+  needs: ['build-job1']
+  allow_failure: false
+  before_script:
+  - apk add unzip
+  - apk add openssh-client
+  - eval $(ssh-agent -s)
+  - echo "$SSH_PRIVATE_KEY" | tr -d '\r' | ssh-add -
+  - mkdir -p ~/.ssh
+  - chmod 700 ~/.ssh
+  script:
+    - ssh -o StrictHostKeyChecking=no automation@157.245.27.101 " rm -r /var/www/html/*"
+    - scp -o StrictHostKeyChecking=no test.zip automation@157.245.27.101:/var/www/html
+    - ssh -o StrictHostKeyChecking=no automation@157.245.27.101 "cd /var/www/html; unzip test.zip"
+    - ssh -o StrictHostKeyChecking=no automation@157.245.27.101 "cd /var/www/html; rm test.zip"
+    - echo "Build for test finished"
+
 build-job2:
   image: node:12-alpine
-  stage: build
+  stage: build2
   tags:
     - angular
   when: manual
+  needs: ['deploy-job1']
+  allow_failure: false
   before_script:
     - apk add zip
   script:
@@ -57,30 +82,11 @@ build-job2:
   only:
     - main
 
-deploy-job1:
-  stage: deploy
-  tags:
-    - angular
-  needs: ['build-job1']
-  before_script:
-  - apk add unzip
-  - apk add openssh-client
-  - eval $(ssh-agent -s)
-  - echo "$SSH_PRIVATE_KEY" | tr -d '\r' | ssh-add -
-  - mkdir -p ~/.ssh
-  - chmod 700 ~/.ssh
-  script:
-    - ssh -o StrictHostKeyChecking=no automation@157.245.27.101 " rm -r /var/www/html/*"
-    - scp -o StrictHostKeyChecking=no test.zip automation@157.245.27.101:/var/www/html
-    - ssh -o StrictHostKeyChecking=no automation@157.245.27.101 "cd /var/www/html; unzip test.zip"
-    - ssh -o StrictHostKeyChecking=no automation@157.245.27.101 "cd /var/www/html; rm test.zip"
-    - echo "Build for test finished"
-
 deploy-job2:
-  stage: deploy
+  stage: deploy2
   tags:
     - angular
-  needs: ['build-job2', 'deploy-job1']
+  needs: ['build-job2']
   allow_failure: false
   before_script:
   - apk add unzip
