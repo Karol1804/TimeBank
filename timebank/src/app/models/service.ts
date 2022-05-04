@@ -12,7 +12,6 @@ export class Service {
 
 export class UpdateService {
     constructor(
-        public id: number,
         public title: string,
         public estimate: number,
         public user_id?: number
