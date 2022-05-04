@@ -34,7 +34,7 @@ export class ServicesService {
 
   // Get all services function
   getServices(query: string) {
-    return this.http.get(this.apiGetServicesSortUrl + query).pipe(map(this.remoteServices));
+    return this.http.get(this.apiGetServicesUrl + query).pipe(map(this.remoteServices));
     console.log(query);
   }
   // Get all services sort function Asc
