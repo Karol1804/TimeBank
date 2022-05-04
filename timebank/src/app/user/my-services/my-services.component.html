@@ -1,5 +1,6 @@
 <div class="main">
-    <div *ngFor="let service of services">
+    <p>My services</p>
+    <div *ngFor="let service of userservices">
 
         <mat-card class="card">
             <mat-card-title>{{ service.title }}</mat-card-title>
@@ -7,8 +8,7 @@
             <br />
             <mat-card-content>
                 <p>
-                    Name: <a routerLink="/user-service/{{service.user_id}}"
-                        class="clickable"><b>{{service.user}}</b></a>
+                    Name: <b>{{service.user_name}}</b>
                 </p>
                 <p>
                     Phone: <b>{{ service.phone }}</b>
@@ -31,12 +31,12 @@
                 </ng-template>
 
                 <div class="starratting">
-                    <star-rating [value]="service.avg_rating" [totalstars]="5" checkedcolor="red" uncheckedcolor="black"
+                    <star-rating [value]="service.rating" [totalstars]="5" checkedcolor="red" uncheckedcolor="black"
                         size="18px" [readonly]="true"></star-rating>
                 </div>
-                <a routerLink="/order/{{ service.id }}">
+                <a routerLink="/my-services/edit/{{ service.service_id }}">
                     <span class="next">
-                        <p>I want it!</p>
+                        <p>Edit</p>
                         <mat-icon class="arrow" aria-label="arrow_forward_ios">arrow_forward_ios</mat-icon>
                     </span>
                 </a>

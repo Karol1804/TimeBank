@@ -33,6 +33,7 @@ build-job2:
   stage: build
   tags:
     - angular
+  when: manual
   before_script:
     - apk add zip
   script:
@@ -80,7 +81,6 @@ deploy-job2:
   tags:
     - angular
   needs: ['build-job2', 'deploy-job1']
-  when: manual
   allow_failure: false
   before_script:
   - apk add unzip
