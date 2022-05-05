@@ -28,7 +28,7 @@ export class ServicesService {
   private apiUpdateServiceUrl = (service_id: number) => this.api + 'service/' + service_id;
   private apiUserServicesUrl = (user_id: number) => this.api + "services-user/" + user_id;
   private apiGetServicesSortUrl = this.api + "services?sort=";
-  private apiGetServicesSearchUrl = this.api + "service-search?";
+  private apiGetServicesSearchUrl = (tit: string) => this.api + "service-search?ord=asc&field=title&s="+tit;
   
   constructor(
     private http: HttpClient
@@ -50,10 +50,10 @@ export class ServicesService {
     return this.http.get(this.apiGetServicesSortUrl + query).pipe(map(this.remoteServices));
     console.log(query);
   }
-
-  getServicesDescSearchTit(query: string) {
-    return this.http.get(this.apiGetServicesSearchUrl + query).pipe(map(this.remoteServices));
-    console.log(query);
+  // Get all services sort function by search string in title
+  getServicesDescSearchTit(tit: string) {
+    return this.http.get(this.apiGetServicesSearchUrl(tit)).pipe(map(this.remoteServices));
+    console.log(tit);
   }
 
   // Helper for "Services" related functions. Returns services based on service model for mapping.
