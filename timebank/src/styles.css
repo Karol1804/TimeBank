@@ -2,9 +2,7 @@
 
 html,
 body {
-  background-color: #050c2398 ; 
-  height:max-content;
- 
+  height: 100%; 
 }
 body {
   margin: 0;

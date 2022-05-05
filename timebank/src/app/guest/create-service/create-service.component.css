@@ -9,11 +9,7 @@
     padding-bottom: 100px;
 
 }
-.ow {
-    overflow-wrap: break-word;
-    word-wrap: break-word;
-    hyphens: auto;
-  }
+
 .card {
     width: 400px;
     background-color: rgb(215, 200, 252);
