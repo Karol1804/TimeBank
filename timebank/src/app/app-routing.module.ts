@@ -45,34 +45,32 @@ const routes: Routes = [
     canActivate: [AuthGuardService],
     children: [
       {
-        path: 'myS',
+        path: 'my-services',
         component: MyServicesComponent,
         canActivate: [AuthGuardService],
       },
       {
-        path: 'myC',
+        path: 'services',
+        component: GuestLayoutComponent,
+      },
+      {
+        path: 'create-service',
         component: CreateServiceComponent,
         canActivate: [AuthGuardService],
       },
       {
-        path: 'myE',
-        component: EditComponent,
+        path: 'service-register',
+        component: ServiceRegisterComponent,
         canActivate: [AuthGuardService],
-      },
+      }
+      
     ],
   },
   {
     path: 'user-service/:user_id',
     component: UserServicesComponent,
-  },
-  {
-    path: 'my-services',
-    component: MyServicesComponent,
-  },
-  {
-    path: 'my-services/edit/:id',
-    component: EditComponent,
-  },
+  }
+  
 ];
 
 @NgModule({
