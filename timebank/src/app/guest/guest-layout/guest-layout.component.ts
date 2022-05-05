@@ -67,24 +67,28 @@ export class GuestLayoutComponent implements OnInit {
     })
   }
 
-  // Function to load data by serch strig in title
+  // Function to load data by search strig in title
   Search(tit:string){
     this.tit = this.search
     if(this.search.length > 2 ){
       this.loadData2(this.tit)
       this.search = ""
-      //console.log(this.tit)
-    
-  }
-
+    }
+    else{
+      alert("Minimalny pocet znakov mus byt 3 ")
+    }
+      //console.log(this.tit) 
+  
   }
   loadData2(tit:string) {
       this.servicesService.getServicesDescSearchTit(tit).subscribe(servicesFromService => {
-     
+      if(servicesFromService.length != 0) {
       this.services = servicesFromService
-      // console.log(servicesFromService)
-    })
-    
+      }
+      else {
+        alert("Hladany text nebol najdeny") 
+      } 
+    }) 
   }
   
 
