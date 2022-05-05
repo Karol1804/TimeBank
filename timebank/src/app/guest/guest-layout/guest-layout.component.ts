@@ -17,7 +17,7 @@ export class GuestLayoutComponent implements OnInit {
   ServicesService: any;
   color: ThemePalette = 'primary';
   public checked: boolean;
-  public search : String ;
+  search : String ="";
  
 
   constructor(
@@ -27,7 +27,6 @@ export class GuestLayoutComponent implements OnInit {
   )  
   {
     this.checked=false;
-    this.search= "";
   }
   
   goTo(path: string) {
@@ -49,7 +48,6 @@ export class GuestLayoutComponent implements OnInit {
     //console.log(this.checked)
   }
 
-
   // Function to load data rating/sort=desc
   loadData1() {
     
@@ -58,21 +56,15 @@ export class GuestLayoutComponent implements OnInit {
 
     })
   }
-  onChangeSearch(search:String){
-    if(this.search.length > 2 ){
-      this.loadData2();
-      console.log("Hladany string" + this.search)
-    }
 
-  }
-
-  loadData2() {
+   // Function to load data rating/sort=asc
+  // loadData2() {
       
-      this.servicesService.getServicesDescSearchTit("ord=asc&field=title&s=tit").subscribe(servicesFromService => {
-      this.services = servicesFromService
-    })
+  //     this.servicesService.getServicesAsc("asc&field=avg_rating").subscribe(servicesFromService => {
+  //     this.services = servicesFromService
+  //   })
     
-  }
+  // }
 
  // Function of chechbox to sort by rating and load right data
   refresh(boolenvalue: boolean){
