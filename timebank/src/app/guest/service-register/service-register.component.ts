@@ -19,7 +19,7 @@ export class ServiceRegisterComponent implements OnInit {
   public rating: number;
   public obj_rating: number;
   public isChecked = true;
-  
+
   constructor(
     private router: Router,
     private servicesService: ServicesService
@@ -27,7 +27,7 @@ export class ServiceRegisterComponent implements OnInit {
 
   ngOnInit(): void {
     this.loadData();
-    //this.reload();
+    this.reload();
   }
 
   reload() {
