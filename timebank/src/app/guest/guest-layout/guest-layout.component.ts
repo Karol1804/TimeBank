@@ -17,7 +17,8 @@ export class GuestLayoutComponent implements OnInit {
   ServicesService: any;
   color: ThemePalette = 'primary';
   public checked: boolean;
-  search : String ="";
+  public search : string ;
+  public tit: string;
  
 
   constructor(
@@ -27,6 +28,8 @@ export class GuestLayoutComponent implements OnInit {
   )  
   {
     this.checked=false;
+    this.search= "";
+  
   }
   
   goTo(path: string) {
@@ -35,36 +38,55 @@ export class GuestLayoutComponent implements OnInit {
 
   ngOnInit(): void {
     this.loadData()
-    //this.reload();
+    // this.reload();
+    
+  }
+  reload() {
+    if (window.localStorage) {
+      if (!localStorage.getItem('reload')) {
+        localStorage['reload'] = true;
+        window.location.reload();
+      } else {
+        localStorage.removeItem('reload');
+      }
+    }
   }
 
   // Function to load data-gestlayout,welcomepage
   loadData() {
-    
     this.servicesService.getServices("").subscribe(servicesFromService => {
     this.services = servicesFromService
-
     })
     //console.log(this.checked)
   }
 
   // Function to load data rating/sort=desc
   loadData1() {
-    
     this.servicesService.getServicesDesc("desc&field=avg_rating").subscribe(servicesFromService => {
     this.services = servicesFromService
-
     })
   }
 
-   // Function to load data rating/sort=asc
-  // loadData2() {
-      
-  //     this.servicesService.getServicesAsc("asc&field=avg_rating").subscribe(servicesFromService => {
-  //     this.services = servicesFromService
-  //   })
+  // Function to load data by serch strig in title
+  Search(tit:string){
+    this.tit = this.search
+    if(this.search.length > 2 ){
+      this.loadData2(this.tit)
+      this.search = ""
+      //console.log(this.tit)
     
-  // }
+  }
+
+  }
+  loadData2(tit:string) {
+      this.servicesService.getServicesDescSearchTit(tit).subscribe(servicesFromService => {
+     
+      this.services = servicesFromService
+      // console.log(servicesFromService)
+    })
+    
+  }
+  
 
  // Function of chechbox to sort by rating and load right data
   refresh(boolenvalue: boolean){
@@ -86,6 +108,7 @@ export class GuestLayoutComponent implements OnInit {
   }
     //console.log(boolenvalue);
   } 
-  
+
  
 }
+
