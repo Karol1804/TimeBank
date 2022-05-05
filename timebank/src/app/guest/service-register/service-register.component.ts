@@ -18,7 +18,6 @@ export class ServiceRegisterComponent implements OnInit {
   public hours: number;
   public rating: number;
   public obj_rating: number;
-  public isChecked = true;
 
   constructor(
     private router: Router,
@@ -47,6 +46,7 @@ export class ServiceRegisterComponent implements OnInit {
     starRating: StarRatingComponent;
   }) {
     return (this.obj_rating = $event.newValue);
+    console.log(this.obj_rating);
   }
 
   loadData() {
@@ -67,25 +67,6 @@ export class ServiceRegisterComponent implements OnInit {
     );
     if (hours == null || hours <= 0) {
       alert('Zadal si nespravnu alebo ziadnu hodnotu');
-    } else if (this.rating == undefined){
-      this.rating=0;
-      this.servicesService
-      .endRegisterRecord(id, hours, this.rating, record)
-      .subscribe((result) => {
-        console.log(record);
-        console.log(hours);
-      });
-    alert('Servis ukonceny.Pocet zapisanych hodin: ' + hours);
-   this.router.navigate(['services']);
-    } else if (this.isChecked == false){
-      this.servicesService
-     .endRegisterRecordWR(id, hours, record)
-        .subscribe((result) => {
-          console.log(record);
-          console.log(hours);
-        });
-      alert('Servis ukonceny.Pocet zapisanych hodin: ' + hours);
-     this.router.navigate(['services']);
     } else {
       this.servicesService
         .endRegisterRecord(id, hours, this.rating, record)

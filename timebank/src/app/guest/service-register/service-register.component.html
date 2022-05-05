@@ -5,7 +5,8 @@
             <mat-divider inset></mat-divider>
             <br>
             <mat-card-content>
-                <p>Orderer: <b>{{record.user_name}}</b></p>
+                <p>Consumer: <b>{{record.user_name}}</b></p>
+                <!-- <p>Provider: <b>{{record.user_name}}</b></p> -->
                 <p>Service_status: <b>{{record.service_status}}</b></p>
                 <div *ngIf="record.service_status == 'inprogress'">
                     <span>Hours </span>
@@ -13,17 +14,9 @@
                         value="{{record.hours}}">
                     <br>
                     <span class="error" *ngIf="record.hours == 0">The number of hours must be equal or greater than 1</span>
-                    
-                    <mat-slide-toggle [(ngModel)]="isChecked">I don't want to rate!</mat-slide-toggle>
                     <br>
-                    
-
-                    <div *ngIf="isChecked">
-                    <star-rating [value]="0" [totalstars]="5" checkedcolor="#ffd740" uncheckedcolor="black" size="24px" [readonly]="false" (rate)="onRate($event)"></star-rating>
-                        </div>
+                    <star-rating [value]="0" [totalstars]="5" checkedcolor="red" uncheckedcolor="black" size="24px" [readonly]="false" (rate)="onRate($event)"></star-rating>
                     <br>
-
-
                     <div class="send-button">
                     <button mat-raised-button color="white"
                         (click)="endRegisterRecord(record.id, record.hours)">Submit</button>

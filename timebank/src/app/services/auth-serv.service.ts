@@ -10,6 +10,8 @@ import { LoginPopComponent } from '../shared/login-pop/login-pop.component';
 import { apiurl } from '../url/apiUrl';
 import { SnackBarService } from './snackbar.service';
 import { InterceptorService } from './interceptor.service';
+import { RegisUser } from '../models/RegisUser';
+import { RegisUserResp } from '../models/RegisUserResp';
 
 @Injectable({
   providedIn: 'root',
@@ -110,4 +112,22 @@ export class AuthServService {
       return undefined;
     }
   }
+
+  registrationExtract(res: HttpResponse<RegisUserResp>): RegisUserResp | undefined {
+    if (res.body) {
+      return res.body;
+    } else {
+      return undefined;
+    }
+  }
+
+ registrationUser(payload: RegisUser ): Observable< any | undefined>
+ {
+   return this.http.post<any>(this.apiPostUserCreate, payload)
+   .pipe(map(this.registrationExtract));
+
+ }
+
+
+
 }
