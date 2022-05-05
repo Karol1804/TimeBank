@@ -24,7 +24,7 @@ export class ServicesService {
   private apiGetServiceRegisterUrl = this.api + "serviceregister";
   private apiEndServiceRegisterUrl = (id: number, hours: number, rating:number) => this.api + "serviceregister/" + id + "/" + hours+ "/" +rating;
   private apiAddServiceUrl = this.api + 'service-create';
-  private apiUpdateServiceUrl = (id: number) => this.api + 'service/' + id;
+  private apiUpdateServiceUrl = (service_id: number) => this.api + 'service/' + service_id;
   private apiUserServicesUrl = (user_id: number) => this.api + "services-user/" + user_id;
   private apiGetServicesSortUrl = this.api + "services?sort=";
   private apiGetServicesSearchUrl = (tit: string) => this.api + "service-search?ord=asc&field=title&s="+tit;
@@ -147,9 +147,9 @@ export class ServicesService {
     return this.http.post(this.apiAddServiceUrl, offer);
   }
 
-  // Update existing service
-  updateService(id: number, update: UpdateService) {
-    return this.http.put(this.apiUpdateServiceUrl(id), update);
+   // Update existing service
+  updateService(service_id: number, update: UpdateService) {
+    return this.http.put(this.apiUpdateServiceUrl(service_id), update);
   }
   
  // Gets single ServiceRegister based on ID.

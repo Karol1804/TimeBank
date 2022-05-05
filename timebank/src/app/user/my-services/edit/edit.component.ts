@@ -38,10 +38,10 @@ export class EditComponent implements OnInit {
   ) { }
 
   ngOnInit(): void {
-    let id = this.route.snapshot.params['id'];
+    let service_id = this.route.snapshot.params['id'];
     let userId = this.globalStorage.getUserId();
     this.loadUser(userId);
-    this.loadData(id);
+    this.loadData(service_id);
   }
 
   loadUser(userId: any) {
@@ -60,16 +60,16 @@ export class EditComponent implements OnInit {
     } else {
  
     let service = new UpdateService(
-      this.id,
       this.title,
       this.estimate,
-      (this.user_id = this.id)
+      this.user_id
     );
-    console.log('pridavam novy service');
+    console.log('Upravujem service:');
     console.log(service);
 
-    this.servicesService.updateService(this.id, service).subscribe((result) => {
+    this.servicesService.updateService(this.service_id, service).subscribe((result) => {
       console.log('new service added');
+      console.log('Service ID je ' + this.service_id);
       console.log(service);
     });
     this.router.navigate(['/my-services'])
@@ -83,8 +83,10 @@ export class EditComponent implements OnInit {
       this.user = service[0].user;
       this.user_id = service[0].user_id;
       this.estimate = service[0].estimate;
-      console.log("Toto je ponukany service so service_id:")
+      console.log("Toto je editovany service so service_id:")
       console.log(service)
+      console.log("Toto je service_id:")
+      console.log(this.service_id)
     }) 
   }
 
@@ -102,5 +104,3 @@ export class EditComponent implements OnInit {
     );
   }
 }
-
-
