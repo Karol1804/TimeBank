@@ -1,28 +1,48 @@
 <div class="main">
-<div>
   <div class="flex-container">
     <!-- <mat-checkbox class="example-margin" (click)="refresh(checked)" [(ngModel)]="checked">Ratting sort</mat-checkbox> -->
-    <mat-slide-toggle class="example-margin" (click)="refresh(checked)" [(ngModel)]="checked">Sort by rating!</mat-slide-toggle>
+    <mat-slide-toggle
+      class="example-margin"
+      (click)="refresh(checked)"
+      [(ngModel)]="checked"
+      style="color: #d6d3d1"
+      >Sort by rating</mat-slide-toggle
+    >
     <form class="example-form">
-      <mat-form-field class="example-full-width">
-      <span matPrefix> </span>
-      <input type="tel" matInput placeholder="Search" name= "search" [(ngModel)]= "search">
-      <button matSuffix mat-button><mat-icon >search</mat-icon></button>
+      <mat-form-field class="example-full-width" style="padding: 1rem">
+        <span matPrefix> </span>
+        <input
+          type="tel"
+          matInput
+          style="color: #d6d3d1 !important"
+          name="search"
+          [(ngModel)]="search"
+        />
+        <button matSuffix mat-button style="color: #d6d3d1 !important">
+          <mat-icon>search</mat-icon>
+        </button>
       </mat-form-field>
-      <br/>
-      {{search}}
-      </form>
-</div>
-</div>
-  <div *ngFor="let service of services">
-    
+      <br />
+      {{ search }}
+    </form>
+  </div>
+
+  <div class="cardsWrap">
+    <div *ngFor="let service of services" style="white-space: normal">
       <mat-card class="card">
-        <mat-card-title>{{ service.title }}</mat-card-title>
+        <mat-card-title style="overflow: hidden">{{
+          service.title
+        }}</mat-card-title>
         <mat-divider inset></mat-divider>
         <br />
         <mat-card-content>
           <p>
-            Name: <a routerLink="/user-service/{{service.user_id}}" class="clickable"><b>{{service.user}}</b></a>
+            Name:
+            <a
+              routerLink="/user-service/{{ service.user_id }}"
+              class="clickable"
+              ><b>{{ service.user }}</b></a
+            >
           </p>
           <p>
             Phone: <b>{{ service.phone }}</b>
@@ -54,16 +74,19 @@
               [readonly]="true"
             ></star-rating>
           </div>
-          <a routerLink="/order/{{ service.id }}">
-          <span class="next"
-            ><p>I want it!</p>
-            <mat-icon class="arrow" aria-label="arrow_forward_ios"
-              >arrow_forward_ios</mat-icon>
-          </span>
-          </a>
+          <mat-card-actions style="display: flex; justify-content: flex-end">
+            <button
+              mat-raised-button
+              style="background-color:#0382c7 ; color: #d6d3d1;"
+              routerLink="/order/{{ service.id }}"
+            >
+              <mat-icon>shopping_cart </mat-icon>
+              <span> Order </span>
+            </button>
+          </mat-card-actions>
         </mat-card-content>
         <!-- <mat-divider inset></mat-divider> -->
       </mat-card>
-    
+    </div>
   </div>
 </div>
