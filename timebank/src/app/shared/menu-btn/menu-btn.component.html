@@ -6,25 +6,21 @@
   <mat-icon>account_circle</mat-icon>
 </button>
 <mat-menu #menu="matMenu" xPosition="before">
-  <!-- <button mat-menu-item (click)="routeToProfile()">
+  <button mat-menu-item (click)="routeToProfile()">
     <mat-icon>face</mat-icon>
     <span>Profile</span>
-  </button> -->
-  <button mat-menu-item (click)="routeToMyServices()">
-    <mat-icon>home</mat-icon>
-    <span>My services</span>
   </button>
-  <button mat-menu-item (click)="routeToServices()">
-    <mat-icon>shopping_cart</mat-icon>
-    <span>All services</span>
-  </button>
+
   <button mat-menu-item (click)="routeToCreateService()">
     <mat-icon>add_circle_outline</mat-icon>
     <span>Create service</span>
   </button>
-  
-  <button mat-menu-item (click)="routeToOrders()">
+  <button mat-menu-item (click)="routeToServices()">
     <mat-icon>list</mat-icon>
-    <span>Ordered services</span>
+    <span>Services</span>
+  </button>
+  <button mat-menu-item (click)="routeToOrders()">
+    <mat-icon>shopping_cart</mat-icon>
+    <span>Service order</span>
   </button>
 </mat-menu>

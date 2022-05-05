@@ -12,18 +12,15 @@ export class MenuBtnComponent implements OnInit {
   ngOnInit(): void {}
 
   routeToOrders() {
-    this.router.navigateByUrl('userhome/service-register');
+    this.router.navigateByUrl('/service-register');
   }
   routeToServices() {
-    this.router.navigateByUrl('userhome/services');
+    this.router.navigateByUrl('/services');
   }
   routeToCreateService() {
-    this.router.navigateByUrl('userhome/create-service');
+    this.router.navigateByUrl('/create-service');
   }
   routeToProfile() {
-    this.router.navigateByUrl('userhome/userhome');
-  }
-  routeToMyServices() {
-    this.router.navigateByUrl('userhome/my-services');
+    this.router.navigateByUrl('/userhome');
   }
 }
