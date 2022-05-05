@@ -30,31 +30,33 @@
   <div class="cardsWrap">
     <div *ngFor="let service of services" style="white-space: normal">
       <mat-card class="card">
-        <mat-card-title style="overflow: hidden">{{
+        <mat-card-title style="text-overflow: ellipsis; overflow: hidden;">{{
           service.title
         }}</mat-card-title>
         <mat-divider inset></mat-divider>
-        <br />
+        <hr />
         <mat-card-content>
           <p>
-            Name:
-            <a
+            Offeror:
+            
+            <button mat-raised-button 
+            style="margin-left: 0.8rem;background-color:#0382c7 ; color: #d6d3d1;  border-radius: 50px 50px;"
               routerLink="/user-service/{{ service.user_id }}"
               class="clickable"
-              ><b>{{ service.user }}</b></a
+              > <mat-icon style="margin-right: 0.3rem;">person</mat-icon> <b>{{ service.user }}</b></button
             >
           </p>
-          <p>
-            Phone: <b>{{ service.phone }}</b>
-          </p>
+          <span>
+           <mat-icon>phone</mat-icon> <b  style="margin-left: 0.8rem;" >{{ service.phone }}</b>
+          </span>
 
-          <div *ngIf="service.estimate != null; else estimateIsNull">
-            <p *ngIf="service.estimate != 0; else estimateIsZero">
+          <div style="margin-top: 1rem" *ngIf="service.estimate != null; else estimateIsNull">
+            <p style="margin-top: 1rem"  *ngIf="service.estimate != 0; else estimateIsZero">
               Estimate time for this service
-              <span *ngIf="service.estimate == 1; else elseAre">is</span>
-              <ng-template #elseAre>are</ng-template> {{ service.estimate }}
-              <span *ngIf="service.estimate == 1; else elseHours">hour.</span>
-              <ng-template #elseHours>hours.</ng-template>
+              <span style="margin-top: 1rem"  *ngIf="service.estimate == 1; else elseAre">is</span>
+              <ng-template #elseAre>are</ng-template> <strong> {{ service.estimate }}</strong>
+              <span *ngIf="service.estimate == 1; else elseHours"> hour.</span>
+              <ng-template #elseHours> hours.</ng-template>
             </p>
             <ng-template #estimateIsZero
               ><p>Estimate time is not available.</p></ng-template
@@ -63,12 +65,12 @@
           <ng-template #estimateIsNull>
             <p>Estimate time is not available.</p>
           </ng-template>
-
+          <hr />
           <div class="starratting">
             <star-rating
               [value]="service.avg_rating"
               [totalstars]="5"
-              checkedcolor="red"
+              checkedcolor="#ffd740"
               uncheckedcolor="black"
               size="18px"
               [readonly]="true"
@@ -77,10 +79,10 @@
           <mat-card-actions style="display: flex; justify-content: flex-end">
             <button
               mat-raised-button
-              style="background-color:#0382c7 ; color: #d6d3d1;"
+              style=" background-color:#0382c7 ; color: #d6d3d1;  border-radius: 50px 50px;"
               routerLink="/order/{{ service.id }}"
             >
-              <mat-icon>shopping_cart </mat-icon>
+              <mat-icon style="margin-right: 0.3rem;">shopping_cart </mat-icon>
               <span> Order </span>
             </button>
           </mat-card-actions>

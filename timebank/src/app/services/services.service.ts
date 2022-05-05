@@ -23,11 +23,12 @@ export class ServicesService {
   private apiCreateRegisterRecord = this.api + "serviceregister-create";
   private apiGetServiceRegisterUrl = this.api + "serviceregister";
   private apiEndServiceRegisterUrl = (id: number, hours: number, rating:number) => this.api + "serviceregister/" + id + "/" + hours+ "/" +rating;
+  private apiEndServiceRegisterWRUrl = (id: number, hours: number) => this.api + "serviceregister/" + id + "/" + hours;
   private apiAddServiceUrl = this.api + 'service-create';
-  private apiUpdateServiceUrl = (id: number) => this.api + 'service/' + id;
+  private apiUpdateServiceUrl = (service_id: number) => this.api + 'service/' + service_id;
   private apiUserServicesUrl = (user_id: number) => this.api + "services-user/" + user_id;
   private apiGetServicesSortUrl = this.api + "services?sort=";
-  
+  private apiGetServicesSearchUrl = this.api + "service-search?";
   
   constructor(
     private http: HttpClient
@@ -47,6 +48,11 @@ export class ServicesService {
   // Get all services sort function Desc
   getServicesDesc(query: string) {
     return this.http.get(this.apiGetServicesSortUrl + query).pipe(map(this.remoteServices));
+    console.log(query);
+  }
+
+  getServicesDescSearchTit(query: string) {
+    return this.http.get(this.apiGetServicesSearchUrl + query).pipe(map(this.remoteServices));
     console.log(query);
   }
 
@@ -132,9 +138,14 @@ export class ServicesService {
   }
 
   
-  // Ends records from Service register based on ID and HOURS.
+  // Ends records from Service register based on ID and HOURS and RATING.
   endRegisterRecord(id: number, hours: number, rating: number, endRecord: EndRegisterRecord){
     return this.http.put(this.apiEndServiceRegisterUrl(id, hours, rating), endRecord)
+  }
+
+  // Ends records without Rating from Service register based on ID and HOURS.
+  endRegisterRecordWR(id: number, hours: number, endRecord: EndRegisterRecord){
+    return this.http.put(this.apiEndServiceRegisterWRUrl(id, hours), endRecord)
   }
 
   // Save service in Services table.
@@ -143,8 +154,8 @@ export class ServicesService {
   }
 
   // Update existing service
-  updateService(id: number, update: UpdateService) {
-    return this.http.put(this.apiUpdateServiceUrl(id), update);
+  updateService(service_id: number, update: UpdateService) {
+    return this.http.put(this.apiUpdateServiceUrl(service_id), update);
   }
   
  // Gets single ServiceRegister based on ID.

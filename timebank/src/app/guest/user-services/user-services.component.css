@@ -5,6 +5,7 @@
 
 .main {
     padding-bottom: 100px;
+    margin-top: 50px;
 }
 
 .card {
@@ -14,6 +15,10 @@
     margin-top: 5%;
     box-shadow: 0 5px 5px rgb(100, 99, 99);
     display: inline-block;
+}
+
+.title {
+    overflow: hidden;
 }
 
 .next {

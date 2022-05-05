@@ -45,20 +45,15 @@ const routes: Routes = [
     canActivate: [AuthGuardService],
     children: [
       {
-        path: 'myS',
+        path: 'my-services',
         component: MyServicesComponent,
         canActivate: [AuthGuardService],
       },
       {
-        path: 'myC',
+        path: 'create-service',
         component: CreateServiceComponent,
         canActivate: [AuthGuardService],
-      },
-      {
-        path: 'myE',
-        component: EditComponent,
-        canActivate: [AuthGuardService],
-      },
+      }
     ],
   },
   {
