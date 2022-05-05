@@ -13,7 +13,6 @@
 .card {
     width: 400px;
     background-color: rgb(215, 200, 252);
-    margin-left: 5%;
     margin-top: 5%;
     box-shadow: 0 5px 5px rgb(100, 99, 99);
     display: inline-block;
@@ -32,6 +31,26 @@
     float: left;
     top: 15px;
     margin-bottom: 0px;
+}
+
+.back {
+    position: relative;
+    float: left;
+    color: rgb(161, 149, 192);
+    font-size: 1.5rem;
+    left: -10px;
+}
+
+.back span {
+    position: relative;
+    float: right;
+    top: 15px;
+    left: 5px;
+    margin-bottom: 0px;
+}
+
+.back.arrow {
+    float: right;
 }
 
 .arrow {
