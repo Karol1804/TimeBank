@@ -62,3 +62,11 @@ input{
     border-radius:5px;
     width: 10%;
 }
+
+.divider {
+    clear: both;
+    height: 1px;
+    width: 100%;
+    padding-top: 100px;
+    text-align: center;
+}
