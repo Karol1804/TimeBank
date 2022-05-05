@@ -32,9 +32,7 @@
 
           <div *ngIf="service.estimate != null; else estimateIsNull">
             <p *ngIf="service.estimate != 0; else estimateIsZero">
-              Estimate time for this service
-              <span *ngIf="service.estimate == 1; else elseAre">is</span>
-              <ng-template #elseAre>are</ng-template> {{ service.estimate }}
+              Estimate time for this service is {{ service.estimate }}
               <span *ngIf="service.estimate == 1; else elseHours">hour.</span>
               <ng-template #elseHours>hours.</ng-template>
             </p>

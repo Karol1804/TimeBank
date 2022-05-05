@@ -92,7 +92,7 @@ export class LoginPopComponent implements OnDestroy {
               this.userService.userGetProfile().subscribe((profileRespo) => {
                 console.log(profileRespo);
               });
-              this.router.navigateByUrl('/userhome');
+              this.router.navigateByUrl('/my-services');
               return this.userLogedzip;
             } else {
               alert('Error extract user?');
