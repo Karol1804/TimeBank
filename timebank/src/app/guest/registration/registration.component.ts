@@ -6,6 +6,10 @@ import {Observable} from 'rxjs';
 import {map} from 'rxjs/operators';
 import { Router } from '@angular/router';
 import { MyTel } from 'src/app/shared/pho/MyTel';
+import { AuthServService } from 'src/app/services/auth-serv.service';
+import { RegisUser } from 'src/app/models/RegisUser';
+import { RegisUserResp } from 'src/app/models/RegisUserResp';
+import { AuthGuardService } from 'src/app/services/auth-guard.service';
 
 @Component({
   selector: 'app-registration',
@@ -16,32 +20,46 @@ export class RegistrationComponent  {
 
 valuePhone: string;
 
+user_regForm: RegisUser = {
+  user_name: '', 
+  phone:'', 
+  password:'', 
+  password_val:''} ;
+
+
+user_registred: RegisUserResp;
+
+
  phone: FormGroup = new FormGroup({
     myphone: new FormControl(new MyTel('+','', '', '')),
-   });
+   }); 
 
   onFormSubmit(): void {
-    this.valuePhone=this.phone.get('myphone')?.value.plus
-    +' '+ this.phone.get('myphone')?.value.area 
+    this.valuePhone=
+    '+'+ this.phone.get('myphone')?.value.area 
     +' '+ this.phone.get('myphone')?.value.exchange
     +' '+ this.phone.get('myphone')?.value.subscriber;} 
-
-
+    
+    
+ 
   firstFormGroup = this._formBuilder.group({
     firstCtrl: ['', Validators.required],
   });
-  secondFormGroup = this._formBuilder.group({
-    secondCtrl: ['', Validators.required],
-  });
+/*   phone = this._formBuilder.group({
+    myphone: new FormControl(new MyTel('+','', '', '')),
+   }); */
   thirdFormGroup = this._formBuilder.group({
     thirdCtrl: ['', Validators.required],
+    thirdCtrl_val: ['', Validators.required]
   });
+ 
+
   stepperOrientation: Observable<StepperOrientation>; 
  
 
   constructor(private _formBuilder: FormBuilder,
      breakpointObserver: BreakpointObserver,
-     router: Router , )
+      public router: Router , public authservice: AuthServService, public guard:AuthGuardService )
       {
     this.stepperOrientation = breakpointObserver
       .observe('(min-width: 1200px)')
@@ -51,5 +69,31 @@ valuePhone: string;
       }
     
     
+      sendRegist(): RegisUserResp  { 
+        this.onFormSubmit();
+   
+        this.user_regForm = {phone:this.valuePhone, 
+          user_name: this.firstFormGroup.get('firstCtrl')?.value,
+          password:  this.thirdFormGroup.get('thirdCtrl')?.value,
+          password_val: this.thirdFormGroup.get('thirdCtrl_val')?.value}
+        
+        
+
+       
+         console.log(this.user_regForm)
+         this.authservice.registrationUser(this.user_regForm)
+        .subscribe((data) => { this.user_registred=data;} );
+        this.router.navigateByUrl('/');
+         this.authservice.popOpenDialog();
+       
+        return this.user_registred;
+        
+      }
+
+
+
+
+
+
     
     }

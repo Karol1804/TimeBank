@@ -21,7 +21,7 @@
         </div>
       </form>
     </mat-step>
-    <mat-step [stepControl]="secondFormGroup" label="Fill out your phone number">
+    <mat-step [stepControl]="phone" label="Fill out your phone number">
    <!--  <form [formGroup]="secondFormGroup">  
      formControlName="secondCtrl"-->
        <form [formGroup]="phone">
@@ -44,6 +44,10 @@
           <mat-label>Password</mat-label>
           <input matInput formControlName="thirdCtrl" required>
         </mat-form-field>
+        <mat-form-field appearance="fill">
+          <mat-label>Confirm Password</mat-label>
+          <input matInput formControlName="thirdCtrl_val" required>
+        </mat-form-field>
         <div>
           <button mat-button matStepperPrevious>Back</button>
           <button mat-button matStepperNext>Next</button>
@@ -53,6 +57,7 @@
     <mat-step>
       <ng-template matStepLabel>Done</ng-template>
       <p>Send your filled registration </p>
+      <button mat-raised-button (click) ="sendRegist()"> send </button>
       <div>
         <button mat-button matStepperPrevious>Back</button>
       </div>
