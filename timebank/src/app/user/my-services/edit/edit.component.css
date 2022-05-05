@@ -60,23 +60,3 @@ input {
     border-radius: 5px;
     width: 50%;
 }
-
-.back {
-    position: relative;
-    float: left;
-    color: rgb(161, 149, 192);
-    font-size: 1.5rem;
-    left: -10px;
-}
-
-.back span {
-    position: relative;
-    float: right;
-    top: 15px;
-    left: 5px;
-    margin-bottom: 0px;
-}
-
-.back.arrow {
-    float: right;
-}
