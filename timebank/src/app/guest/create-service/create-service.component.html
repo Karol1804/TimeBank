@@ -29,6 +29,7 @@
         [(ngModel)]="estimate"
         value="{{ estimate }}"
       />
+      <mat-error *ngIf="numberInputError"> Wrong input value! </mat-error>
       <br />
       <mat-error *ngIf="emptyInputError"> All fields are requried! </mat-error>
       <br>
