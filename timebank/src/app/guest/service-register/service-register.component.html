@@ -3,7 +3,12 @@
         <div *ngIf="record.consumer_id==user_id">        
                 <div *ngIf="record.service_status=='inprogress'">
                     <mat-card class="card">
-                        <mat-card-title>{{record.title}}</mat-card-title>
+                        <mat-card-title>
+                            <div *ngIf="record.title.length > 35; else shortTitle">
+                                <div [ngClass]="{'longtitle': longTitle}" (click)="showLongTitle()">{{ record.title }}</div>
+                            </div>
+                            <ng-template #shortTitle>{{record.title}}</ng-template>
+                        </mat-card-title>
                         <mat-divider inset></mat-divider>
                         <br>
                         <mat-card-content>
@@ -42,7 +47,12 @@
             <div *ngIf="record.service_status=='ended'">
                 
                 <mat-card class="card">
-                    <mat-card-title>{{record.title}}</mat-card-title>
+                    <mat-card-title>
+                        <div *ngIf="record.title.length > 35; else shortTitle">
+                            <div [ngClass]="{'longtitle': longTitle}" (click)="showLongTitle()">{{ record.title }}</div>
+                        </div>
+                        <ng-template #shortTitle>{{record.title}}</ng-template>
+                    </mat-card-title>
                     <mat-divider inset></mat-divider>
                     <br>
                     <mat-card-content>

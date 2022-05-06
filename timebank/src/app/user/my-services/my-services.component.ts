@@ -17,6 +17,7 @@ export class MyServicesComponent implements OnInit {
   
   
   
+  
     constructor(
     private globalStorage: GlobalStorageService,
     private servicesService: ServicesService
@@ -52,5 +53,11 @@ export class MyServicesComponent implements OnInit {
       console.log(userServices)
     })
   }
+
+  longTitle = true
+  showLongTitle() {
+    this.longTitle = !this.longTitle
+  }
+
  
 }
