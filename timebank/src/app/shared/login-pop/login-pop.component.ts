@@ -74,7 +74,7 @@ export class LoginPopComponent implements OnDestroy {
           'Wrong number',
           'center',
           'top',
-          5000,
+          8000,
           'snack-wrong'
         );
         data = null;

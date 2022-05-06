@@ -83,7 +83,7 @@ export class AuthServService {
         ` Welcome back ${userRes.user_name} !`,
         'center',
         'bottom',
-        5000,
+        8000,
         'snack-login'
       );
       return userRes.access_token;

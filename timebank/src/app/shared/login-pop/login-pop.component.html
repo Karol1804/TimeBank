@@ -16,7 +16,7 @@
   
       <mat-form-field appearance="fill" class="inputC" >
         <mat-label>Enter your password</mat-label>
-        <input class="inputC" matInput [type]="hide ? 'password' : 'text'"  [(ngModel)]="data.password">
+        <input class="inputC" matInput [type]="hide ? 'password' : 'text'"  [(ngModel)]="data.password" required>
 
         <button  mat-icon-button matSuffix style="margin-left:1rem;" (click)="hide = !hide" [attr.aria-label]="'Hide password'" [attr.aria-pressed]="hide">
           <mat-icon >{{hide ? 'visibility_off' : 'visibility'}}</mat-icon>
