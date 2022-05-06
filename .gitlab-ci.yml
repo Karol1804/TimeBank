@@ -8,7 +8,7 @@ build-job1:
   image: node:12-alpine
   stage: build1
   tags:
-    - gitlab-runner-btcmp
+    - digitalocean
   allow_failure: false
   before_script:
     - apk add zip
@@ -34,7 +34,7 @@ build-job1:
 deploy-job1:
   stage: deploy1
   tags:
-    - gitlab-runner-btcmp
+    - digitalocean
   needs: ['build-job1']
   allow_failure: false
   before_script:
@@ -55,7 +55,7 @@ build-job2:
   image: node:12-alpine
   stage: build2
   tags:
-    - gitlab-runner-btcmp
+    - digitalocean
   when: manual
   needs: ['deploy-job1']
   allow_failure: false
@@ -85,7 +85,7 @@ build-job2:
 deploy-job2:
   stage: deploy2
   tags:
-    - gitlab-runner-btcmp
+    - digitalocean
   needs: ['build-job2']
   allow_failure: false
   before_script:
