@@ -33,10 +33,11 @@
                 </div>
         </div>
     </div>
-    <div class="divider"><p><b>Ended services</b></p></div>
+    
     <div *ngFor="let record of records">
         <div *ngIf="record.consumer_id==user_id">
             <div *ngIf="record.service_status=='ended'">
+                <div class="divider"><p><b>Ended services</b></p></div>
                 <mat-card class="card">
                     <mat-card-title>{{record.title}}</mat-card-title>
                     <mat-divider inset></mat-divider>
