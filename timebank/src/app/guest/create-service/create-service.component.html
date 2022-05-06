@@ -31,6 +31,11 @@
       />
       <br />
       <mat-error *ngIf="emptyInputError"> All fields are requried! </mat-error>
+      <br>
+      <a class="back" routerLink="..">
+        <mat-icon class="arrow" aria-label="arrow_back_ios_new">arrow_back_ios_new</mat-icon>
+        <span>back</span>
+      </a>
       <span class="next" (click)="addNewOffer()"
         ><p>Create new service</p>
         <mat-icon

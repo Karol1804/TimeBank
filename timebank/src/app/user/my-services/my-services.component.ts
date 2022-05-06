@@ -25,7 +25,7 @@ export class MyServicesComponent implements OnInit {
   ngOnInit(): void {
     let user_id = this.globalStorage.getUserId();
     this.loadData(user_id);
-    //this.reload();
+    this.reload();
     console.log("Toto je User ID: " + this.user_id);
   }
 

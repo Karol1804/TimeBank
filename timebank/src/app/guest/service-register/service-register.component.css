@@ -5,7 +5,10 @@
     height: 100%;
     width: 100%;
     padding-bottom: 100px;
+    margin-top: 32px;
 }
+
+
 
 .card {
     width: 400px;
@@ -58,4 +61,12 @@ input{
     border: none;
     border-radius:5px;
     width: 10%;
+}
+
+.divider {
+    clear: both;
+    height: 1px;
+    width: 100%;
+    padding-top: 100px;
+    text-align: center;
 }

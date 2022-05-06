@@ -6,6 +6,7 @@ import {
   GetRegisterRecord,
 } from 'src/app/models/registerrecord';
 import { ServicesService } from '../../services/services.service';
+import { GlobalStorageService } from '../../services/global-storage.service';
 
 @Component({
   selector: 'app-service-register',
@@ -19,15 +20,19 @@ export class ServiceRegisterComponent implements OnInit {
   public rating: number;
   public obj_rating: number;
   public isChecked = true;
+  
+  public user_id: any | undefined;
 
   constructor(
     private router: Router,
-    private servicesService: ServicesService
+    private servicesService: ServicesService,
+    private globalStorage: GlobalStorageService,
   ) {}
 
   ngOnInit(): void {
     this.loadData();
     this.reload();
+    this.userId();
   }
 
   reload() {
@@ -39,6 +44,12 @@ export class ServiceRegisterComponent implements OnInit {
         localStorage.removeItem('reload');
       }
     }
+  }
+
+  userId() {
+    this.user_id = this.globalStorage.getUserId();
+      
+    console.log("Toto je User id: " + this.user_id);
   }
 
   onRate($event: {

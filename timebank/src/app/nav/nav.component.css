@@ -1,3 +1,10 @@
+nav {
+  position: fixed;
+  top: 0;
+  width: 100%;
+  z-index: 99;
+}
+
 .firstBar {
   height: 3rem;
 }
@@ -19,7 +26,7 @@ a:visited {
 .logo {
   display: block;
   width: 8rem;
-  margin-left: 2.5rem;
+  /* margin-left: 2.5rem; */
 }
 
 .loggeduser {
