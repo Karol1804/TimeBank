@@ -75,7 +75,7 @@ export class GuestLayoutComponent implements OnInit {
       this.search = ""
     }
     else{
-      alert("Minimalny pocet znakov mus byt 3 ")
+      alert("Minimalny pocet znakov musi byt: 3 ")
     }
       //console.log(this.tit) 
   
