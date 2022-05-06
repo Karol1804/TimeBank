@@ -19,7 +19,7 @@ export class ServiceRegisterComponent implements OnInit {
   public hours: number;
   public rating: number;
   public obj_rating: number;
-  public isChecked = true;
+  public isChecked = false;
   
   public user_id: any | undefined;
 
@@ -73,13 +73,22 @@ export class ServiceRegisterComponent implements OnInit {
 
   endRegisterRecord(id: any, hours: any) {
     let record = new EndRegisterRecord(
-      this.id,
-      this.hours,
+      id,
+      hours,
       (this.rating = this.obj_rating),
     );
     if (hours == null || hours <= 0) {
       alert('Zadal si nespravnu alebo ziadnu hodnotu');
-    }  else if (this.rating == undefined){
+    }  else if (this.isChecked == false){
+      this.servicesService
+     .endRegisterRecordWR(id, hours, record)
+        .subscribe((result) => {
+          console.log(record);
+          console.log(hours);
+        });
+      alert('Servis ukonceny.Pocet zapisanych hodin: ' + hours);
+     //this.router.navigate(['services']);
+      } else if (this.rating == undefined){
       this.rating=0;
       this.servicesService
       .endRegisterRecord(id, hours, this.rating, record)
@@ -88,17 +97,8 @@ export class ServiceRegisterComponent implements OnInit {
         console.log(hours);
       });
     alert('Servis ukonceny.Pocet zapisanych hodin: ' + hours);
-   this.router.navigate(['services']);
-    } else if (this.isChecked == false){
-      this.servicesService
-     .endRegisterRecordWR(id, hours, record)
-        .subscribe((result) => {
-          console.log(record);
-          console.log(hours);
-        });
-      alert('Servis ukonceny.Pocet zapisanych hodin: ' + hours);
-     this.router.navigate(['services']);
-      } else {
+   //this.router.navigate(['services']);
+    } else {
       this.servicesService
         .endRegisterRecord(id, hours, this.rating, record)
         .subscribe((result) => {
@@ -106,7 +106,7 @@ export class ServiceRegisterComponent implements OnInit {
           console.log(hours);
         });
       alert('Servis ukonceny.Pocet zapisanych hodin: ' + hours);
-     this.router.navigate(['services']);
+     //this.router.navigate(['services']);
     }
     console.log('Urobil som end.');
     console.log('ID:' + id + ' Hodin: ' + hours);
