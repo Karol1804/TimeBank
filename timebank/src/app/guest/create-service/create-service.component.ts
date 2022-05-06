@@ -21,6 +21,7 @@ export class CreateServiceComponent implements OnInit {
   public phone: string;
   public user_id: number;
   public emptyInputError = false;
+  public numberInputError = false;
   // load logged username, phone, id
   public obj_user_name: string;
   public obj_phone: string;
@@ -48,11 +49,12 @@ export class CreateServiceComponent implements OnInit {
   // method to create new service
   addNewOffer() {
     this.emptyInputError = false;
-    if (!this.title || !this.estimate) {
+    if (!this.title ) {
       this.emptyInputError = true;
-    } else {
- 
-    let service = new Service(
+    } else if(this.estimate <= 0){
+      this.numberInputError = true;
+    }else {
+     let service = new Service(
       this.id,
       this.title,
       this.user,
