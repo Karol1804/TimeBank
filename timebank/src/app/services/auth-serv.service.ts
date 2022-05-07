@@ -12,6 +12,9 @@ import { SnackBarService } from './snackbar.service';
 import { InterceptorService } from './interceptor.service';
 import { RegisUser } from '../models/RegisUser';
 import { RegisUserResp } from '../models/RegisUserResp';
+import { RegisPopComponent } from '../shared/regis-pop/regis-pop.component';
+import { PhoneSend } from '../models/PhoneSend';
+import { MyTel } from '../shared/pho/MyTel';
 
 @Injectable({
   providedIn: 'root',
@@ -35,7 +38,7 @@ export class AuthServService {
   private apiPostUserLogin = this.api + 'user/login';
   private apiPostUserLogout = this.api + 'user/logout';
   private apiPostUserProfile = this.api + 'user/profile';
-
+  private apiPostUserPhone = this.api + 'user/phone';
   //private apiSearchUrl = this.api + "/service?q=";
 
   constructor(
@@ -91,13 +94,22 @@ export class AuthServService {
       return undefined;
     }
   }
-
+/* 
   popOpenDialog(): void {
     this.dialog.open(LoginPopComponent, {
       width: '300px',
       data: {},
     });
+  } */
+
+ // popOpenRegis(): void {
+  popOpenDialog(): void {
+    this.dialog.open(RegisPopComponent, {
+      width: '400px',
+      data: {},
+    });
   }
+
 
   userGetProfile(): Observable<ProfileRespond | undefined> {
     return this.http
@@ -129,5 +141,25 @@ export class AuthServService {
  }
 
 
+ phoneExtract(res: HttpResponse<any>): any | undefined {
+  if (res) {
+
+    return res;
+    
+  } else {
+    return undefined;
+  }
+}
+
+
+ checkPhone( controlValue: MyTel): Observable< any | undefined>{
+  let payload= { phone: controlValue.plus+controlValue.area+' '+controlValue.exchange +' '+controlValue.subscriber}
+ return this.http.post<any>(this.apiPostUserPhone,payload).pipe(map(this.phoneExtract))
+
+
+ }
+
+
+ 
 
 }

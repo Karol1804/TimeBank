@@ -17,6 +17,9 @@ import { PhoComponent } from './pho/pho.component';
 import {MatDividerModule} from '@angular/material/divider';
 import { MenuBtnComponent } from './menu-btn/menu-btn.component';
 import { MatMenuModule } from '@angular/material/menu';
+import { RegisPopComponent } from './regis-pop/regis-pop.component';
+import {MatCheckboxModule} from '@angular/material/checkbox';
+
 
 @NgModule({
   declarations: [
@@ -25,6 +28,9 @@ import { MatMenuModule } from '@angular/material/menu';
     LogoutBtnComponent,
     PhoComponent,
     MenuBtnComponent,
+    RegisPopComponent,
+    
+    
     
     
   
@@ -42,10 +48,11 @@ imports: [
     MatIconModule,
     ReactiveFormsModule,
     MatDividerModule,
-    MatMenuModule
+    MatMenuModule,
+    MatCheckboxModule
     
   ],
-  exports:[PhoComponent,LoginPopComponent,LoginBtnComponent,LogoutBtnComponent,MenuBtnComponent]
+  exports:[RegisPopComponent,PhoComponent,LoginPopComponent,LoginBtnComponent,LogoutBtnComponent,MenuBtnComponent]
 })
 export class SharedModule { }
 

@@ -82,7 +82,7 @@ export class RegistrationComponent {
 
 
 
- passval(){ this.passvalid.match('password', 'confirmPassword')}
+
 
 
   sendRegist(): RegisUserResp {
@@ -95,7 +95,7 @@ export class RegistrationComponent {
       password_val: this.thirdFormGroup.get('thirdCtrl_val')?.value,
     };
 
-    console.log(this.user_regForm);
+   
     this.authservice.registrationUser(this.user_regForm).subscribe((data) => {
       this.user_registred = data;
     });

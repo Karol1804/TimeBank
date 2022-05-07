@@ -163,7 +163,7 @@ export class PhoComponent
           Validators.minLength(6),
           Validators.maxLength(6),
           Validators.pattern(/\d{6}/),
-        ],
+        ],  
       ],
     });
 

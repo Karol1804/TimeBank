@@ -10,7 +10,7 @@ import { AbstractControl, ValidatorFn } from '@angular/forms';
 export default class ValidService {
 
 
-  public match(controlName: string, checkControlName: string): ValidatorFn {
+  static match(controlName: string, checkControlName: string): ValidatorFn {
     return (controls: AbstractControl) => {
       const control = controls.get(controlName);
       const checkControl = controls.get(checkControlName);

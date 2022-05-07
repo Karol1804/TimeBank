@@ -35,7 +35,7 @@ export class UserhomeComponent implements OnDestroy {
 
     
     this.navbarside.sideNavState$.subscribe( res => {
-      console.log(res)
+     
       this.onSideNavChange = res;
     });
     this.mobileQuery = media.matchMedia('(max-width: 600px)');
