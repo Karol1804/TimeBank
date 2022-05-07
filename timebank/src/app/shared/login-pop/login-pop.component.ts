@@ -104,7 +104,7 @@ export class LoginPopComponent implements OnDestroy {
   }
 
   onRegClick(): void {
-    this.router.navigate(['/registration']);
+    this.userService.popOpenRegis()
     this.dialogRef.close();
     //this.router.navigateByUrl('');
   }

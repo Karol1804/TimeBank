@@ -30,7 +30,6 @@ import { MatStepperModule } from '@angular/material/stepper';
 import { AuthGuardService } from './services/auth-guard.service';
 import { AuthServService } from './services/auth-serv.service';
 import { GlobalStorageService } from './services/global-storage.service';
-import { RegistrationComponent } from './guest/registration/registration.component';
 import { MatDividerModule } from '@angular/material/divider';
 import { SnackBarService } from './services/snackbar.service';
 import { MatSnackBarModule } from '@angular/material/snack-bar';
@@ -54,7 +53,6 @@ import { EditComponent } from './user/my-services/edit/edit.component';
     OrderComponent,
     ServiceRegisterComponent,
     CreateServiceComponent,
-    RegistrationComponent,
     UserhomeComponent,
     UserServicesComponent,
     MyServicesComponent,
@@ -98,7 +96,7 @@ import { EditComponent } from './user/my-services/edit/edit.component';
     SnackBarService,
     AuthServService,
     GlobalStorageService,
-    RegistrationComponent,
+  
     {
       provide: HTTP_INTERCEPTORS,
       useClass: InterceptorService,

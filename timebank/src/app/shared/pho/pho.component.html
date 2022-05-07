@@ -12,7 +12,8 @@
     size="1"
     maxlength="1"
     aria-label="plus"
-    (input)="_handleInput(parts.controls.plus, exchange)"
+    (input)="_handleInput(parts.controls.plus, area)"
+   
     #plus
   />
   <input
@@ -22,7 +23,9 @@
     maxlength="3"
     aria-label="Area code"
     (input)="_handleInput(parts.controls.area, exchange)"
+    (keyup.backspace)="autoFocusPrev(parts.controls.area, plus)"
     #area
+    
   />
   <span class="example-tel-input-spacer">&ndash;</span>
   <input
@@ -33,6 +36,7 @@
     aria-label="Exchange code"
     (input)="_handleInput(parts.controls.exchange, subscriber)"
     (keyup.backspace)="autoFocusPrev(parts.controls.exchange, area)"
+    
     #exchange
   />
   <span class="example-tel-input-spacer">&ndash;</span>
@@ -44,6 +48,7 @@
     aria-label="Subscriber number"
     (input)="_handleInput(parts.controls.subscriber)"
     (keyup.backspace)="autoFocusPrev(parts.controls.subscriber, exchange)"
+   
     #subscriber
   />
 </div>

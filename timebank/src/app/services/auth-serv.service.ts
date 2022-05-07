@@ -94,18 +94,19 @@ export class AuthServService {
       return undefined;
     }
   }
-/* 
+
   popOpenDialog(): void {
     this.dialog.open(LoginPopComponent, {
       width: '300px',
       data: {},
     });
-  } */
+  } 
 
- // popOpenRegis(): void {
-  popOpenDialog(): void {
+popOpenRegis(): void {
+
     this.dialog.open(RegisPopComponent, {
       width: '400px',
+      disableClose:true,
       data: {},
     });
   }

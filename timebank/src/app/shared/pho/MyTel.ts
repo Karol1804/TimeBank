@@ -6,5 +6,6 @@ export class MyTel {
     public subscriber: string
   ) {
     this.plus = '+';
+   this.area= '421';
   }
 }

@@ -112,7 +112,7 @@ export class PhoComponent
   }
   set value(tel: MyTel | null) {
     const { plus, area, exchange, subscriber } =
-      tel || new MyTel('+', '', '', '');
+      tel || new MyTel('', '', '', '');
     this.parts.setValue({ plus, area, exchange, subscriber });
     this.stateChanges.next();
   }

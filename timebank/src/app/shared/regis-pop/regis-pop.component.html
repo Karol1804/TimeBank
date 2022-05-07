@@ -1,24 +1,22 @@
+<div style="position: relative"> 
+  <button mat-icon-button  class="closeBTN"   (click)="onNoClick()">X</button>
+
 <mat-toolbar color="primary">
   <span class="fill-remaining-space"> Sign Up </span>
 </mat-toolbar>
 
-<div class="container" *ngIf="!post; else forminfo">
+<div class="container">
   <form
     [formGroup]="formGroup"
     (ngSubmit)="onSubmit(formGroup.value)"
     class="form"
     novalidate
   >
-    <mat-form-field class="form-element">
-      <input matInput placeholder="Name" formControlName="name" />
-      <mat-error *ngIf="!name.valid && name.touched">
-        {{ titleAlert }}
-      </mat-error>
-    </mat-form-field>
+    
 
     <mat-form-field appearance="fill" class="form-element">
       <mat-label>Phone number</mat-label>
-      <app-pho class="inputC" formControlName="myphone" required #tel></app-pho>
+      <app-pho class="inputC" formControlName="myphone" required  #tel></app-pho>
       <mat-icon matSuffix style="margin-left: 1.4rem">phone</mat-icon>
       <mat-hint *ngIf="!formGroup.get('myphone')?.hasError('alreadyTaken')"
         >Include country code</mat-hint
@@ -39,6 +37,18 @@
       </mat-error>
     </mat-form-field>
 
+
+    <mat-form-field class="form-element">
+      <input matInput placeholder="Name" formControlName="name" />
+      <mat-error *ngIf="!name.valid && name.touched">
+        {{ titleAlert }}
+      </mat-error>
+    </mat-form-field>
+
+
+
+
+
     <mat-form-field class="form-element">
       <input
         matInput
@@ -47,8 +57,7 @@
         formControlName="password"
       />
       <mat-hint
-        >Choose a password of at least eight characters, one uppercase letter
-        and one number</mat-hint
+        >Choose a reliable password to ensure security</mat-hint
       >
       <mat-error
         *ngIf="
@@ -68,8 +77,7 @@
         formControlName="password_valid"
       />
       <mat-hint
-        >Choose a password of at least eight characters, one uppercase letter
-        and one number</mat-hint
+        >Passwords must match </mat-hint
       >
       <mat-error
         *ngIf="
@@ -94,9 +102,3 @@
     </div>
   </form>
 </div>
-
-<ng-template #forminfo>
-  <div class="container">
-    {{ post | json }}
-  </div>
-</ng-template>
