@@ -3,7 +3,12 @@
     <div *ngFor="let service of userservices">
 
         <mat-card class="card">
-            <mat-card-title>{{ service.title }}</mat-card-title>
+            <mat-card-title>
+                <div *ngIf="service.title.length > 35; else shortTitle">
+                    <div [ngClass]="{'longtitle': longTitle}" (click)="showLongTitle()">{{ service.title }}</div>
+                </div>
+                <ng-template #shortTitle>{{service.title}}</ng-template>
+            </mat-card-title>
             <mat-divider inset></mat-divider>
             <br />
             <mat-card-content>

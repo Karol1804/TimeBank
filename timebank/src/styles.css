@@ -9,6 +9,20 @@ body {
   font-family: Roboto, "Helvetica Neue", sans-serif;
 }
 
+.card mat-card-title {
+  line-height: 1.6;
+}
+
+.longtitle {
+  display: -webkit-box;
+  -webkit-line-clamp: 1;
+  overflow: hidden;
+  -webkit-box-orient: vertical;
+  cursor: pointer;
+}
+
+
+
 .snack-logout {
   color: rgb(255, 255, 255);
 }

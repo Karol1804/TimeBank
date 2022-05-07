@@ -1,4 +1,4 @@
-.clickable {
+.clickable, .dots:hover {
     cursor: pointer;
     text-decoration: none;
 }

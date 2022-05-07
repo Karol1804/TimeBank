@@ -124,4 +124,9 @@ export class ServiceRegisterComponent implements OnInit {
       (k >= 48 && k <= 57)
     );
   }
+
+  longTitle = true
+  showLongTitle() {
+    this.longTitle = !this.longTitle
+  }
 }

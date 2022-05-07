@@ -113,6 +113,10 @@ export class GuestLayoutComponent implements OnInit {
     //console.log(boolenvalue);
   } 
 
+  longTitle = true
+  showLongTitle() {
+    this.longTitle = !this.longTitle
+  }
  
 }
 
