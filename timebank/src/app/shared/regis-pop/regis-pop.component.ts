@@ -90,7 +90,7 @@ export class RegisPopComponent implements OnInit, OnDestroy {
     return this.formGroup.get('name')?.hasError('required')
       ? 'The field is required'
       : this.formGroup.get('name')?.hasError('minlength')
-      ? 'Name should be min.3 characters long ' 
+      ? 'Name must be at least 3 characters long ' 
       : this.formGroup.get('name')?.hasError('maxlength')
       ? 'Name should be max.15 characters long '
       : '';
@@ -113,9 +113,9 @@ export class RegisPopComponent implements OnInit, OnDestroy {
       : this.formGroup.get('password')?.hasError('matching')
       ? 'Passwords are NOT identical. '  
       : this.formGroup.get('password')?.hasError('minlength')
-      ? 'Password should be min.5 characters long ' 
+      ? 'Password must be at least 5 characters long ' 
       : this.formGroup.get('password')?.hasError('maxlength')
-      ? 'Password should be max.20 characters long ' :
+      ? 'Password can be max.20 characters long ':
        '';
   }
 
@@ -125,9 +125,9 @@ export class RegisPopComponent implements OnInit, OnDestroy {
       : this.formGroup.get('password_valid')?.hasError('matching')
       ? 'Passwords are NOT identical. '  
       : this.formGroup.get('password_valid')?.hasError('minlength')
-      ? 'Name should be min.5 characters long ' 
+      ? 'Password must be at least 5 characters long ' 
       : this.formGroup.get('password_valid')?.hasError('maxlength')
-      ? 'Name should be max.20 characters long '
+      ? 'Password can be max.20 characters long '
       : '';
   }
 
