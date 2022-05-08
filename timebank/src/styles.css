@@ -1,7 +1,9 @@
 /* You can add global styles to this file, and also import other style files */
-
+/* @import "~@angular/material/prebuilt-themes/pink-bluegrey.css";
+ */
 html,
 body {
+  /* background-color: #424242 !important; color: white !important; */
   height: 100%; 
 }
 body {
@@ -82,3 +84,5 @@ body {
   line-height: 20px;
   opacity: 1;
 }
+
+

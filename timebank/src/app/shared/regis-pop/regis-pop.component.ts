@@ -158,7 +158,7 @@ export class RegisPopComponent implements OnInit, OnDestroy {
       return this.phoneJoin ;
       
      }
-     console.log('vo fuknci' +this.phoneJoin) ;
+     
      return 
     }
  
@@ -203,7 +203,7 @@ export class RegisPopComponent implements OnInit, OnDestroy {
 
     this.onFormSubmit();
 
-    console.log('vo submite' +this.phoneJoin) ;
+ 
 
 
     this.post = {
@@ -213,7 +213,7 @@ export class RegisPopComponent implements OnInit, OnDestroy {
       password_val: this.post.password_valid,
     };
 
-    console.log(this.post);
+   
 
     this.userService.registrationUser(this.post).subscribe((data) => {
       return (this.user_registred = data);
