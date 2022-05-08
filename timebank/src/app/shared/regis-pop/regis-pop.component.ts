@@ -219,14 +219,24 @@ export class RegisPopComponent implements OnInit, OnDestroy {
       return (this.user_registred = data);
     });
 
-    this.userService.popOpenDialog();
-    this.snack.openSnackBar(
+    this.onNoClick();
+
+    setTimeout(() => { this.userService.popOpenDialog();
+      
+    }, 300); 
+
+
+    setTimeout(() => {  this.snack.openSnackBar(
       'Your account has been created',
       'center',
       'bottom',
-      6000,
+      4000,
       'snack-create'
     );
-    this.onNoClick();
+      
+    }, 500); 
+
+   
+    
   }
 }

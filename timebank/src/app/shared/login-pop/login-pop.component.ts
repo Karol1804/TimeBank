@@ -163,4 +163,6 @@ export class LoginPopComponent implements OnDestroy {
   onNoClick(): void {
     this.dialogRef.close();
   }
+
+
 }

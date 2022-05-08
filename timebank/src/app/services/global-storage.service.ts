@@ -32,13 +32,18 @@ export class GlobalStorageService {
     localStorage.removeItem('token');
     localStorage.removeItem('userLoggedId');
     localStorage.removeItem('userLoggedName');
-    this.snackbar.openSnackBar(
+
+    setTimeout(() => { this.snackbar.openSnackBar(
       'You are logged out. Have a nice day!',
       'center',
       'top',
       5000,
       'snack-logout'
     );
+      
+    }, 300);
+
+  
   }
 
   getToken() {
