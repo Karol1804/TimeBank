@@ -82,13 +82,8 @@ export class AuthServService {
       this.globalStorageService.saveToken(userRes.access_token);
       this.globalStorageService.saveUserId(userRes.id.toString());
       this.globalStorageService.saveUserName(userRes.user_name);
-      this.snackbar.openSnackBar(
-        ` Welcome back ${userRes.user_name} !`,
-        'center',
-        'bottom',
-        8000,
-        'snack-login'
-      );
+   
+
       return userRes.access_token;
     } else {
       return undefined;

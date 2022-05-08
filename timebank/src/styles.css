@@ -35,6 +35,10 @@ body {
   color: rgb(255, 255, 255);
 }
 
+.snack-create {
+  color: rgb(255, 255, 255);
+}
+
 .snack-login .mat-simple-snackbar {
   display: flex;
   justify-content: center;
@@ -52,6 +56,14 @@ body {
 }
 
 .snack-wrong .mat-simple-snackbar {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  line-height: 20px;
+  opacity: 1;
+}
+
+.snack-create .mat-simple-snackbar {
   display: flex;
   justify-content: center;
   align-items: center;

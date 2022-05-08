@@ -93,7 +93,19 @@ export class LoginPopComponent implements OnDestroy {
               
               });
               this.router.navigateByUrl('/my-services');
+
+              this.snack.openSnackBar(
+                ` Welcome back ${this.userLogedzip.user_name} !`,
+                'center',
+                'bottom',
+                8000,
+                'snack-login'
+              );
+        
               return this.userLogedzip;
+
+
+
             } else {
               alert('Error extract user?');
               return undefined;
