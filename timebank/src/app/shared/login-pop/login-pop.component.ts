@@ -34,8 +34,6 @@ export class LoginPopComponent implements OnDestroy {
   public loginData: LoginData = { phone: '', password: '' };
   hide: boolean = true;
 
-  
-
   constructor(
     private globalStorageService: GlobalStorageService,
     private userService: AuthServService,
@@ -46,64 +44,115 @@ export class LoginPopComponent implements OnDestroy {
     public data: any
   ) {}
 
-
   public phone: FormGroup = new FormGroup({
     myphone: new FormControl(new MyTel('+', '421', '', ''), {
       validators: [Validators.required, this.checkPhoneValid],
       asyncValidators: CheckloginPhoneService.createValidator(this.userService),
-    })})
+    }),
+  });
 
-
-
-
-  
   ngOnDestroy(): void {
     /** Az sa zatvori okno confirmom pastuje data do userLoginu a vrati to usera,savne token a presmeruje stranku */
 
     this.dialogRef.afterClosed().subscribe((data) => {
-      
       if (data) {
         this.valuePhone =
-        this.phone.get('myphone')?.value.plus +
-        this.phone.get('myphone')?.value.area +
-        ' ' +
-        this.phone.get('myphone')?.value.exchange +
-        ' ' +
-        this.phone.get('myphone')?.value.subscriber;
+          this.phone.get('myphone')?.value.plus +
+          this.phone.get('myphone')?.value.area +
+          ' ' +
+          this.phone.get('myphone')?.value.exchange +
+          ' ' +
+          this.phone.get('myphone')?.value.subscriber;
 
         this.loginData = { phone: this.valuePhone, password: data.password };
 
         this.userService
           .userlogin(this.loginData.phone, this.loginData.password)
-          .subscribe((userObject) => {
-            if (userObject) {
+          .subscribe(
+            (userObject) => {
+              if (userObject) {
+                this.userService.tokenExtraction(userObject);
+                this.userLogedzip = userObject;
+                this.userService
+                  .userGetProfile()
+                  .subscribe((profileRespo) => {});
+                this.router.navigateByUrl('/my-services');
 
-              this.userService.tokenExtraction(userObject);
-              this.userLogedzip = userObject;
-              this.userService.userGetProfile().subscribe((profileRespo) => {});
-              this.router.navigateByUrl('/my-services');
+                this.snack.openSnackBar(
+                  ` Welcome back ${this.userLogedzip.user_name} !`,
+                  'center',
+                  'bottom',
+                  8000,
+                  'snack-login'
+                );
 
-              this.snack.openSnackBar(
-                ` Welcome back ${this.userLogedzip.user_name} !`,
-                'center',
-                'bottom',
-                8000,
-                'snack-login'
-              );
+                return this.userLogedzip;
+              } else {
+                alert('Error extract user?');
+                return undefined;
+              }
+            },
 
-              return this.userLogedzip;
-            } else {
-              alert('Error extract user?');
-              return undefined;
+            (error) => {
+              switch (error.status) {
+                case 401: //login unauth
+                  this.snack.openSnackBar(
+                    'Wrong password',
+                    'center',
+                    'top',
+                    5000,
+                    'snack-wrong'
+                  );
+
+                  setTimeout(() => {
+                    this.userService.popOpenDialog();
+                  }, 800);
+                  break;
+
+                case 404: // 'Number doesn't exist 404
+                  this.snack.openSnackBar(
+                    "Phone number doesn't exist",
+                    'center',
+                    'top',
+                    5000,
+                    'snack-wrong'
+                  );
+
+                  console.log(`case 404`);
+                  break;
+
+                case 400: // "Phone number and password not defined"}', 400
+                  this.snack.openSnackBar(
+                    "Phone number doesn't exist",
+                    'center',
+                    'top',
+                    5000,
+                    'snack-wrong'
+                  );
+
+                  console.log(`case 400`);
+
+                  break;
+                case 500: // 500 internal error
+                  this.snack.openSnackBar(
+                    'Server error. Please try later.',
+                    'center',
+                    'top',
+                    5000,
+                    'snack-wrong'
+                  );
+
+                  console.log(`case 500`);
+
+                  break;
+              }
             }
-          });
+          );
       }
-     });
+    });
   }
 
-
-
-  checkPhoneValid (control: any) {
+  checkPhoneValid(control: any) {
     let enteredPhone = control?.value;
     let condi: [boolean, boolean, boolean];
 
@@ -121,6 +170,8 @@ export class LoginPopComponent implements OnDestroy {
 
         if (
           condi[0] ||
+          condi[1] ||
+          condi[2] ||
           (condi[1] && condi[2]) ||
           (condi[0] && condi[1] && condi[2])
         ) {
@@ -146,23 +197,19 @@ export class LoginPopComponent implements OnDestroy {
       : '';
   }
 
-  
   get myphone() {
     return this.phone.get('myphone') as FormControl;
   }
 
-
   onRegClick(): void {
-    
     this.dialogRef.close();
 
-    setTimeout(()=>{this.userService.popOpenRegis();},800)
-   
+    setTimeout(() => {
+      this.userService.popOpenRegis();
+    }, 800);
   }
 
   onNoClick(): void {
     this.dialogRef.close();
   }
-
-
 }

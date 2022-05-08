@@ -180,7 +180,7 @@ export class RegisPopComponent implements OnInit, OnDestroy {
         ];
 
         if (
-          condi[0] ||
+          condi[0] || condi[1] || condi[2]  || 
           (condi[1] && condi[2]) ||
           (condi[0] && condi[1] && condi[2])
         ) {
