@@ -32,7 +32,6 @@ export class RegisPopComponent implements OnInit, OnDestroy {
   post: any = '';
   user_registred: RegisUserResp;
 
-
   constructor(
     private formBuilder: FormBuilder,
     private userService: AuthServService,
@@ -57,7 +56,11 @@ export class RegisPopComponent implements OnInit, OnDestroy {
     this.formGroup = new FormGroup(
       {
         name: new FormControl(null, {
-          validators:[Validators.required, Validators.maxLength(15), Validators.minLength(3)]
+          validators: [
+            Validators.required,
+            Validators.maxLength(15),
+            Validators.minLength(3),
+          ],
         }),
 
         myphone: new FormControl(new MyTel('+', '421', '', ''), {
@@ -66,10 +69,18 @@ export class RegisPopComponent implements OnInit, OnDestroy {
         }),
 
         password: new FormControl(null, {
-          validators:[Validators.required, Validators.maxLength(20), Validators.minLength(5)]
+          validators: [
+            Validators.required,
+            Validators.maxLength(20),
+            Validators.minLength(5),
+          ],
         }),
         password_valid: new FormControl(null, {
-          validators: [Validators.required, Validators.maxLength(20), Validators.minLength(5)]
+          validators: [
+            Validators.required,
+            Validators.maxLength(20),
+            Validators.minLength(5),
+          ],
         }),
       },
       ValidService.match('password', 'password_valid')
@@ -84,26 +95,21 @@ export class RegisPopComponent implements OnInit, OnDestroy {
     return this.formGroup.get('myphone') as FormControl;
   }
 
-
-
   getErrorName() {
     return this.formGroup.get('name')?.hasError('required')
       ? 'The field is required'
       : this.formGroup.get('name')?.hasError('minlength')
-      ? 'Name must be at least 3 characters long ' 
+      ? 'Name must be at least 3 characters long '
       : this.formGroup.get('name')?.hasError('maxlength')
       ? 'Name should be max.15 characters long '
       : '';
   }
 
-
-
-
   getErrorPhone() {
     return this.formGroup.get('myphone')?.hasError('required')
       ? 'The field is required'
       : this.formGroup.get('myphone')?.hasError('alreadyTaken')
-      ? 'This phone is already in use !'      
+      ? 'This phone is already in use !'
       : this.formGroup.get('myphone')?.hasError('numberpass')
       ? 'Not valid phone number'
       : '';
@@ -113,33 +119,30 @@ export class RegisPopComponent implements OnInit, OnDestroy {
     return this.formGroup.get('password')?.hasError('required')
       ? 'The field is required'
       : this.formGroup.get('password')?.hasError('matching')
-      ? 'Passwords are NOT identical. '  
+      ? 'Passwords are NOT identical. '
       : this.formGroup.get('password')?.hasError('minlength')
-      ? 'Password must be at least 5 characters long ' 
+      ? 'Password must be at least 5 characters long '
       : this.formGroup.get('password')?.hasError('maxlength')
-      ? 'Password can be max.20 characters long ':
-       '';
+      ? 'Password can be max.20 characters long '
+      : '';
   }
 
   getErrorPassword_val() {
     return this.formGroup.get('password_valid')?.hasError('required')
       ? 'The field is required'
       : this.formGroup.get('password_valid')?.hasError('matching')
-      ? 'Passwords are NOT identical. '  
+      ? 'Passwords are NOT identical. '
       : this.formGroup.get('password_valid')?.hasError('minlength')
-      ? 'Password must be at least 5 characters long ' 
+      ? 'Password must be at least 5 characters long '
       : this.formGroup.get('password_valid')?.hasError('maxlength')
       ? 'Password can be max.20 characters long '
       : '';
   }
 
-
-
   onNoClick(): void {
     this.dialogRef.close();
   }
 
-  
   onFormSubmit(): void {
     this.phoneJoin =
       '+' +
@@ -150,50 +153,43 @@ export class RegisPopComponent implements OnInit, OnDestroy {
       this.formGroup.get('myphone')?.value.subscriber;
   }
 
-
   checkPhoneVal(control: any) {
     let enteredPhone = control?.value;
-    let condi: [boolean,boolean,boolean];
-    
-    if ( enteredPhone){
-    if ( enteredPhone.area != null && enteredPhone.exchange != null && enteredPhone.subscriber != null)
-    {
+    let condi: [boolean, boolean, boolean];
 
-      condi = [
-      /0{3}/.test(enteredPhone.area),
-      /0{3}/.test(enteredPhone.exchange),
-      /0{6}/.test(enteredPhone.subscriber),
-    ];
+    if (enteredPhone) {
+      if (
+        enteredPhone.area != null &&
+        enteredPhone.exchange != null &&
+        enteredPhone.subscriber != null
+      ) {
+        condi = [
+          /0{3}/.test(enteredPhone.area),
+          /0{3}/.test(enteredPhone.exchange),
+          /0{6}/.test(enteredPhone.subscriber),
+        ];
+
+        if (
+          condi[0] ||
+          (condi[1] && condi[2]) ||
+          (condi[0] && condi[1] && condi[2])
+        ) {
+          return { numberpass: true };
+        } else {
+          return null;
+        }
+      } else {
+        return null;
+      }
+    } else {
+      return null;
+    }
+  }
+
+
   
-    if ( 
-      condi[0] ||
-      (condi[1] && condi[2]) ||
-      (condi[0] && condi[1] && condi[2])
-    ) {
-    
-      
-
-
-      return  {'numberpass': true} ;
-    } else {  return null}
-  } else {  return null}
-
-}else {  return null}
-
-  } 
-
-
-
-
-
-
-
   onSubmit(post: any) {
     this.post = post;
-    
-    
-     
-    
 
     this.onFormSubmit();
     this.post = {
@@ -203,16 +199,20 @@ export class RegisPopComponent implements OnInit, OnDestroy {
       password_val: this.post.password_valid,
     };
 
-
     console.log(this.post);
-    
+
     this.userService.registrationUser(this.post).subscribe((data) => {
-     return this.user_registred = data;
+      return (this.user_registred = data);
     });
-   
+
     this.userService.popOpenDialog();
-    this.snack.openSnackBar('Your account has been created','center','bottom',6000,'snack-create')
-    this.onNoClick()
-   
-   }
+    this.snack.openSnackBar(
+      'Your account has been created',
+      'center',
+      'bottom',
+      6000,
+      'snack-create'
+    );
+    this.onNoClick();
+  }
 }

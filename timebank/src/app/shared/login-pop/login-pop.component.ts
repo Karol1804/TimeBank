@@ -51,6 +51,7 @@ export class LoginPopComponent implements OnDestroy {
     /** Az sa zatvori okno confirmom pastuje data do userLoginu a vrati to usera,savne token a presmeruje stranku */
 
     this.dialogRef.afterClosed().subscribe((data) => {
+      
       this.valuePhone =
         this.phone.get('myphone')?.value.plus +
         this.phone.get('myphone')?.value.area +
@@ -77,7 +78,7 @@ export class LoginPopComponent implements OnDestroy {
           8000,
           'snack-wrong'
         );
-        return ;
+        return;
       }
 
       if (data) {
@@ -86,12 +87,10 @@ export class LoginPopComponent implements OnDestroy {
           .userlogin(this.loginData.phone, this.loginData.password)
           .subscribe((userObject) => {
             if (userObject) {
-              this.userService.tokenExtraction(userObject);
 
+              this.userService.tokenExtraction(userObject);
               this.userLogedzip = userObject;
-              this.userService.userGetProfile().subscribe((profileRespo) => {
-              
-              });
+              this.userService.userGetProfile().subscribe((profileRespo) => {});
               this.router.navigateByUrl('/my-services');
 
               this.snack.openSnackBar(
@@ -101,11 +100,8 @@ export class LoginPopComponent implements OnDestroy {
                 8000,
                 'snack-login'
               );
-        
+
               return this.userLogedzip;
-
-
-
             } else {
               alert('Error extract user?');
               return undefined;
@@ -116,9 +112,8 @@ export class LoginPopComponent implements OnDestroy {
   }
 
   onRegClick(): void {
-    this.userService.popOpenRegis()
+    this.userService.popOpenRegis();
     this.dialogRef.close();
-    //this.router.navigateByUrl('');
   }
 
   onNoClick(): void {

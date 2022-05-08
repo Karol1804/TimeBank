@@ -22,6 +22,7 @@ export class SnackBarService {
      vertical: MatSnackBarVerticalPosition ='bottom',
      autoHide: number = 5000,
      panelclass: string='snack-css',)
+     
    { this.snackBarConfig = new MatSnackBarConfig();
      this.snackBarConfig.horizontalPosition = horizon;
      this.snackBarConfig.verticalPosition = vertical;

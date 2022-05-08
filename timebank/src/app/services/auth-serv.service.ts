@@ -82,7 +82,6 @@ export class AuthServService {
       this.globalStorageService.saveToken(userRes.access_token);
       this.globalStorageService.saveUserId(userRes.id.toString());
       this.globalStorageService.saveUserName(userRes.user_name);
-   
 
       return userRes.access_token;
     } else {
@@ -95,17 +94,15 @@ export class AuthServService {
       width: '300px',
       data: {},
     });
-  } 
+  }
 
-popOpenRegis(): void {
-
+  popOpenRegis(): void {
     this.dialog.open(RegisPopComponent, {
       width: '400px',
-      disableClose:true,
+      disableClose: true,
       data: {},
     });
   }
-
 
   userGetProfile(): Observable<ProfileRespond | undefined> {
     return this.http
@@ -121,7 +118,9 @@ popOpenRegis(): void {
     }
   }
 
-  registrationExtract(res: HttpResponse<RegisUserResp>): RegisUserResp | undefined {
+  registrationExtract(
+    res: HttpResponse<RegisUserResp>
+  ): RegisUserResp | undefined {
     if (res.body) {
       return res.body;
     } else {
@@ -129,33 +128,32 @@ popOpenRegis(): void {
     }
   }
 
- registrationUser(payload: RegisUser ): Observable< any | undefined>
- {
-   return this.http.post<any>(this.apiPostUserCreate, payload)
-   .pipe(map(this.registrationExtract));
-
- }
-
-
- phoneExtract(res: HttpResponse<any>): any | undefined {
-  if (res) {
-
-    return res;
-    
-  } else {
-    return undefined;
+  registrationUser(payload: RegisUser): Observable<any | undefined> {
+    return this.http
+      .post<any>(this.apiPostUserCreate, payload)
+      .pipe(map(this.registrationExtract));
   }
-}
 
+  phoneExtract(res: HttpResponse<any>): any | undefined {
+    if (res) {
+      return res;
+    } else {
+      return undefined;
+    }
+  }
 
- checkPhone( controlValue: MyTel): Observable< any | undefined>{
-  let payload= { phone: controlValue.plus+controlValue.area+' '+controlValue.exchange +' '+controlValue.subscriber}
- return this.http.post<any>(this.apiPostUserPhone,payload).pipe(map(this.phoneExtract))
-
-
- }
-
-
- 
-
+  checkPhone(controlValue: MyTel): Observable<any | undefined> {
+    let payload = {
+      phone:
+        controlValue.plus +
+        controlValue.area +
+        ' ' +
+        controlValue.exchange +
+        ' ' +
+        controlValue.subscriber,
+    };
+    return this.http
+      .post<any>(this.apiPostUserPhone, payload)
+      .pipe(map(this.phoneExtract));
+  }
 }

@@ -70,3 +70,15 @@ body {
   line-height: 20px;
   opacity: 1;
 }
+
+
+/* default snack bez param*/
+.snack-css{color: rgb(255, 255, 255);}
+/* default snack bez param*/
+.snack-css .mat-simple-snackbar {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  line-height: 20px;
+  opacity: 1;
+}
