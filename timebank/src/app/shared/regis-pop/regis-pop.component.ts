@@ -26,12 +26,14 @@ import { RegisUserResp } from 'src/app/models/RegisUserResp';
 })
 export class RegisPopComponent implements OnInit, OnDestroy {
   phoneSendResp: { result: boolean };
-  private phoneJoin: string;
+  public phoneJoin: string;
   formGroup: FormGroup;
   //titleAlert: string = 'This field is required';
   post: any = '';
   user_registred: RegisUserResp;
-
+  hide: boolean = true;
+  hide2: boolean = true;
+  
   constructor(
     private formBuilder: FormBuilder,
     private userService: AuthServService,
@@ -143,15 +145,23 @@ export class RegisPopComponent implements OnInit, OnDestroy {
     this.dialogRef.close();
   }
 
-  onFormSubmit(): void {
-    this.phoneJoin =
+  onFormSubmit() { 
+    if (this.formGroup.get('myphone')?.value.area && this.formGroup.get('myphone')?.value.exchange
+    &&  this.formGroup.get('myphone')?.value.subscriber) {
+      this.phoneJoin =
       '+' +
       this.formGroup.get('myphone')?.value.area +
       ' ' +
       this.formGroup.get('myphone')?.value.exchange +
       ' ' +
       this.formGroup.get('myphone')?.value.subscriber;
-  }
+      return this.phoneJoin ;
+      
+     }
+     console.log('vo fuknci' +this.phoneJoin) ;
+     return 
+    }
+ 
 
   checkPhoneVal(control: any) {
     let enteredPhone = control?.value;
@@ -192,6 +202,10 @@ export class RegisPopComponent implements OnInit, OnDestroy {
     this.post = post;
 
     this.onFormSubmit();
+
+    console.log('vo submite' +this.phoneJoin) ;
+
+
     this.post = {
       user_name: this.post.name,
       phone: this.phoneJoin,

@@ -62,9 +62,21 @@
         <input
           matInput
           placeholder="Password"
-          type="password"
+          [type]="hide ? 'password' : 'text'"
           formControlName="password"
         />
+        
+      <button
+      mat-icon-button
+      matSuffix
+      style="margin-left: 1rem"
+      (click)="hide = !hide"
+      [attr.aria-label]="'Hide password'"
+      [attr.aria-pressed]="hide"
+      type="button"
+    >
+      <mat-icon>{{ hide ? "visibility_off" : "visibility" }}</mat-icon>
+    </button>
         <mat-hint>Choose a reliable password to ensure security</mat-hint>
         <mat-error
           *ngIf="
@@ -82,7 +94,22 @@
           placeholder="Password"
           type="password"
           formControlName="password_valid"
+          [type]="hide2 ? 'password' : 'text'"
         />
+
+        <button
+        mat-icon-button
+        matSuffix
+        style="margin-left: 1rem"
+        (click)="hide2 = !hide2"
+        [attr.aria-label]="'Hide password'"
+        [attr.aria-pressed]="hide2"
+        type="button"
+      >
+        <mat-icon>{{ hide2 ? "visibility_off" : "visibility" }}</mat-icon>
+      </button>
+
+
         <mat-hint>Passwords must match </mat-hint>
         <mat-error
           *ngIf="
