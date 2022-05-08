@@ -1,47 +1,100 @@
-    <div style="position: relative"> 
-    <button mat-icon-button  class="closeBTN"   (click)="onNoClick()">X</button>
+<div style="position: relative">
+  <button mat-icon-button class="closeBTN" (click)="onNoClick()">X</button>
 
-    <mat-toolbar color="primary">
-      <span class="fill-remaining-space"> Login </span>
-    </mat-toolbar>
-    <div mat-dialog-content class="logcon" style="margin-top: 1rem;" >
-    
-    <div [formGroup]="phone"  >
-      <mat-form-field appearance="fill" class="inputC" >
-      <mat-label >Phone number</mat-label>   
-        <app-pho class="inputC" formControlName="myphone" required  #tel></app-pho>
-        <mat-icon matSuffix style="margin-left:1.4rem;">phone</mat-icon>
-        <mat-hint>Include country code</mat-hint>
-        <mat-error *ngIf="tel.errorState" style="text-align: center;" >Wrong format +XXX 444 556677 </mat-error>
-      </mat-form-field>
-   </div>
-  
-      <mat-form-field appearance="fill" class="inputC"  >
-        <mat-label>Enter your password</mat-label>
-        <input class="inputC" matInput [type]="hide ? 'password' : 'text'"  [(ngModel)]="data.password" required>
+  <mat-toolbar color="primary">
+    <span class="fill-remaining-space"> Login </span>
+  </mat-toolbar>
 
-        <button  mat-icon-button matSuffix style="margin-left:1rem;" (click)="hide = !hide" [attr.aria-label]="'Hide password'" [attr.aria-pressed]="hide">
-          <mat-icon >{{hide ? 'visibility_off' : 'visibility'}}</mat-icon>
-        </button>
-      </mat-form-field>
-    </div>
 
-   <div mat-dialog-actions class="groupBTNS">
-    <div class="twobutton">  
-     <button mat-fab color="primary" 
-      [mat-dialog-close]="data" 
-      [disabled]="!(tel.value && data.password)">
-      <mat-icon >done</mat-icon></button>
-    </div>
+  <div mat-dialog-content class="logcon" style="margin-top: 1rem">
+    <div [formGroup]="phone">
+      <mat-form-field appearance="fill" class="inputC">
+        <mat-label>Phone number</mat-label>
+        <app-pho
+          class="inputC"
+          formControlName="myphone"
+          required
+          #tel
+        ></app-pho>
+        <mat-icon matSuffix style="margin-left: 1.4rem">phone</mat-icon>
+        <mat-hint
+        *ngIf="
+          !myphone?.hasError('alreadyTaken') &&
+          !myphone?.hasError('numberpass')
+        "
+        >Include country code</mat-hint
+      >
+      <mat-error *ngIf="!myphone.valid && myphone.dirty">
+        {{ getErrorPhone() }}
+      </mat-error>
+       
+      <mat-hint
+      *ngIf="myphone?.hasError('alreadyTaken') && !myphone.valid && myphone.dirty"
+      style="color: red !important; font-size: x-small"
+    >
+    This phone as login dont exist in database
+    </mat-hint>
+
+    <mat-hint
+      *ngIf="myphone?.hasError('numberpass')"
+      style="color: red !important; font-size: x-small"
+    >
+      Number is not valid phone number
+    </mat-hint>
+       
+       
+       
       
-
-
-      <hr>
-      <mat-hint style="font-size: small; "> No account? Sign up for free </mat-hint>
-      <button mat-raised-button class="registration" color="accent" (click)="onRegClick()"> Sign up </button>
-
+        <mat-error *ngIf="tel.errorState" style="text-align: left"
+          >Wrong format +XXX 444 556677
+        </mat-error>
+      </mat-form-field>
     </div>
+
+    <mat-form-field appearance="fill" class="inputC" style="margin-top: 1.2rem;">
+      <mat-label>Enter your password</mat-label>
+      <input
+        class="inputC"
+        matInput
+        [type]="hide ? 'password' : 'text'"
+        [(ngModel)]="data.password"
+        required
+      />
+
+      <button
+        mat-icon-button
+        matSuffix
+        style="margin-left: 1rem"
+        (click)="hide = !hide"
+        [attr.aria-label]="'Hide password'"
+        [attr.aria-pressed]="hide"
+      >
+        <mat-icon>{{ hide ? "visibility_off" : "visibility" }}</mat-icon>
+      </button>
+    </mat-form-field>
   </div>
 
+  <div mat-dialog-actions class="groupBTNS">
+    <div class="twobutton">
+      <button
+        mat-fab
+        color="primary"
+        [mat-dialog-close]="data"
+        [disabled]="!(tel.value && data.password && phone.valid)"
+      >
+        <mat-icon>done</mat-icon>
+      </button>
+    </div>
 
- 
+    <hr />
+    <mat-hint style="font-size: small"> No account? Sign up for free </mat-hint>
+    <button
+      mat-raised-button
+      class="registration"
+      color="accent"
+      (click)="onRegClick()"
+    >
+      Sign up
+    </button>
+  </div>
+</div>

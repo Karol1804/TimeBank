@@ -14,7 +14,7 @@ import { AuthServService } from './auth-serv.service';
   providedIn: 'root',
 })
 
-export default class CheckPhoneService {
+export default class CheckloginPhoneService {
   static createValidator(userService: AuthServService): AsyncValidatorFn {
     return (control: AbstractControl): Observable<any> => { 
       return userService
@@ -22,7 +22,7 @@ export default class CheckPhoneService {
         .pipe(
           map((result: {result :boolean}) => {
         
-            return !result.result ? { alreadyTaken: true } : null; } 
+            return result.result ? { alreadyTaken: true } : null; } 
             
              )
         );

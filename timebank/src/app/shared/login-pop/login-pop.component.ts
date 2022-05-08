@@ -17,9 +17,11 @@ import { Router } from '@angular/router';
 import { GlobalStorageService } from 'src/app/services/global-storage.service';
 import { UserRespond } from 'src/app/models/UserRespond';
 import { AuthServService } from 'src/app/services/auth-serv.service';
-import { FormControl, FormGroup } from '@angular/forms';
+import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { MyTel } from '../pho/MyTel';
 import { SnackBarService } from 'src/app/services/snackbar.service';
+import CheckPhoneService from 'src/app/services/check-phone.service';
+import CheckloginPhoneService from 'src/app/services/checklogin-phone.service';
 
 @Component({
   selector: 'app-login-pop',
@@ -32,10 +34,7 @@ export class LoginPopComponent implements OnDestroy {
   public loginData: LoginData = { phone: '', password: '' };
   hide: boolean = true;
 
-  public phone: FormGroup = new FormGroup({
-    // myphone: new FormControl(new MyTel('+', '', '', '')),
-    myphone: new FormControl(new MyTel('+', '421', '', '')),
-  });
+  
 
   constructor(
     private globalStorageService: GlobalStorageService,
@@ -47,39 +46,31 @@ export class LoginPopComponent implements OnDestroy {
     public data: any
   ) {}
 
+
+  public phone: FormGroup = new FormGroup({
+    myphone: new FormControl(new MyTel('+', '421', '', ''), {
+      validators: [Validators.required, this.checkPhoneValid],
+      asyncValidators: CheckloginPhoneService.createValidator(this.userService),
+    })})
+
+
+
+
+  
   ngOnDestroy(): void {
     /** Az sa zatvori okno confirmom pastuje data do userLoginu a vrati to usera,savne token a presmeruje stranku */
 
     this.dialogRef.afterClosed().subscribe((data) => {
       
+      if(this.valuePhone){ 
       this.valuePhone =
         this.phone.get('myphone')?.value.plus +
         this.phone.get('myphone')?.value.area +
         ' ' +
         this.phone.get('myphone')?.value.exchange +
         ' ' +
-        this.phone.get('myphone')?.value.subscriber;
-
-      let condi = [
-        /0{3}/.test(this.phone.get('myphone')?.value.area),
-        /0{3}/.test(this.phone.get('myphone')?.value.exchange),
-        /0{6}/.test(this.phone.get('myphone')?.value.subscriber),
-      ];
-
-      if (
-        condi[0] ||
-        (condi[1] && condi[2]) ||
-        (condi[0] && condi[1] && condi[2])
-      ) {
-        this.snack.openSnackBar(
-          'Wrong number',
-          'center',
-          'top',
-          8000,
-          'snack-wrong'
-        );
-        return;
-      }
+        this.phone.get('myphone')?.value.subscriber;}
+   
 
       if (data) {
         this.loginData = { phone: this.valuePhone, password: data.password };
@@ -110,6 +101,57 @@ export class LoginPopComponent implements OnDestroy {
       }
     });
   }
+
+
+
+  checkPhoneValid (control: any) {
+    let enteredPhone = control?.value;
+    let condi: [boolean, boolean, boolean];
+
+    if (enteredPhone) {
+      if (
+        enteredPhone.area != null &&
+        enteredPhone.exchange != null &&
+        enteredPhone.subscriber != null
+      ) {
+        condi = [
+          /0{3}/.test(enteredPhone.area),
+          /0{3}/.test(enteredPhone.exchange),
+          /0{6}/.test(enteredPhone.subscriber),
+        ];
+
+        if (
+          condi[0] ||
+          (condi[1] && condi[2]) ||
+          (condi[0] && condi[1] && condi[2])
+        ) {
+          return { numberpass: true };
+        } else {
+          return null;
+        }
+      } else {
+        return null;
+      }
+    } else {
+      return null;
+    }
+  }
+
+  getErrorPhone() {
+    return this.phone.get('myphone')?.hasError('required')
+      ? 'The field is required'
+      : this.phone.get('myphone')?.hasError('alreadyTaken')
+      ? 'This phone as login dont exist in database'
+      : this.phone.get('myphone')?.hasError('numberpass')
+      ? 'Not valid phone number'
+      : '';
+  }
+
+  
+  get myphone() {
+    return this.phone.get('myphone') as FormControl;
+  }
+
 
   onRegClick(): void {
     
