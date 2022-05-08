@@ -22,7 +22,8 @@ export default class CheckPhoneService {
         .checkPhone( control.value )
         .pipe(
           map((result: {result :boolean}) => {
-            return result.result ? { alreadyTaken: true } : null; } 
+        
+            return !result.result ? { alreadyTaken: true } : null; } 
             
              )
         );
