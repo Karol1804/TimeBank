@@ -60,8 +60,8 @@ export class RegisPopComponent implements OnInit, OnDestroy {
           validators:[Validators.required, Validators.maxLength(15), Validators.minLength(3)]
         }),
 
-        myphone: new FormControl(new MyTel('', '', '', ''), {
-          validators: Validators.required,
+        myphone: new FormControl(new MyTel('+', '421', '', ''), {
+          validators: [Validators.required, this.checkPhoneVal],
           asyncValidators: CheckPhoneService.createValidator(this.userService),
         }),
 
@@ -103,7 +103,9 @@ export class RegisPopComponent implements OnInit, OnDestroy {
     return this.formGroup.get('myphone')?.hasError('required')
       ? 'The field is required'
       : this.formGroup.get('myphone')?.hasError('alreadyTaken')
-      ? 'This phone is already in use !'
+      ? 'This phone is already in use !'      
+      : this.formGroup.get('myphone')?.hasError('numberpass')
+      ? 'Not valid phone number'
       : '';
   }
 
@@ -148,8 +150,50 @@ export class RegisPopComponent implements OnInit, OnDestroy {
       this.formGroup.get('myphone')?.value.subscriber;
   }
 
+
+  checkPhoneVal(control: any) {
+    let enteredPhone = control?.value;
+    let condi: [boolean,boolean,boolean];
+    
+    if ( enteredPhone){
+    if ( enteredPhone.area != null && enteredPhone.exchange != null && enteredPhone.subscriber != null)
+    {
+
+      condi = [
+      /0{3}/.test(enteredPhone.area),
+      /0{3}/.test(enteredPhone.exchange),
+      /0{6}/.test(enteredPhone.subscriber),
+    ];
+  
+    if ( 
+      condi[0] ||
+      (condi[1] && condi[2]) ||
+      (condi[0] && condi[1] && condi[2])
+    ) {
+    
+      
+
+
+      return  {'numberpass': true} ;
+    } else {  return null}
+  } else {  return null}
+
+}else {  return null}
+
+  } 
+
+
+
+
+
+
+
   onSubmit(post: any) {
     this.post = post;
+    
+    
+     
+    
 
     this.onFormSubmit();
     this.post = {
@@ -167,8 +211,8 @@ export class RegisPopComponent implements OnInit, OnDestroy {
     });
    
     this.userService.popOpenDialog();
-
-
+    this.snack.openSnackBar('Account created','center','bottom',6000)
+    this.onNoClick()
    
-  }
+   }
 }

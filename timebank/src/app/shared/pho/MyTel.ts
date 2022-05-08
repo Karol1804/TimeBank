@@ -5,7 +5,6 @@ export class MyTel {
     public exchange: string,
     public subscriber: string
   ) {
-    this.plus = '+';
-   this.area= '421';
+
   }
 }

@@ -1,4 +1,5 @@
 
+import { ObserversModule } from '@angular/cdk/observers';
 import { Injectable } from '@angular/core';
 import {
   AbstractControl,
@@ -16,12 +17,13 @@ import { AuthServService } from './auth-serv.service';
 
 export default class CheckPhoneService {
   static createValidator(userService: AuthServService): AsyncValidatorFn {
-    return (control: AbstractControl): Observable<any> => {
+    return (control: AbstractControl): Observable<any> => { 
       return userService
         .checkPhone( control.value )
         .pipe(
           map((result: {result :boolean}) => {
             return result.result ? { alreadyTaken: true } : null; } 
+            
              )
         );
     };

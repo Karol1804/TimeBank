@@ -34,7 +34,7 @@ export class LoginPopComponent implements OnDestroy {
 
   public phone: FormGroup = new FormGroup({
     // myphone: new FormControl(new MyTel('+', '', '', '')),
-    myphone: new FormControl(new MyTel('+', '421', '905', '111222')),
+    myphone: new FormControl(new MyTel('+', '421', '', '')),
   });
 
   constructor(
@@ -77,7 +77,7 @@ export class LoginPopComponent implements OnDestroy {
           8000,
           'snack-wrong'
         );
-        data = null;
+        return ;
       }
 
       if (data) {

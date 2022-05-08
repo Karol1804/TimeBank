@@ -1,103 +1,110 @@
-<div style="position: relative"> 
-  <button mat-icon-button  class="closeBTN"   (click)="onNoClick()">X</button>
+<div style="position: relative">
+  <button mat-icon-button class="closeBTN" (click)="onNoClick()">X</button>
 
-<mat-toolbar color="primary">
-  <span class="fill-remaining-space"> Sign Up </span>
-</mat-toolbar>
+  <mat-toolbar color="primary">
+    <span class="fill-remaining-space"> Sign Up </span>
+  </mat-toolbar>
 
-<div class="container">
-  <form
-    [formGroup]="formGroup"
-    (ngSubmit)="onSubmit(formGroup.value)"
-    class="form"
-    novalidate
-  >
-    
+  <div class="container">
+    <form
+      [formGroup]="formGroup"
+      (ngSubmit)="onSubmit(formGroup.value)"
+      class="form"
+      novalidate
+    >
+      <mat-form-field appearance="fill" class="form-element">
+        <mat-label>Phone number</mat-label>
+        <app-pho
+          class="inputC"
+          formControlName="myphone"
+          required
+          #tel
+        ></app-pho>
+        <mat-icon matSuffix style="margin-left: 1.4rem">phone</mat-icon>
+        <mat-hint
+          *ngIf="
+            !myphone?.hasError('alreadyTaken') &&
+            !myphone?.hasError('numberpass')
+          "
+          >Include country code</mat-hint
+        >
+        <mat-error *ngIf="!myphone.valid && myphone.dirty">
+          {{ getErrorPhone() }}
+        </mat-error>
 
-    <mat-form-field appearance="fill" class="form-element">
-      <mat-label>Phone number</mat-label>
-      <app-pho class="inputC" formControlName="myphone" required  #tel></app-pho>
-      <mat-icon matSuffix style="margin-left: 1.4rem">phone</mat-icon>
-      <mat-hint *ngIf="!formGroup.get('myphone')?.hasError('alreadyTaken')"
-        >Include country code</mat-hint
-      >
-      <mat-error *ngIf="!formGroup.controls['myphone'].valid">
-        {{ getErrorPhone() }}
-      </mat-error>
+        <mat-hint
+          *ngIf="myphone?.hasError('alreadyTaken')"
+          style="color: red !important; font-size: x-small"
+        >
+          Phone number is already in use
+        </mat-hint>
 
-      <mat-hint
-        *ngIf="formGroup.get('myphone')?.hasError('alreadyTaken')"
-        style="color: red !important; font-size: x-small"
-      >
-        Phone number is already in use
-      </mat-hint>
+        <mat-hint
+          *ngIf="myphone?.hasError('numberpass')"
+          style="color: red !important; font-size: x-small"
+        >
+          Number is not valid phone number
+        </mat-hint>
 
-      <mat-error *ngIf="tel.errorState" style="text-align: left"
-        >Wrong format +XXX 444 556677
-      </mat-error>
-    </mat-form-field>
-   
-    <mat-form-field class="form-element">
-      <input matInput placeholder="Name" formControlName="name" />
-      <mat-error *ngIf="!name.valid && name.touched  ">
-        {{ getErrorName() }}
-      </mat-error>
-    </mat-form-field>
+        <mat-error *ngIf="tel.errorState" style="text-align: left"
+          >Wrong format +XXX 444 556677
+        </mat-error>
+      </mat-form-field>
 
+      <mat-form-field class="form-element">
+        <input matInput placeholder="Name" formControlName="name" />
+        <mat-error *ngIf="!name.valid && name.touched">
+          {{ getErrorName() }}
+        </mat-error>
+      </mat-form-field>
 
+      <mat-form-field class="form-element">
+        <input
+          matInput
+          placeholder="Password"
+          type="password"
+          formControlName="password"
+        />
+        <mat-hint>Choose a reliable password to ensure security</mat-hint>
+        <mat-error
+          *ngIf="
+            !formGroup.controls['password'].valid &&
+            formGroup.controls['password'].touched
+          "
+        >
+          {{ getErrorPassword() }}
+        </mat-error>
+      </mat-form-field>
 
+      <mat-form-field class="form-element">
+        <input
+          matInput
+          placeholder="Password"
+          type="password"
+          formControlName="password_valid"
+        />
+        <mat-hint>Passwords must match </mat-hint>
+        <mat-error
+          *ngIf="
+            !formGroup.controls['password_valid'].valid &&
+            formGroup.controls['password_valid'].touched
+          "
+        >
+          {{ getErrorPassword_val() }}
+        </mat-error>
+      </mat-form-field>
 
-
-    <mat-form-field class="form-element">
-      <input
-        matInput
-        placeholder="Password"
-        type="password"
-        formControlName="password"
-      />
-      <mat-hint
-        >Choose a reliable password to ensure security</mat-hint
-      >
-      <mat-error
-        *ngIf="
-          !formGroup.controls['password'].valid &&
-          formGroup.controls['password'].touched
-        "
-      >
-        {{ getErrorPassword() }}
-      </mat-error>
-    </mat-form-field>
-
-    <mat-form-field class="form-element">
-      <input
-        matInput
-        placeholder="Password"
-        type="password"
-        formControlName="password_valid"
-      />
-      <mat-hint
-        >Passwords must match </mat-hint
-      >
-      <mat-error
-        *ngIf="
-          !formGroup.controls['password_valid'].valid &&
-          formGroup.controls['password_valid'].touched
-        "
-      >
-        {{ getErrorPassword_val() }}
-      </mat-error>
-    </mat-form-field>
-
-    <div class="form-element">
-      <button
-        mat-raised-button
-        color="primary"
-        type="submit"
-        class="button"
-        [disabled]="!formGroup.valid"
-      >
-        Sign up
-      </button>
-    </div>
-  </form>
+      <div class="form-element">
+        <button
+          mat-raised-button
+          color="primary"
+          type="submit"
+          class="button"
+          [disabled]="!formGroup.valid"
+        >
+          Sign up
+        </button>
+      </div>
+    </form>
+  </div>
 </div>
