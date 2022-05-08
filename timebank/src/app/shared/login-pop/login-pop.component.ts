@@ -112,8 +112,9 @@ export class LoginPopComponent implements OnDestroy {
   }
 
   onRegClick(): void {
-    this.userService.popOpenRegis();
+    
     this.dialogRef.close();
+    this.userService.popOpenRegis();
   }
 
   onNoClick(): void {
