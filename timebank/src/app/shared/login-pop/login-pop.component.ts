@@ -62,18 +62,17 @@ export class LoginPopComponent implements OnDestroy {
 
     this.dialogRef.afterClosed().subscribe((data) => {
       
-      if(this.valuePhone){ 
-      this.valuePhone =
+      if (data) {
+        this.valuePhone =
         this.phone.get('myphone')?.value.plus +
         this.phone.get('myphone')?.value.area +
         ' ' +
         this.phone.get('myphone')?.value.exchange +
         ' ' +
-        this.phone.get('myphone')?.value.subscriber;}
-   
+        this.phone.get('myphone')?.value.subscriber;
 
-      if (data) {
         this.loginData = { phone: this.valuePhone, password: data.password };
+
         this.userService
           .userlogin(this.loginData.phone, this.loginData.password)
           .subscribe((userObject) => {
@@ -99,7 +98,7 @@ export class LoginPopComponent implements OnDestroy {
             }
           });
       }
-    });
+     });
   }
 
 
