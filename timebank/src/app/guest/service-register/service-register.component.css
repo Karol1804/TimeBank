@@ -70,3 +70,11 @@ input{
     padding-top: 100px;
     text-align: center;
 }
+
+.starratting {
+    display: flex;
+}
+
+star-rating{
+    margin-left: 5px;
+}

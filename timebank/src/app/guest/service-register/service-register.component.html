@@ -61,6 +61,19 @@
                         <p>Hours: <b>{{record.hours}}</b></p>
                         <p>Date: <b>{{record.end_time | date: 'dd/MM/yyyy'}}</b></p>
                         
+
+
+                        <div class="starratting">
+                            <p>Rating:</p>
+                            <star-rating
+                              [value]="record.end_rating"
+                              [totalstars]="5"
+                              checkedcolor="red"
+                              uncheckedcolor="black"
+                              size="18px"
+                              [readonly]="true"
+                            ></star-rating>
+                          </div>
                         
                     </mat-card-content>
                 </mat-card>

@@ -17,7 +17,8 @@ export class ServiceRegisterComponent implements OnInit {
   public records: GetRegisterRecord[];
   public id: number;
   public hours: number;
-  public rating: number;
+  public rating: number|any;
+  public end_rating: number;
   public obj_rating: number;
   public isChecked = false;
   
@@ -68,6 +69,8 @@ export class ServiceRegisterComponent implements OnInit {
         this.records = recordsFromService;
         console.log('Toto je loadDatarec:');
         console.log(this.records);
+        console.log(this.rating);
+        
       });
   }
 
