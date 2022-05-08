@@ -7,7 +7,7 @@ export class RegisterRecord {
         public hours?: number,
         public end_time?: Date,
         public end_rating?:number,
-       
+        public rating?:number,
     ) {}
 }
 
@@ -23,6 +23,7 @@ export class GetRegisterRecord {
         public hours?: number,
         public end_time?: Date,
         public end_rating?:any,
+        public rating?:number,
     ) {}
 }
 

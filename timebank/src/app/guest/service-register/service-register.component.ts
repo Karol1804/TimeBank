@@ -17,17 +17,17 @@ export class ServiceRegisterComponent implements OnInit {
   public records: GetRegisterRecord[];
   public id: number;
   public hours: number;
-  public rating: number|any;
+  public rating: number | any;
   public end_rating: number;
   public obj_rating: number;
   public isChecked = false;
-  
+
   public user_id: any | undefined;
 
   constructor(
     private router: Router,
     private servicesService: ServicesService,
-    private globalStorage: GlobalStorageService,
+    private globalStorage: GlobalStorageService
   ) {}
 
   ngOnInit(): void {
@@ -49,8 +49,8 @@ export class ServiceRegisterComponent implements OnInit {
 
   userId() {
     this.user_id = this.globalStorage.getUserId();
-      
-    console.log("Toto je User id: " + this.user_id);
+
+    console.log('Toto je User id: ' + this.user_id);
   }
 
   onRate($event: {
@@ -70,7 +70,6 @@ export class ServiceRegisterComponent implements OnInit {
         console.log('Toto je loadDatarec:');
         console.log(this.records);
         console.log(this.rating);
-        
       });
   }
 
@@ -78,29 +77,29 @@ export class ServiceRegisterComponent implements OnInit {
     let record = new EndRegisterRecord(
       id,
       hours,
-      (this.rating = this.obj_rating),
+      (this.rating = this.obj_rating)
     );
     if (hours == null || hours <= 0) {
       alert('Zadal si nespravnu alebo ziadnu hodnotu');
-    }  else if (this.isChecked == false){
+    } else if (this.isChecked == true) {
       this.servicesService
-     .endRegisterRecordWR(id, hours, record)
+        .endRegisterRecordWR(id, hours, record)
         .subscribe((result) => {
           console.log(record);
           console.log(hours);
         });
       alert('Servis ukonceny.Pocet zapisanych hodin: ' + hours);
-     this.router.navigate(['services']);
-      } else if (this.rating == undefined){
-      this.rating=0;
+      // this.router.navigate(['services']);
+    } else if (this.rating == undefined) {
+      this.rating = 0;
       this.servicesService
-      .endRegisterRecord(id, hours, this.rating, record)
-      .subscribe((result) => {
-        console.log(record);
-        console.log(hours);
-      });
-    alert('Servis ukonceny.Pocet zapisanych hodin: ' + hours);
-   this.router.navigate(['services']);
+        .endRegisterRecord(id, hours, this.rating, record)
+        .subscribe((result) => {
+          console.log(record);
+          console.log(hours);
+        });
+      alert('Servis ukonceny.Pocet zapisanych hodin: ' + hours);
+      //this.router.navigate(['services']);
     } else {
       this.servicesService
         .endRegisterRecord(id, hours, this.rating, record)
@@ -109,7 +108,7 @@ export class ServiceRegisterComponent implements OnInit {
           console.log(hours);
         });
       alert('Servis ukonceny.Pocet zapisanych hodin: ' + hours);
-     this.router.navigate(['services']);
+      // this.router.navigate(['services']);
     }
     console.log('Urobil som end.');
     console.log('ID:' + id + ' Hodin: ' + hours);
@@ -128,8 +127,8 @@ export class ServiceRegisterComponent implements OnInit {
     );
   }
 
-  longTitle = true
+  longTitle = true;
   showLongTitle() {
-    this.longTitle = !this.longTitle
+    this.longTitle = !this.longTitle;
   }
 }
