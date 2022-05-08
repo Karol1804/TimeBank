@@ -64,10 +64,12 @@ const routes: Routes = [
   {
     path: 'user-service/:user_id',
     component: UserServicesComponent,
+    canActivate: [AuthGuardService],
   },
   {
     path: 'my-services',
     component: MyServicesComponent,
+    canActivate: [AuthGuardService],
   },
   {
     path: 'my-services/edit/:id',
