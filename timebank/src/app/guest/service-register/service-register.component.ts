@@ -89,7 +89,7 @@ export class ServiceRegisterComponent implements OnInit {
           console.log(hours);
         });
       alert('Servis ukonceny.Pocet zapisanych hodin: ' + hours);
-      // this.router.navigate(['services']);
+      this.router.navigate(['services']);
     } else if (this.rating == undefined) {
       this.rating = 0;
       this.servicesService
@@ -99,7 +99,7 @@ export class ServiceRegisterComponent implements OnInit {
           console.log(hours);
         });
       alert('Servis ukonceny.Pocet zapisanych hodin: ' + hours);
-      //this.router.navigate(['services']);
+      this.router.navigate(['services']);
     } else {
       this.servicesService
         .endRegisterRecord(id, hours, this.rating, record)
@@ -108,7 +108,7 @@ export class ServiceRegisterComponent implements OnInit {
           console.log(hours);
         });
       alert('Servis ukonceny.Pocet zapisanych hodin: ' + hours);
-      // this.router.navigate(['services']);
+       this.router.navigate(['services']);
     }
     console.log('Urobil som end.');
     console.log('ID:' + id + ' Hodin: ' + hours);
