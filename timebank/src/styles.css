@@ -6,6 +6,11 @@ body {
   /* background-color: #424242 !important; color: white !important; */
   height: 100%; 
 }
+
+html {
+  overflow-y: scroll;
+}
+
 body {
   margin: 0;
   font-family: Roboto, "Helvetica Neue", sans-serif;
