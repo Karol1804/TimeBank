@@ -27,6 +27,16 @@ export class GetRegisterRecord {
     ) {}
 }
 
+export class ProvRegisterRecord {
+    constructor(
+        public end_time: Date,
+        public hours: number,
+        public rating:number,
+        public title: string,
+        public consumer_id: any,   
+    ) {}
+}
+
 export class EndRegisterRecord {
     constructor(
         public id: number,

@@ -2,7 +2,7 @@ import { Injectable } from '@angular/core';
 import { HttpClient } from "@angular/common/http";
 import { Service, UpdateService } from '../models/service';
 import { User } from '../models/user';
-import { EndRegisterRecord, GetRegisterRecord, RegisterRecord } from '../models/registerrecord';
+import { EndRegisterRecord, GetRegisterRecord, RegisterRecord,ProvRegisterRecord } from '../models/registerrecord';
 import { map } from 'rxjs';
 import { apiurl } from '../url/apiUrl';
 import { Userservices } from '../models/userservices';
@@ -29,6 +29,10 @@ export class ServicesService {
   private apiUserServicesUrl = (user_id: number) => this.api + "services-user/" + user_id;
   private apiGetServicesSortUrl = this.api + "services?sort=";
   private apiGetServicesSearchUrl = (tit: string) => this.api + "service-search?ord=asc&field=title&s="+tit;
+
+  private apiGetProvServiceRegisterUrl = this.api + "user/history-log";
+  
+  
   
   constructor(
     private http: HttpClient
@@ -110,7 +114,21 @@ export class ServicesService {
 
   // Gets records from Service register.
   getRegisterRecords(query: string) {
-    return this.http.get(this.apiGetServiceRegisterUrl + query).pipe(map(this.remoteRegisterRecords));
+    return this.http.get(this.apiGetProvServiceRegisterUrl + query).pipe(map(this.remoteRegisterRecords));
+  }
+
+  // Helper for "Register" related functions. Returns records based on service record - GetRegisterRecord- model for mapping.
+  remoteProvRegisterRecords(res: any): ProvRegisterRecord[] {
+    let records: ProvRegisterRecord[] = [];
+    for (let record of res) {
+      records.push(new ProvRegisterRecord(record.end_time, record.hours, record.rating, record.Service.title, record.Service.consumer_id))
+    }
+    return records;
+  }
+
+   // Gets records from Service register.
+   getProvRegisterRecords(query: string) {
+    return this.http.get(this.apiGetServiceRegisterUrl + query).pipe(map(this.remoteProvRegisterRecords));
   }
 
   // Gets single Service based on ID.

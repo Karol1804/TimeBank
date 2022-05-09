@@ -49,3 +49,73 @@
 
     </div>
 </div>
+
+<div class="divider">
+    <p><b>Ended services</b></p>
+</div>
+<div *ngFor="let record of records">
+    <div *ngIf="record.consumer_id==user_id">
+        <!-- <div *ngIf="record.service_status=='ended'"> -->
+
+            <mat-card class="card">
+                <mat-card-title>
+                    <div *ngIf="record.title.length > 35; else shortTitle">
+                        <div [ngClass]="{'longtitle': longTitle}" (click)="showLongTitle()">{{record.title }}</div>
+                    </div>
+                    <ng-template #shortTitle>{{record.title}}</ng-template>
+                </mat-card-title>
+                <mat-divider inset></mat-divider>
+                <br />
+                <mat-card-content>
+                    <p>
+                        Name: <b>Name</b>
+                    </p>
+                    <p>
+                        Hours: <b>{{ record.hours }}</b>
+                    </p>
+    
+                    
+    
+                    <div class="starratting">
+                        <star-rating [value]="record.rating" [totalstars]="5" checkedcolor="red" uncheckedcolor="black"
+                            size="18px" [readonly]="true"></star-rating>
+                    </div>
+                
+                </mat-card-content>
+                <!-- <mat-divider inset></mat-divider> -->
+            </mat-card>
+            
+            <!-- <mat-card class="card">
+                <mat-card-title>
+                    <div *ngIf="record.title.length > 35; else shortTitle">
+                        <div [ngClass]="{'longtitle': longTitle}" (click)="showLongTitle()">{{ record.title }}</div>
+                    </div>
+                    <ng-template #shortTitle>{{record.title}}</ng-template>
+                </mat-card-title>
+                <mat-divider inset></mat-divider>
+                <br>
+                <mat-card-content>
+                    <p>Consumer: <b>Name</b></p>
+                    <p>Service_status: <b>{{record.service_status}}</b></p>
+                    <p>Hours: <b>{{record.hours}}</b></p>
+                    <p>Date: <b>{{record.end_time | date: 'dd/MM/yyyy'}}</b></p>
+                    
+
+
+                    <div class="starratting">
+                        <p>Rated with:</p>
+                        <star-rating
+                          [value]="record.end_rating"
+                          [totalstars]="5"
+                          checkedcolor="red"
+                          uncheckedcolor="black"
+                          size="18px"
+                          [readonly]="true"
+                        ></star-rating>
+                      </div>
+                    
+                </mat-card-content>
+            </mat-card> -->
+        <!-- </div> -->
+    </div>
+</div>
