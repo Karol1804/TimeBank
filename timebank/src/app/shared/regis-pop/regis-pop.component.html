@@ -53,6 +53,7 @@
 
       <mat-form-field class="form-element">
         <input matInput placeholder="Name" formControlName="name" />
+        <mat-hint> Minimum 3 and maximum 15 characters long</mat-hint>
         <mat-error *ngIf="!name.valid && name.touched">
           {{ getErrorName() }}
         </mat-error>
