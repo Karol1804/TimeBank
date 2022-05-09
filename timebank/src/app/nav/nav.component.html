@@ -8,10 +8,10 @@
     <span class="example-spacer"></span>
     <ng-container *ngIf="switchBtn()"> 
       <!-- <button mat-button (click)="routeToProfile()">profile</button> -->
-      <button mat-button (click)="routeToMyServices()">My services</button>
-      <button mat-button (click)="routeToServices()">All services</button>
-      <button mat-button (click)="routeToOrders()">Orders</button>
-      <button mat-button (click)="routeToCreateService()">Create service </button>
+      <button mat-button (click)="routeToMyServices()"><a [routerLink]="['/my-services']" routerLinkActive="activated">My services</a></button>
+      <button mat-button (click)="routeToServices()"><a [routerLink]="['/services']" routerLinkActive="activated">All services</a></button>
+      <button mat-button (click)="routeToOrders()"><a [routerLink]="['/service-register']" routerLinkActive="activated">Orders</a></button>
+      <button mat-button (click)="routeToCreateService()"><a [routerLink]="['/create-service']" routerLinkActive="activated">Create service</a></button>
        </ng-container>  
     <span class="example-spacer"></span>
 
