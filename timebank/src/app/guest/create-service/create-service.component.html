@@ -24,7 +24,7 @@
       </p>
       <span>Estimate hours: </span>
       <input
-        type="number"
+        type="number" min="0"
         (keypress)="omit_special_char($event)"
         [(ngModel)]="estimate"
         value="{{ estimate }}"

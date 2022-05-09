@@ -75,7 +75,7 @@ export class GuestLayoutComponent implements OnInit {
       this.search = ""
     }
     else{
-      alert("Minimalny pocet znakov musi byt: 3 ")
+      alert("The minimum number of characters is: 3 ")
     }
       //console.log(this.tit) 
   
@@ -86,7 +86,7 @@ export class GuestLayoutComponent implements OnInit {
       this.services = servicesFromService
       }
       else {
-        alert("Hladany text nebol najdeny") 
+        alert("Search text not found") 
       } 
     }) 
   }
