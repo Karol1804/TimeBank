@@ -114,7 +114,7 @@ export class ServicesService {
 
   // Gets records from Service register.
   getRegisterRecords(query: string) {
-    return this.http.get(this.apiGetProvServiceRegisterUrl + query).pipe(map(this.remoteRegisterRecords));
+    return this.http.get(this.apiGetServiceRegisterUrl + query).pipe(map(this.remoteRegisterRecords));
   }
 
   // Helper for "Register" related functions. Returns records based on service record - GetRegisterRecord- model for mapping.
