@@ -18,6 +18,9 @@ export class MyServicesComponent implements OnInit {
   public user_id: number;
   public records: ProvRegisterRecord[];
   public users : User[] | undefined;
+  noServices: string;
+  endedServices: string;
+  pleaseCreate: string;
 
     constructor(
     private globalStorage: GlobalStorageService,
@@ -55,6 +58,10 @@ export class MyServicesComponent implements OnInit {
       this.userservices = userServices
       console.log("user_id je " + user_id)
       console.log(userServices)
+	  if (userServices.length == 0){
+          this.noServices = "You have not created any own service.";
+          this.pleaseCreate = "Please, create new one...";
+      }							
     })
   }
 
@@ -66,6 +73,9 @@ export class MyServicesComponent implements OnInit {
         console.log('Toto je loadDatarec:');
         console.log(this.records);
         // console.log(this.rating);
+		if (recordsFromService.length > 0) {
+          this.endedServices = "Ended services";
+        }									
       });
     this.servicesService
       .getUsers("")

@@ -1,8 +1,15 @@
 <div class="main" >
-    <div *ngFor="let user of users" class="timeaccount">
-        <span [(ngModel)]="user_id" ngDefaultControl><p *ngIf="user_id == user.id">My Actual time account: <b>{{user.time_account}}</b></p></span>
+	<div class="divider">
+        <p>{{noServices}} <a routerLink="/create-service">{{pleaseCreate}}</a></p>
     </div>
-
+    <div class="timeaccount">
+        <div *ngFor="let user of users">
+            <span [(ngModel)]="user_id" ngDefaultControl><p *ngIf="user_id == user.id">Your actual time account is <b>{{user.time_account}}</b>
+            <span *ngIf="user.time_account == 1; else elseHours"> hour.</span>
+            <ng-template #elseHours> hours.</ng-template>
+            </p></span>
+        </div>
+    </div>
     <div *ngFor="let service of userservices">
         <mat-card class="card">
             <mat-card-title>
@@ -52,8 +59,8 @@
     </div>
 
 
-<div class="divider" >
-    <p><b>Provided Services</b></p>
+<div class="divider">
+    <p><b>{{endedServices}}</b></p>
 </div>
 <div *ngFor="let record of records">
     <div>
