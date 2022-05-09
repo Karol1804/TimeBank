@@ -33,7 +33,7 @@ export class ProvRegisterRecord {
         public hours: number,
         public rating:number,
         public title: string,
-        public consumer_id: any,   
+        public consumer_id: number,   
     ) {}
 }
 

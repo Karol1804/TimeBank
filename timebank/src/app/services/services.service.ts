@@ -121,14 +121,14 @@ export class ServicesService {
   remoteProvRegisterRecords(res: any): ProvRegisterRecord[] {
     let records: ProvRegisterRecord[] = [];
     for (let record of res) {
-      records.push(new ProvRegisterRecord(record.end_time, record.hours, record.rating, record.Service.title, record.Service.consumer_id))
+      records.push(new ProvRegisterRecord(record.end_time, record.hours, record.rating, record.title, record.consumer_id))
     }
     return records;
   }
 
    // Gets records from Service register.
    getProvRegisterRecords(query: string) {
-    return this.http.get(this.apiGetServiceRegisterUrl + query).pipe(map(this.remoteProvRegisterRecords));
+    return this.http.get(this.apiGetProvServiceRegisterUrl + query).pipe(map(this.remoteProvRegisterRecords));
   }
 
   // Gets single Service based on ID.
