@@ -15,7 +15,7 @@ export class MyServicesComponent implements OnInit {
   public services: Service[] | undefined;
   public userservices : Userservices[] | undefined;
   ServicesService: any;
-  public user_id: any | undefined;
+  public user_id: number;
   public records: ProvRegisterRecord[];
   public users : User[] | undefined;
 
@@ -26,6 +26,8 @@ export class MyServicesComponent implements OnInit {
 
   ngOnInit(): void {
     let user_id = this.globalStorage.getUserId();
+    this.user_id = Number(user_id)
+    console.log(this.user_id)
     this.loadData(user_id);
     this.reload();
     console.log("Toto je User ID: " + this.user_id);
@@ -73,6 +75,7 @@ export class MyServicesComponent implements OnInit {
         console.log(this.users);
         // console.log(this.rating);
       });
+    
   }
 
   longTitle = true

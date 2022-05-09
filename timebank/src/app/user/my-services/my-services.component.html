@@ -1,7 +1,9 @@
-<div class="main">
-    <p>My services</p>
-    <div *ngFor="let service of userservices">
+<div class="main" >
+    <div *ngFor="let user of users" class="timeaccount">
+        <span [(ngModel)]="user_id" ngDefaultControl><p *ngIf="user_id == user.id">My Actual time account: <b>{{user.time_account}}</b></p></span>
+    </div>
 
+    <div *ngFor="let service of userservices">
         <mat-card class="card">
             <mat-card-title>
                 <div *ngIf="service.title.length > 35; else shortTitle">
@@ -55,7 +57,7 @@
 </div>
 <div *ngFor="let record of records">
     <div>
-            <mat-card class="card" >
+        <mat-card class="card" >
                 <mat-card-title>
                     <div *ngIf="record.title.length > 35; else shortTitle">
                         <div [ngClass]="{'longtitle': longTitle}" (click)="showLongTitle()">{{record.title }}</div>
@@ -65,7 +67,7 @@
                 <mat-divider inset></mat-divider>
                 <br />
                 <mat-card-content  >
-                 <div  *ngFor="let user of users">
+                 <div *ngFor="let user of users">
                     <p *ngIf="record.consumer_id == user.id"  >
                         Consumer: <b >{{user.user_name}}</b>
                     </p>
@@ -78,7 +80,7 @@
                             size="18px" [readonly]="true"></star-rating>
                     </div>
                 </mat-card-content>
-            </mat-card>
+        </mat-card>
     </div>
 </div>
 </div>
