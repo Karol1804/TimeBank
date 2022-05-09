@@ -1,83 +1,122 @@
 <div class="main">
-    <div *ngFor="let record of records">
-        <div *ngIf="record.consumer_id==user_id">        
-                <div *ngIf="record.service_status=='inprogress'">
-                    <mat-card class="card">
-                        <mat-card-title>
-                            <div *ngIf="record.title.length > 35; else shortTitle">
-                                <div [ngClass]="{'longtitle': longTitle}" (click)="showLongTitle()">{{ record.title }}</div>
-                            </div>
-                            <ng-template #shortTitle>{{record.title}}</ng-template>
-                        </mat-card-title>
-                        <mat-divider inset></mat-divider>
-                        <br>
-                        <mat-card-content>
-                            <p>Consumer: <b>{{record.user_name}}</b></p>
-                            <p>Service_status: <b>{{record.service_status}}</b></p>
-                            <div *ngIf="record.service_status == 'inprogress'">
-                                <span>Hours </span>
-                                <input type="number" (keypress)="omit_special_char($event)" [(ngModel)]="record.hours"
-                                    value="{{record.hours}}">
-                                <br>
-                                <span class="error" *ngIf="record.hours == 0">The number of hours must be equal or greater than 1</span>
-                                <br>
-                                <mat-slide-toggle [(ngModel)]="isChecked">I don't want to rate!</mat-slide-toggle>
-                                <br>
-                                <div *ngIf="!isChecked">
-                                    <star-rating [value]="0" [totalstars]="5" checkedcolor="#ffd740" uncheckedcolor="black" size="24px" [readonly]="false" (rate)="onRate($event)"></star-rating>
-                                        </div>
-                
-                                <br>
-                                <div class="send-button">
-                                <button mat-raised-button color="white"
-                                    (click)="endRegisterRecord(record.id, record.hours)">Submit</button>
-                                </div>
-                            </div>
-                        </mat-card-content>
-                    </mat-card>
-                </div>
-        </div>
-    </div>
-    
-    <div class="divider">
-        <p><b>Ended services</b></p>
-    </div>
-    <div *ngFor="let record of records">
-        <div *ngIf="record.consumer_id==user_id">
-            <div *ngIf="record.service_status=='ended'">
-                
-                <mat-card class="card">
-                    <mat-card-title>
-                        <div *ngIf="record.title.length > 35; else shortTitle">
-                            <div [ngClass]="{'longtitle': longTitle}" (click)="showLongTitle()">{{ record.title }}</div>
-                        </div>
-                        <ng-template #shortTitle>{{record.title}}</ng-template>
-                    </mat-card-title>
-                    <mat-divider inset></mat-divider>
-                    <br>
-                    <mat-card-content>
-                        <p>Consumer: <b>{{record.user_name}}</b></p>
-                        <p>Service_status: <b>{{record.service_status}}</b></p>
-                        <p>Hours: <b>{{record.hours}}</b></p>
-                        <p>Date: <b>{{record.end_time | date: 'dd/MM/yyyy'}}</b></p>
-                        
-
-
-                        <div class="starratting">
-                            <p>Rated with:</p>
-                            <star-rating
-                              [value]="record.end_rating"
-                              [totalstars]="5"
-                              checkedcolor="red"
-                              uncheckedcolor="black"
-                              size="18px"
-                              [readonly]="true"
-                            ></star-rating>
-                          </div>
-                        
-                    </mat-card-content>
-                </mat-card>
+  <div *ngFor="let record of records">
+    <div *ngIf="record.consumer_id == user_id">
+      <div *ngIf="record.service_status == 'inprogress'">
+        <mat-card class="card">
+          <mat-card-title>
+            <div *ngIf="record.title.length > 35; else shortTitle">
+              <div
+                [ngClass]="{ longtitle: longTitle }"
+                (click)="showLongTitle()"
+              >
+                {{ record.title }}
+              </div>
             </div>
-        </div>
+            <ng-template #shortTitle>{{ record.title }}</ng-template>
+          </mat-card-title>
+          <mat-divider inset></mat-divider>
+          <br />
+          <mat-card-content>
+            <p>
+              Consumer: <b>{{ record.user_name }}</b>
+            </p>
+            <p>
+              Service_status: <b>{{ record.service_status }}</b>
+            </p>
+            <div *ngIf="record.service_status == 'inprogress'">
+              <span>Hours </span>
+              <input
+                type="number"
+                (keypress)="omit_special_char($event)"
+                [(ngModel)]="record.hours"
+                value="{{ record.hours }}"
+              />
+              <br />
+              <span class="error" *ngIf="record.hours == 0"
+                >The number of hours must be equal or greater than 1</span
+              >
+              <br />
+              <mat-slide-toggle [(ngModel)]="isChecked"
+                >I don't want to rate!</mat-slide-toggle
+              >
+              <br />
+              <div *ngIf="!isChecked">
+                <star-rating
+                  [value]="0"
+                  [totalstars]="5"
+                  checkedcolor="#ffd740"
+                  uncheckedcolor="black"
+                  size="24px"
+                  [readonly]="false"
+                  (rate)="onRate($event)"
+                ></star-rating>
+              </div>
+
+              <br />
+              <div class="send-button">
+                <button
+                  mat-raised-button
+                  color="white"
+                  (click)="endRegisterRecord(record.id, record.hours)"
+                >
+                  Submit
+                </button>
+              </div>
+            </div>
+          </mat-card-content>
+        </mat-card>
+      </div>
     </div>
+  </div>
+
+  <div class="divider">
+    <p><b>Ended services</b></p>
+  </div>
+  <div *ngFor="let record of records">
+    <div *ngIf="record.consumer_id == user_id">
+      <div *ngIf="record.service_status == 'ended'">
+        <mat-card class="card">
+          <mat-card-title>
+            <div *ngIf="record.title.length > 35; else shortTitle">
+              <div
+                [ngClass]="{ longtitle: longTitle }"
+                (click)="showLongTitle()"
+              >
+                {{ record.title }}
+              </div>
+            </div>
+            <ng-template #shortTitle>{{ record.title }}</ng-template>
+          </mat-card-title>
+          <mat-divider inset></mat-divider>
+          <br />
+          <mat-card-content>
+            <p>
+              Consumer: <b>{{ record.user_name }}</b>
+            </p>
+            <p>
+              Service_status: <b>{{ record.service_status }}</b>
+            </p>
+            <p>
+              Hours: <b>{{ record.hours }}</b>
+            </p>
+            <p>
+              Date: <b>{{ record.end_time | date: "dd/MM/yyyy" }}</b>
+            </p>
+
+            <div class="starratting">
+              <p>Rated with:</p>
+              <star-rating
+                [value]="record.end_rating"
+                [totalstars]="5"
+                checkedcolor="red"
+                uncheckedcolor="black"
+                size="18px"
+                [readonly]="true"
+              ></star-rating>
+            </div>
+          </mat-card-content>
+        </mat-card>
+      </div>
+    </div>
+  </div>
 </div>
