@@ -117,7 +117,7 @@ export class ServicesService {
     return this.http.get(this.apiGetServiceRegisterUrl + query).pipe(map(this.remoteRegisterRecords));
   }
 
-  // Helper for "Register" related functions. Returns records based on service record - GetRegisterRecord- model for mapping.
+  // Helper for "Register" related functions. Returns records based on service record - GetProvRegisterRecord- model for mapping.
   remoteProvRegisterRecords(res: any): ProvRegisterRecord[] {
     let records: ProvRegisterRecord[] = [];
     for (let record of res) {
@@ -126,7 +126,7 @@ export class ServicesService {
     return records;
   }
 
-   // Gets records from Service register.
+   // Gets records from Service register log.
    getProvRegisterRecords(query: string) {
     return this.http.get(this.apiGetProvServiceRegisterUrl + query).pipe(map(this.remoteProvRegisterRecords));
   }

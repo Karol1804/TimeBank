@@ -4,6 +4,7 @@ import { Userservices } from '../../models/userservices';
 import { ServicesService } from '../../services/services.service';
 import { GlobalStorageService } from '../../services/global-storage.service';
 import { ProvRegisterRecord } from 'src/app/models/registerrecord';
+import { User } from 'src/app/models/user';
 
 @Component({
   selector: 'app-my-services',
@@ -16,7 +17,7 @@ export class MyServicesComponent implements OnInit {
   ServicesService: any;
   public user_id: any | undefined;
   public records: ProvRegisterRecord[];
-  
+  public users : User[] | undefined;
 
     constructor(
     private globalStorage: GlobalStorageService,
@@ -62,6 +63,14 @@ export class MyServicesComponent implements OnInit {
         this.records = recordsFromService;
         console.log('Toto je loadDatarec:');
         console.log(this.records);
+        // console.log(this.rating);
+      });
+    this.servicesService
+      .getUsers("")
+      .subscribe((recordsFromService) => {
+        this.users = recordsFromService;
+        console.log('Vsetci useri:');
+        console.log(this.users);
         // console.log(this.rating);
       });
   }

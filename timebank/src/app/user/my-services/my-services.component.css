@@ -39,3 +39,18 @@
     font-size: 2rem;
     padding: 10px 0;
 }
+.divider {
+    clear: both;
+    height: 1px;
+    width: 100%;
+    padding-top: 100px;
+    text-align: center;
+}
+
+.starratting {
+    display: flex;
+}
+
+star-rating{
+    margin-left: 5px;
+}

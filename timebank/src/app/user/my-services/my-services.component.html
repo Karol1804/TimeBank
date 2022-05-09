@@ -48,16 +48,14 @@
         </mat-card>
 
     </div>
-</div>
 
-<div class="divider">
-    <p><b>Ended services</b></p>
+
+<div class="divider" >
+    <p><b>Provided Services</b></p>
 </div>
 <div *ngFor="let record of records">
-    <!-- <div *ngIf="record.consumer_id==user_id"> -->
-
-
-            <mat-card class="card">
+    <div>
+            <mat-card class="card" >
                 <mat-card-title>
                     <div *ngIf="record.title.length > 35; else shortTitle">
                         <div [ngClass]="{'longtitle': longTitle}" (click)="showLongTitle()">{{record.title }}</div>
@@ -66,10 +64,12 @@
                 </mat-card-title>
                 <mat-divider inset></mat-divider>
                 <br />
-                <mat-card-content>
-                    <p>
-                        Consumer: <b>Name</b>
+                <mat-card-content  >
+                 <div  *ngFor="let user of users">
+                    <p *ngIf="record.consumer_id == user.id"  >
+                        Consumer: <b >{{user.user_name}}</b>
                     </p>
+                </div>
                     <p>
                         Hours: <b>{{ record.hours }}</b>
                     </p>
@@ -79,5 +79,6 @@
                     </div>
                 </mat-card-content>
             </mat-card>
-        
+    </div>
+</div>
 </div>
