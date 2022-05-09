@@ -12,18 +12,18 @@
   </button> -->
   <button mat-menu-item (click)="routeToMyServices()">
     <mat-icon>home</mat-icon>
-    <span>My services</span>
+    <span><a [routerLink]="['/my-services']" routerLinkActive="activatedmenu">My services</a></span>
   </button>
   <button mat-menu-item (click)="routeToServices()">
     <mat-icon>list</mat-icon>
-    <span>All services</span>
+    <span><a [routerLink]="['/services']" routerLinkActive="activatedmenu">All services</a></span>
   </button>
   <button mat-menu-item (click)="routeToOrders()">
     <mat-icon>shopping_cart</mat-icon>
-    <span>Orders</span>
+    <span><a [routerLink]="['/service-register']" routerLinkActive="activatedmenu">Orders</a></span>
   </button>
   <button mat-menu-item (click)="routeToCreateService()">
     <mat-icon>add_circle_outline</mat-icon>
-    <span>Create service</span>
+    <span><a [routerLink]="['/create-service']" routerLinkActive="activatedmenu">Create service</a></span>
   </button>
 </mat-menu>

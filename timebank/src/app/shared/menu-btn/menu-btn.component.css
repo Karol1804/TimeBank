@@ -1,0 +1,9 @@
+.activatedmenu {
+    /* font-weight: bold; */
+    text-decoration: none;
+    border-bottom: 2px solid #673ab7;
+}
+
+a {
+    text-decoration: none;
+}
