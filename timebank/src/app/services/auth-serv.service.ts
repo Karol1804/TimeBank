@@ -1,8 +1,8 @@
 import { Injectable } from '@angular/core';
 import { HttpClient, HttpResponse } from '@angular/common/http';
 import { ProfileRespond } from '../models/profileRespond';
-import { map, tap } from 'rxjs/operators';
-import { Observable, of, Subscription } from 'rxjs';
+import { catchError, map, tap } from 'rxjs/operators';
+import { Observable, of, Subscription, throwError } from 'rxjs';
 import { UserRespond } from '../models/UserRespond';
 import { GlobalStorageService } from './global-storage.service';
 import { MatDialog } from '@angular/material/dialog';
@@ -154,8 +154,57 @@ export class AuthServService {
     };
     return this.http
       .post<any>(this.apiPostUserPhone, payload)
+      .pipe(
+        catchError((error) => {
+          switch (error.status) {
+            case 404: // 'Number doesn't exist 404
+              this.snackbar.openSnackBar(
+                "Phone number doesn't exist",
+                'center',
+                'top',
+                5000,
+                'snack-wrong'
+              );
+
+              break;
+
+            case 500: // 500 internal error
+              this.snackbar.openSnackBar(
+                'Server error. Please try later.',
+                'center',
+                'top',
+                5000,
+                'snack-wrong'
+              );
+
+              break;
+
+            case 0: // 0 network?
+              this.snackbar.openSnackBar(
+                'Network error. Please try later ',
+                'center',
+                'top',
+                10000,
+                'snack-wrong'
+              );
+
+              break;
+
+            default: // 0 network?
+              this.snackbar.openSnackBar(
+                'Network user/server error. Please try later ',
+                'center',
+                'top',
+                5000,
+                'snack-wrong'
+              );
+
+              break;
+          }
+          return throwError(() => new Error(error));
+        })
+      )
+
       .pipe(map(this.phoneExtract));
   }
 }
-
-
