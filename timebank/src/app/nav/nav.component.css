@@ -38,3 +38,8 @@ a:visited {
 .example-spacer {
   flex: 1 1 auto;
 }
+
+.activated {
+  border-bottom: 2px solid #fff;
+}
+

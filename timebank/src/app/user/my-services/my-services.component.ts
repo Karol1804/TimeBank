@@ -3,6 +3,7 @@ import { Service } from '../../models/service';
 import { Userservices } from '../../models/userservices';
 import { ServicesService } from '../../services/services.service';
 import { GlobalStorageService } from '../../services/global-storage.service';
+import { ProvRegisterRecord } from 'src/app/models/registerrecord';
 
 @Component({
   selector: 'app-my-services',
@@ -14,10 +15,9 @@ export class MyServicesComponent implements OnInit {
   public userservices : Userservices[] | undefined;
   ServicesService: any;
   public user_id: any | undefined;
+  public records: ProvRegisterRecord[];
   
-  
-  
-  
+
     constructor(
     private globalStorage: GlobalStorageService,
     private servicesService: ServicesService
@@ -28,6 +28,7 @@ export class MyServicesComponent implements OnInit {
     this.loadData(user_id);
     this.reload();
     console.log("Toto je User ID: " + this.user_id);
+    this.loadData1()
   }
 
   reload() {
@@ -52,6 +53,17 @@ export class MyServicesComponent implements OnInit {
       console.log("user_id je " + user_id)
       console.log(userServices)
     })
+  }
+
+  loadData1() {
+    this.servicesService
+      .getProvRegisterRecords('')
+      .subscribe((recordsFromService) => {
+        this.records = recordsFromService;
+        console.log('Toto je loadDatarec:');
+        console.log(this.records);
+        // console.log(this.rating);
+      });
   }
 
   longTitle = true

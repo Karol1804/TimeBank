@@ -76,7 +76,7 @@ export class LoginPopComponent implements OnDestroy {
                 this.userService
                   .userGetProfile()
                   .subscribe((profileRespo) => {});
-                this.router.navigateByUrl('/my-services');
+                this.router.navigateByUrl('/services');
 
                 this.snack.openSnackBar(
                   ` Welcome back ${this.userLogedzip.user_name} !`,
