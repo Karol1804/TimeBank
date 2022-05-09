@@ -74,7 +74,7 @@ export class MyServicesComponent implements OnInit {
         console.log(this.records);
         // console.log(this.rating);
 		if (recordsFromService.length > 0) {
-          this.endedServices = "My provided services";
+          this.endedServices = "My provided services history";
         }									
       });
     this.servicesService
