@@ -78,7 +78,7 @@ export class ServiceRegisterComponent implements OnInit {
       (this.rating = this.obj_rating),
     );
     if (hours == null || hours <= 0) {
-      alert('Zadal si nespravnu alebo ziadnu hodnotu');
+      alert('You entered an incorrect or no value');
     }  else if (this.isChecked == false){
       this.servicesService
      .endRegisterRecordWR(id, hours, record)
@@ -86,7 +86,7 @@ export class ServiceRegisterComponent implements OnInit {
           console.log(record);
           console.log(hours);
         });
-      alert('Servis ukonceny.Pocet zapisanych hodin: ' + hours);
+      alert('The service has been terminated. Number of registered hours: ' + hours);
       this.router.navigate(['services']);
     } else if (this.rating == undefined) {
       this.rating = 0;
@@ -96,7 +96,7 @@ export class ServiceRegisterComponent implements OnInit {
           console.log(record);
           console.log(hours);
         });
-      alert('Servis ukonceny.Pocet zapisanych hodin: ' + hours);
+      alert('The service has been terminated. Number of registered hours: ' + hours);
       this.router.navigate(['services']);
     } else {
       this.servicesService
@@ -105,7 +105,7 @@ export class ServiceRegisterComponent implements OnInit {
           console.log(record);
           console.log(hours);
         });
-      alert('Servis ukonceny.Pocet zapisanych hodin: ' + hours);
+      alert('The service has been terminated. Number of registered hours: ' + hours);
        this.router.navigate(['services']);
     }
     console.log('Urobil som end.');

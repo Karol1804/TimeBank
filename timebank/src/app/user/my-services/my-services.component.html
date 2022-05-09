@@ -82,6 +82,9 @@
                     <p>
                         Hours: <b>{{ record.hours }}</b>
                     </p>
+                    <p>
+                        Date: <b>{{ record.end_time  | date: "dd/MM/yyyy" }}</b>
+                    </p>
                     <div class="starratting">
                         <star-rating [value]="record.rating" [totalstars]="5" checkedcolor="red" uncheckedcolor="black"
                             size="18px" [readonly]="true"></star-rating>
