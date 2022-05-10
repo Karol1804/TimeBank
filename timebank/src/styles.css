@@ -20,6 +20,10 @@ body {
   padding-top:50px;
 }
 
+.card {
+  min-height: 240px;
+}
+
 .card mat-card-title {
   line-height: 1.6;
 }
@@ -31,7 +35,6 @@ body {
   -webkit-box-orient: vertical;
   cursor: pointer;
 }
-
 
 
 .snack-logout {

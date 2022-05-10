@@ -26,7 +26,7 @@
             <div *ngIf="record.service_status == 'inprogress'">
               <span>Hours </span>
               <input
-                type="number" min="0"
+                type="number" min="0" max="30"
                 (keypress)="omit_special_char($event)"
                 [(ngModel)]="record.hours"
                 value="{{ record.hours }}"
@@ -35,23 +35,27 @@
               <span class="error" *ngIf="record.hours == 0"
                 >The number of hours must be equal or greater than 1</span
               >
-              <br />
-              <mat-slide-toggle [(ngModel)]="isChecked"
-                >I don't want to rate!</mat-slide-toggle
+              <span class="error" *ngIf="record.hours == 30"
+                >Max value of hours is 30</span
               >
               <br />
-              <div *ngIf="!isChecked">
-                <star-rating
-                  [value]="0"
-                  [totalstars]="5"
-                  checkedcolor="#ffd740"
-                  uncheckedcolor="black"
-                  size="24px"
-                  [readonly]="false"
-                  (rate)="onRate($event)"
-                ></star-rating>
+              <div *ngIf="record.hours">
+                <mat-slide-toggle [(ngModel)]="isChecked" 
+                  >I don't want to rate!</mat-slide-toggle
+                >
+                <br />
+                <div *ngIf="!isChecked">
+                  <star-rating
+                    [value]="0"
+                    [totalstars]="5"
+                    checkedcolor="#ffd740"
+                    uncheckedcolor="black"
+                    size="24px"
+                    [readonly]="false"
+                    (rate)="onRate($event)"
+                  ></star-rating>
+                </div>
               </div>
-
               <br />
               <div class="send-button">
                 <button

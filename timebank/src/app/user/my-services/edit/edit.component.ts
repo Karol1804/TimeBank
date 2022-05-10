@@ -55,7 +55,7 @@ export class EditComponent implements OnInit {
   // method to update service
   updateService() {
     this.emptyInputError = false;
-    if (!this.title || !this.estimate) {
+    if (!this.title) {
       this.emptyInputError = true;
     } else {
  
