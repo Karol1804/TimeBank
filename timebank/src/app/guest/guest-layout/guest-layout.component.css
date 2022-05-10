@@ -42,14 +42,6 @@
     padding: 10px 0;
 }
 
-.spacer {
-    display: block;
-    width: 100%;
-    height: 100px;
-    float: left;
-}
-
-
 .example-section {
     align-content: center;
     align-items: center;
