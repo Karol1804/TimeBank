@@ -32,7 +32,7 @@
       *ngIf="myphone?.hasError('alreadyTaken') && !myphone.valid && myphone.dirty"
       style="color: red !important; font-size: x-small"
     >
-    Phone is NOT registered ----> Sign Up
+    Phone is NOT registered
     </mat-hint>
 
     <mat-hint
@@ -46,7 +46,7 @@
        
       
         <mat-error *ngIf="tel.errorState" style="text-align: left"
-          >Wrong format +XXX 444 556677
+          >Wrong format +xxx 444 556677
         </mat-error>
       </mat-form-field>
     </div>
