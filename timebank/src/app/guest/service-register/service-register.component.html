@@ -39,22 +39,23 @@
                 >Max value of hours is 30</span
               >
               <br />
-              <mat-slide-toggle [(ngModel)]="isChecked"
-                >I don't want to rate!</mat-slide-toggle
-              >
-              <br />
-              <div *ngIf="!isChecked">
-                <star-rating
-                  [value]="0"
-                  [totalstars]="5"
-                  checkedcolor="#ffd740"
-                  uncheckedcolor="black"
-                  size="24px"
-                  [readonly]="false"
-                  (rate)="onRate($event)"
-                ></star-rating>
+              <div *ngIf="record.hours">
+                <mat-slide-toggle [(ngModel)]="isChecked" 
+                  >I don't want to rate!</mat-slide-toggle
+                >
+                <br />
+                <div *ngIf="!isChecked">
+                  <star-rating
+                    [value]="0"
+                    [totalstars]="5"
+                    checkedcolor="#ffd740"
+                    uncheckedcolor="black"
+                    size="24px"
+                    [readonly]="false"
+                    (rate)="onRate($event)"
+                  ></star-rating>
+                </div>
               </div>
-
               <br />
               <div class="send-button">
                 <button

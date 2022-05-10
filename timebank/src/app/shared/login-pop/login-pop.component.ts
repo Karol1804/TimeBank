@@ -73,16 +73,17 @@ export class LoginPopComponent implements OnDestroy {
               if (userObject) {
                 this.userService.tokenExtraction(userObject);
                 this.userLogedzip = userObject;
-                this.userService
+                
+               /*  this.userService
                   .userGetProfile()
-                  .subscribe((profileRespo) => {});
+                  .subscribe((profileRespo) => {}); */
                
 
                 this.snack.openSnackBar(
                   ` Welcome back ${this.userLogedzip.user_name} !`,
                   'center',
                   'bottom',
-                  8000,
+                  5000,
                   'snack-login'
                 );
 
