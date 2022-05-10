@@ -26,7 +26,7 @@
             <div *ngIf="record.service_status == 'inprogress'">
               <span>Hours </span>
               <input
-                type="number" min="0"
+                type="number" min="0" max="30"
                 (keypress)="omit_special_char($event)"
                 [(ngModel)]="record.hours"
                 value="{{ record.hours }}"
@@ -34,6 +34,9 @@
               <br />
               <span class="error" *ngIf="record.hours == 0"
                 >The number of hours must be equal or greater than 1</span
+              >
+              <span class="error" *ngIf="record.hours == 30"
+                >Max value of hours is 30</span
               >
               <br />
               <mat-slide-toggle [(ngModel)]="isChecked"
