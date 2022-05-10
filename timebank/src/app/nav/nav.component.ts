@@ -44,4 +44,16 @@ export class NavComponent implements OnInit {
     routeToMyServices() {
       this.router.navigateByUrl('/my-services');
     }
+
+  reload() {
+    if (window.localStorage) {
+      if (!localStorage.getItem('reload')) {
+        localStorage['reload'] = true;
+        window.location.reload();
+      } else {
+        localStorage.removeItem('reload');
+      }
+    }
   }
+  
+}

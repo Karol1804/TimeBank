@@ -2,8 +2,7 @@
   <mat-toolbar class="mat-toolbar mat-primary firstBar">
    
     <a routerLink="/"
-      ><img class="logo" src="/assets/img/logo.svg" alt="Timebank"
-    /></a>
+      ><img (click)="reload()" class="logo" src="/assets/img/logo.svg" alt="Timebank"/></a>
 
     <span class="example-spacer"></span>
     <ng-container *ngIf="switchBtn()"> 
