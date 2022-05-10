@@ -24,13 +24,14 @@
       </p>
       <span>Estimate hours: </span>
       <input
-        type="number" min="0"
+        type="number" min="0" max="30"
         (keypress)="omit_special_char($event)"
         [(ngModel)]="estimate"
         value="{{ estimate }}"
       />
       <mat-error *ngIf="numberInputError"> Wrong input value! </mat-error>
       <br />
+      <span class="error" *ngIf="estimate == 30">Max value of estimate hours is 30</span>
       <mat-error *ngIf="emptyInputError"> All fields are requried! </mat-error>
       <br>
       <a class="back" routerLink="..">
