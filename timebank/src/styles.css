@@ -117,3 +117,7 @@ a {
   height: 100px;
   float: left;
 }
+
+.title {
+  width: 90% !important;
+}
