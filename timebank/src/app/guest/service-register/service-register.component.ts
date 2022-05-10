@@ -66,8 +66,8 @@ export class ServiceRegisterComponent implements OnInit {
       .getRegisterRecords('')
       .subscribe((recordsFromService) => {
         this.records = recordsFromService;
-        console.log('Toto je loadDatarec:');
-        console.log(this.records);
+        //console.log('Toto je loadDatarec:');
+       // console.log(this.records);
       });
   }
 
@@ -79,12 +79,12 @@ export class ServiceRegisterComponent implements OnInit {
     );
     if (hours == null || hours <= 0) {
       alert('You entered an incorrect or no value');
-    }  else if (this.isChecked == false){
+    }  else if (this.isChecked == true){
       this.servicesService
      .endRegisterRecordWR(id, hours, record)
         .subscribe((result) => {
-          console.log(record);
-          console.log(hours);
+         // console.log(record);
+         // console.log(hours);
         });
       alert('The service has been terminated. Number of registered hours: ' + hours);
       this.router.navigate(['services']);
@@ -93,8 +93,8 @@ export class ServiceRegisterComponent implements OnInit {
       this.servicesService
         .endRegisterRecord(id, hours, this.rating, record)
         .subscribe((result) => {
-          console.log(record);
-          console.log(hours);
+        //  console.log(record);
+        // console.log(hours);
         });
       alert('The service has been terminated. Number of registered hours: ' + hours);
       this.router.navigate(['services']);
@@ -102,14 +102,14 @@ export class ServiceRegisterComponent implements OnInit {
       this.servicesService
         .endRegisterRecord(id, hours, this.rating, record)
         .subscribe((result) => {
-          console.log(record);
-          console.log(hours);
+         // console.log(record);
+         // console.log(hours);
         });
       alert('The service has been terminated. Number of registered hours: ' + hours);
-       this.router.navigate(['services']);
+     this.router.navigate(['services']);
     }
-    console.log('Urobil som end.');
-    console.log('ID:' + id + ' Hodin: ' + hours);
+  //  console.log('Urobil som end.');
+   // console.log('ID:' + id + ' Hodin: ' + hours);
   }
 
   // method for control input
