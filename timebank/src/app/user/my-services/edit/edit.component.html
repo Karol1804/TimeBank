@@ -1,5 +1,5 @@
 <div class="main">
-    
+
     <mat-card class="card">
         <mat-card-title>Update my service</mat-card-title>
         <mat-divider inset></mat-divider>
@@ -12,9 +12,12 @@
             <p>Name:<b> {{ user_name }}</b></p>
             <p>Phone:<b>{{ phone }}</b></p>
             <span>Estimate hours: </span>
-            <input type="number" (keypress)="omit_special_char($event)" [(ngModel)]="estimate" value="{{ estimate }}" />
+            <input type="number" min="0" max="30" (keypress)="omit_special_char($event)" [(ngModel)]="estimate"
+                value="{{ estimate }}" />
             <br />
-            <mat-error *ngIf="emptyInputError"> All fields are requried! </mat-error>
+            
+            <span class="error" *ngIf="estimate == 30">Max value of  estimate hours is 30</span>
+            <mat-error *ngIf="emptyInputError"> Title field is requried! </mat-error>
             <br>
             <a class="back" routerLink="../..">
                 <mat-icon class="arrow" aria-label="arrow_back_ios_new">arrow_back_ios_new</mat-icon>
@@ -28,4 +31,3 @@
         </mat-card-content>
     </mat-card>
 </div>
-
