@@ -105,4 +105,9 @@ a {
   border-radius: 10px !important;
 }
 
+.deactivated button {
+  box-shadow: none !important;
+  cursor: default;
+  color: #ccc;
+}
 

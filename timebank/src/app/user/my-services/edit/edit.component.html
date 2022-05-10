@@ -16,18 +16,21 @@
                 value="{{ estimate }}" />
             <br />
             
-            <span class="error" *ngIf="estimate == 30">Max value of  estimate hours is 30</span>
+            <span class="error" *ngIf="estimate >= 30">Max value of  estimate hours is 30</span>
             <mat-error *ngIf="emptyInputError"> Title field is requried! </mat-error>
             <br>
             <a class="back" routerLink="../..">
                 <mat-icon class="arrow" aria-label="arrow_back_ios_new">arrow_back_ios_new</mat-icon>
                 <span>back</span>
             </a>
-            <span class="next" (click)="updateService()">
-                <p>Update my service</p>
-                <mat-icon class="arrow" aria-label="arrow_forward_ios" (click)="updateService()">arrow_forward_ios
-                </mat-icon>
-            </span>
+            <div *ngIf="estimate > 30; else activatedUpdate"></div>
+            <ng-template #activatedUpdate>
+                <span class="next" (click)="updateService()">
+                    <p>Update my service</p>
+                    <mat-icon class="arrow" aria-label="arrow_forward_ios" (click)="updateService()">arrow_forward_ios
+                    </mat-icon>
+                </span>
+            </ng-template>
         </mat-card-content>
     </mat-card>
 </div>
