@@ -128,7 +128,7 @@
           color="primary"
           type="submit"
           class="button"
-          [disabled]="!formGroup.valid"
+          [disabled]="!(formGroup.valid && !tel.errorState && tel.touched)"
         >
           Sign up
         </button>
