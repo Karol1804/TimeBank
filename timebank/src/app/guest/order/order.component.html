@@ -1,7 +1,15 @@
 <div class="main">
     <div>
         <mat-card class="card">
-            <mat-card-title>{{title}}</mat-card-title>
+            <!-- <mat-card-title>{{title}}</mat-card-title> -->
+            <mat-card-title>
+                <div *ngIf="title!.length > 35; else shortTitle">
+                    <div [ngClass]="{ longtitle: longTitle }" (click)="showLongTitle()">
+                        {{ title }}
+                    </div>
+                </div>
+                <ng-template #shortTitle>{{ title }}</ng-template>
+            </mat-card-title>
             <mat-divider inset></mat-divider>
             <br>
             <mat-card-content>
@@ -24,12 +32,14 @@
                 <a routerLink="/service-register">
                     <span class="order" (click)="createRegisterRecord()">
                         <span>Order!</span>
-                        <mat-icon class="arrow" aria-label="arrow_forward_ios">arrow_forward_ios</mat-icon>
+                    <mat-icon class="arrow" aria-label="arrow_forward_ios">arrow_forward_ios</mat-icon>
                     </span>
                 </a>
             </div>
-            <ng-template #sameUser><p class="notice">The user cannot order his own service!</p></ng-template>
-            
+            <ng-template #sameUser>
+                <p class="notice">The user cannot order his own service!</p>
+            </ng-template>
+
         </mat-card>
     </div>
 </div>

@@ -15,7 +15,7 @@ export class UserServicesComponent implements OnInit {
   public userservices : Userservices[] | undefined;
   ServicesService: any;
 
-  
+
   public id: number | undefined;
   public title: string | undefined;
   public user_name: string | undefined;
@@ -29,13 +29,13 @@ export class UserServicesComponent implements OnInit {
   public userid: number | undefined;
   public end_time: Date | undefined;
   public user_id: number | undefined;
- 
+
 
   constructor(
     private router: Router,
     private servicesService: ServicesService,
     private route: ActivatedRoute,
-   
+
   ) { }
 
   goTo(path: string) {
@@ -53,7 +53,12 @@ export class UserServicesComponent implements OnInit {
       this.userservices = userServices
       console.log(userServices)
     })
- 
+
+  }
+
+  longTitle = true
+  showLongTitle() {
+    this.longTitle = !this.longTitle
   }
 
 

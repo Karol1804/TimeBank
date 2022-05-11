@@ -1,46 +1,51 @@
 <div class="main">
     <div *ngFor="let userservice of userservices">
-      <mat-card class="card">
-        <mat-card-title>{{ userservice.title }}</mat-card-title>
-        <mat-divider inset></mat-divider>
-        <br />
-        <mat-card-content>
-          <p>
-            Name:<b>{{ userservice.user_name }}</b>
-          </p>
-          <p>
-            Phone: <b>{{ userservice.phone }}</b>
-          </p>
-          <div *ngIf="userservice.estimate != null; else estimateIsNull">
-              <p *ngIf="userservice.estimate != 0; else estimateIsZero">
-                  Estimate time for this service
-                  <span *ngIf="userservice.estimate == 1; else elseAre">is</span>
-                  <ng-template #elseAre>are</ng-template> {{ userservice.estimate }}
-                  <span *ngIf="userservice.estimate == 1; else elseHours">hour.</span>
-                  <ng-template #elseHours>hours.</ng-template>
-              </p>
-              <ng-template #estimateIsZero>
-                  <p>Estimate time is not available.</p>
-              </ng-template>
-          </div>
-          <ng-template #estimateIsNull>
-              <p>Estimate time is not available.</p>
-          </ng-template>
-  
-          <div class="starratting">
-              <star-rating [value]="userservice.rating" [totalstars]="5" checkedcolor="red" uncheckedcolor="black"
-                  size="18px" [readonly]="true"></star-rating>
-          </div>
-          <a routerLink="/order/{{ userservice.service_id }}">
-            <span class="next"
-              ><p>I want it!</p>
+        <mat-card class="card">
+            <!-- <mat-card-title>{{ userservice.title }}</mat-card-title> -->
+            <mat-card-title>
+                <div *ngIf="userservice.title.length > 35; else shortTitle">
+                    <div [ngClass]="{ longtitle: longTitle }" (click)="showLongTitle()">
+                        {{ userservice.title }}
+                    </div>
+                </div>
+                <ng-template #shortTitle>{{ userservice.title }}</ng-template>
+            </mat-card-title>
+            <mat-divider inset></mat-divider>
+            <br />
+            <mat-card-content>
+                <p>
+                    Name:<b>{{ userservice.user_name }}</b>
+                </p>
+                <p>
+                    Phone: <b>{{ userservice.phone }}</b>
+                </p>
+                <div *ngIf="userservice.estimate != null; else estimateIsNull">
+                    <p *ngIf="userservice.estimate != 0; else estimateIsZero">
+                        Estimate time for this service
+                        <span *ngIf="userservice.estimate == 1; else elseAre">is</span>
+                        <ng-template #elseAre>are</ng-template> {{ userservice.estimate }}
+                        <span *ngIf="userservice.estimate == 1; else elseHours">hour.</span>
+                        <ng-template #elseHours>hours.</ng-template>
+                    </p>
+                    <ng-template #estimateIsZero>
+                        <p>Estimate time is not available.</p>
+                    </ng-template>
+                </div>
+                <ng-template #estimateIsNull>
+                    <p>Estimate time is not available.</p>
+                </ng-template>
+
+                <div class="starratting">
+                    <star-rating [value]="userservice.rating" [totalstars]="5" checkedcolor="red" uncheckedcolor="black" size="18px" [readonly]="true"></star-rating>
+                </div>
+                <a routerLink="/order/{{ userservice.service_id }}">
+                    <span class="next"><p>I want it!</p>
               <mat-icon class="arrow" aria-label="arrow_forward_ios"
                 >arrow_forward_ios</mat-icon
               >
             </span>
-          </a>
-        </mat-card-content>
-      </mat-card>
+                </a>
+            </mat-card-content>
+        </mat-card>
     </div>
-  </div>
-  
+</div>

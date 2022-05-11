@@ -28,7 +28,7 @@ export class OrderComponent implements OnInit {
   public end_time: Date | undefined;
   public user_id: number | undefined;
   public estimate: number;
-  
+
   constructor(
     private route: ActivatedRoute,
     private servicesService: ServicesService,
@@ -41,7 +41,7 @@ export class OrderComponent implements OnInit {
     this.loadData(id);
     this.loadUser(userId);
   }
- 
+
   loadData(id: number) {
     this.servicesService.getService(id).subscribe(service => {
       this.service_id = service[0].id;
@@ -52,7 +52,7 @@ export class OrderComponent implements OnInit {
       this.estimate = service[0].estimate;
       console.log("Toto je ponukany service so service_id:")
       console.log(service)
-    }) 
+    })
   }
 
   loadUser(userId: any) {
@@ -66,7 +66,7 @@ export class OrderComponent implements OnInit {
   }
 
   createRegisterRecord(){
- 
+
     let record = new RegisterRecord(
       this.service_id,
       this.obj_id,
@@ -75,10 +75,14 @@ export class OrderComponent implements OnInit {
       this.hours,
       this.end_time
     )
-    
+
     this.servicesService.createRegisterRecord(record).subscribe((result)=> {
       console.log("New service record added...")
       console.log(record)
     })
+  }
+  longTitle = true
+  showLongTitle() {
+    this.longTitle = !this.longTitle
   }
 }
